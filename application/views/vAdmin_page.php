@@ -80,7 +80,7 @@
       </div>
 
       <!-- Masthead Subheading -->
-      <p class="masthead-subheading font-weight-light mb-0">Sistema Administrador de Cursos DEDEV</p>
+      <p class="masthead-subheading font-weight-light mb-0">SISTEMA-ADMINISTRADOR-DE-CURSOS-DEDEV</p>
 
     </div>
   </header>
@@ -90,7 +90,7 @@
     <div class="container">
 
       <!-- Portfolio Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">CURSOS</h2>
 
       <!-- Icon Divider -->
       <div class="divider-custom">
@@ -186,7 +186,7 @@
   <section class="page-section bg-secondary text-white mb-0 alto" id="DOCENTES">
     <div class="container">
       <!-- DOCENTES Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-light mb-0">Docentes</h2>
+      <h2 class="page-section-heading text-center text-uppercase text-light mb-0">DOCENTES</h2>
 
       <!-- Icon Divider -->
       <div class="divider-custom">
@@ -213,7 +213,7 @@
             <div class="icon"><i class="ion-ios-paper-outline" style="color: blue;"></i></div>
             <h4 class="title"><a href="/DIGED/Admin_page/TablaDocentes.html">Administrar Docentes</a></h4>
             <p class="description text-secondary">Apartado para Eliminar un docente existente
-              o modificar nombre,apellido y contraseña de un docente registrado en la plataforma</p>
+              o modificar nombre, apellido y contraseña de un docente registrado en la plataforma</p>
           </div>
         </div>
       </div>
