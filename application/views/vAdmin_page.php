@@ -80,7 +80,7 @@
       </div>
 
       <!-- Masthead Subheading -->
-      <p class="masthead-subheading font-weight-light mb-0">Sistema Administrador de Cursos DEDEV</p>
+      <p class="masthead-subheading font-weight-light mb-0">SISTEMA ADMINISTRADOR DE CURSOS DEDEV</p>
 
     </div>
   </header>
