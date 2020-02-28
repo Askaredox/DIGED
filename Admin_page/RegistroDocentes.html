@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css">
+
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="css/freelancer.min.css" rel="stylesheet">
+    <link rel='stylesheet' href="css/css/bootstrap.min.css">
+    <title>Formulario Docente</title>
+</head>
+
+<body id="page-top">
+
+    div.cont
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-primary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <div class="logo float-left">
+                <a href="#intro" class="scrollto"><img src="img/dedev (3).png" alt="Responsive image"
+                        class="img-fluid"></a>
+            </div>
+
+            <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
+                <a href="index.html" style="color: white;">HOME</a>
+                <i class="fas fa-home"></i>
+            </button>
+    </nav>
+    <!-- <div class="container-fluid bg-primary py-5">-->
+    <section class="page-section" id="contact">
+        <div class="container pt-5">
+
+            <!-- Contact Section Heading -->
+            <header>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Registrar Docente</h2>
+
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="divider-custom-line"></div>
+                </div>
+            </header>
+            <!-- Register Section Form -->
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <form name="sentMessage" id="registerForm" novalidate="novalidate">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Nombre</label>
+                                <input class="form-control" id="name" type="text" placeholder="Nombre"
+                                    required="required"
+                                    data-validation-required-message="Por favor ingresa el nombre del docente">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Apellido</label>
+                                <input class="form-control" id="lastname" type="text" placeholder="Apellido"
+                                    required="required"
+                                    data-validation-required-message="Por favor ingresa el apellido del docente">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" id="show" onclick="MostrarContrasenia()" />
+                                </div>
+                            </div>
+                            <input type="password" class="form-control" id="password" placeholder="Contraseña"
+                                name="password">
+                            <button class="btn btn-primary " type="button" onclick="">Generar</button>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-xl" id="sendMessageButton" value="SEND" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="css/js/bootstrap.min.js"></script>
+    <script src="js/FormRegistroDocentes.js"></script>
+</body>
+
+</html>

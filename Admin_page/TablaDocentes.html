@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css">
+
+    <link rel='stylesheet' href="css/css/bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="stylesheet" href="DataTables/DataTables-1.10.20/css/dataTables.bootstrap4.min.css" />
+
+
+    <title>Docentes</title>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg text-uppercase  bg-primary fixed-top" id="mainNav">
+        <div class="container">
+            <div class="logo float-left">
+                <a href="index.html" class="scrollto"><img src="img/dedev (3).png" alt="Responsive image"
+                        class="img-fluid"></a>
+            </div>
+            <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
+                <a href="index.html" style="color: white;">HOME</a>
+                <i class="fas fa-home"></i>
+            </button>
+    </nav>
+    <!--TABLA DE DOCENTES -->
+    <div id="layoutSidenav_content">
+
+        <div class="container-fluid">
+            <div class="container bg-primary" style="height: 110px;"></div>
+            <div class="card mb-4">
+                <h1 class="display-4">DOCENTES</h1>
+            </div>
+            <div class="card mb-4">
+                <!--empieza la tablilla-->
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Docentes Registrados
+                    <input id="TEMPName" type="hidden">
+                    <input id="TEMPLastname" type="hidden">
+                    <input id="TEMPPassword" type="hidden">
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr class="text-center text-uppercase">
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Contraseña</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr class="text-center text-uppercase">
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Contraseña</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>Tiger Nixon</td>
+                                    <td>System Architect</td>
+                                    <td>Edinburgh</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Garrett Winters</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ashton Cox</td>
+                                    <td>Junior Technical Author</td>
+                                    <td>San Francisco</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Cedric Kelly</td>
+                                    <td>Senior Javascript Developer</td>
+                                    <td>Edinburgh</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Airi Satou</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Brielle Williamson</td>
+                                    <td>Integration Specialist</td>
+                                    <td>New York</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Herrod Chandler</td>
+                                    <td>Sales Assistant</td>
+                                    <td>San Francisco</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Rhona Davidson</td>
+                                    <td>Integration Specialist</td>
+                                    <td>Tokyo</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Colleen Hurst</td>
+                                    <td>Javascript Developer</td>
+                                    <td>San Francisco</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sonya Frost</td>
+                                    <td>Software Engineer</td>
+                                    <td>Edinburgh</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Jena Gaines</td>
+                                    <td>Office Manager</td>
+                                    <td>London</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Quinn Flynn</td>
+                                    <td>Support Lead</td>
+                                    <td>Edinburgh</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Charde Marshall</td>
+                                    <td>Regional Director</td>
+                                    <td>San Francisco</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Haley Kennedy</td>
+                                    <td>Senior Marketing Designer</td>
+                                    <td>London</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tatyana Fitzpatrick</td>
+                                    <td>Regional Director</td>
+                                    <td>London</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Michael Silva</td>
+                                    <td>Marketing Designer</td>
+                                    <td>London</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Paul Byrd</td>
+                                    <td>Chief Financial Officer (CFO)</td>
+                                    <td>New York</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Gloria Little</td>
+                                    <td>Systems Administrator</td>
+                                    <td>New York</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="page-section" id="EDITAR">
+            <div class="collapse" id="collapseExample">
+                <header>
+                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Actualiizar
+                        Docente</h2>
+
+                    <!-- Icon Divider -->
+                    <div class="divider-custom">
+                        <div class="divider-custom-line"></div>
+                        <div class="divider-custom-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="divider-custom-line"></div>
+                    </div>
+                </header>
+                <!-- Register Section Form -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 mx-auto">
+                            <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                            <form name="sentMessage" id="registerForm" novalidate="novalidate">
+                                <div class="control-group">
+                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                        <label>Nombre</label>
+                                        <input class="form-control" id="name" type="text" placeholder="Nombre"
+                                            required="required"
+                                            data-validation-required-message="Por favor ingresa el nombre del docente">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                        <label>Apellido</label>
+                                        <input class="form-control" id="lastname" type="text" placeholder="Apellido"
+                                            required="required"
+                                            data-validation-required-message="Por favor ingresa el apellido del docente">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="checkbox" id="show" onclick="MostrarContrasenia()" />
+                                        </div>
+                                    </div>
+                                    <input type="password" class="form-control" id="password" placeholder="Contraseña"
+                                        name="password">
+                                    <button class="btn btn-success" type="button" data-toggle="collapse"
+                                        data-target="#ConfirmarContraseña" aria-expanded="false"
+                                        aria-controls="ConfirmarContraseña">
+                                        <i class="fas fa-check-double"></i>
+                                    </button>
+                                </div>
+                                <div class="collapse" id="ConfirmarContraseña">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <input type="checkbox" id="show" onclick="MostrarContrasenia2()" />
+                                            </div>
+                                        </div>
+                                        <input type="password" class="form-control" id="password2"
+                                            placeholder="Confirmar Contraseña" name="password2">
+                                        <button class="btn btn-success" type="button" id="verificar">
+                                            <i class="fas fa-check-double"></i>
+                                        </button>
+                                        <a href="#" title="Verficación" data-toggle="popover" data-placement="top"
+                                            data-content="Contraseñas Iguales" id="pop1"></a>
+                                        <a href="#" title="Verficación" data-toggle="popover" data-placement="top"
+                                            data-content="Contraseñas NO Iguales" id="pop2"></a>
+
+                                    </div>
+                                </div>
+                                <br>
+                                <div id="success"></div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-xl" id="sendUpdate"
+                                        value="ACTUALIZAR" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="ELIMINAR" tabindex="-1" role="dialog" aria-labelledby="ELIMINAR" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ELIMINARtitle">Eliminar Docente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="NombreEliminar" class="col-sm-2 col-form-label">Nombre</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="NombreEliminar">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ApellidoEliminar" class="col-sm-2 col-form-label">Apellido</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="ApellidoEliminar">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Si</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Your Website 2019</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="css/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="js/datatables-demo.js"></script>
+
+</body>
+
+</html>
