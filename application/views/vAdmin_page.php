@@ -80,7 +80,7 @@
       </div>
 
       <!-- Masthead Subheading -->
-      <p class="masthead-subheading font-weight-light mb-0">Sistema Administrador de Cursos DEDEV</p>
+      <p class="masthead-subheading font-weight-light mb-0">SISTEMA-ADMINISTRADOR-DE-CURSOS-DEDEV</p>
 
     </div>
   </header>
@@ -90,7 +90,7 @@
     <div class="container">
 
       <!-- Portfolio Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">CURSOS</h2>
 
       <!-- Icon Divider -->
       <div class="divider-custom">
