@@ -109,13 +109,14 @@
         <div class="divider-custom-line"></div>
       </div>
 
-      <!-- Portfolio Grid Items -->
+      <!-- CURSOS Grid Items -->
       <div class="row">
 
         <!-- Portfolio Item 1 -->
         <div class="col-sm-12 col-md-6 col-lg-6">
           <div class="portfolio-item mx-auto bg-secondary" data-toggle="modal" data-target="#portfolioModal1">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+            <div
+              class="portfolio-item-caption d-flex bg-primary  align-items-center justify-content-center h-100 w-100">
               <div class="portfolio-item-caption-content text-center text-white">
                 <h4 class="display-7">CREAR CURSOS</h4>
                 <i class="fas fa-hand-pointer fa-3x"></i>
@@ -130,7 +131,8 @@
         <!-- Portfolio Item 2 -->
         <div class="col-sm-12 col-md-6 col-lg-6">
           <div class="portfolio-item mx-auto bg-secondary" data-toggle="modal" data-target="#portfolioModal2">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+            <div
+              class="portfolio-item-caption d-flex  bg-primary  align-items-center justify-content-center h-100 w-100">
               <div class="portfolio-item-caption-content text-center text-white">
                 <h4 class="display-7">ADMINISTRAR CURSOS</h4>
                 <i class="fas fa-hand-pointer fa-3x"></i>
@@ -148,7 +150,7 @@
   </section>
 
   <!-- Docentes Section -->
-  <section class="page-section bg-secondary text-white mb-0 alto" id="DOCENTES">
+  <section class="page-section portfolio bg-secondary text-white mb-0 alto" id="DOCENTES">
     <div class="container">
       <!-- DOCENTES Section Heading -->
       <h2 class="page-section-heading text-center text-uppercase text-light mb-0">Docentes</h2>
@@ -164,22 +166,44 @@
 
 
       <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-5 wow bounceInUp" data-wow-duration="1.4s">
-          <div class="box">
-            <div class="icon"><i class="ion-ios-bookmarks-outline" style="color: blue"></i></div>
-            <h4 class="title"><a href="/DIGED/Admin_page/RegistroDocentes.html">Crear Docente</a></h4>
-            <p class="description text-secondary">Registrar nuevos docentes a la plataforma, proporcionándoles un nombre
-              de usuario y contraseña para accesar.</p>
-          </div>
+
+        <!-- Portfolio Item 3 -->
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <a href="/DIGED/Admin_page/RegistroDocentes.html">
+            <div class="portfolio-item mx-auto bg-secondary">
+              <div
+                class="portfolio-item-caption d-flex align-items-center bg-primary  justify-content-center h-100 w-100">
+                <div class="portfolio-item-caption-content  text-center text-white">
+                  <h4 class="display-7">REGISTRAR<br> DOCENTE</h4>
+                  <i class="fas fa-hand-pointer fa-3x"></i>
+                </div>
+
+              </div>
+              <div class="container align-self-center ml-4 ">
+                <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/docente2.png" alt="">
+              </div>
+            </div>
+          </a>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s"
-          data-wow-duration="1.4s">
-          <div class="box">
-            <div class="icon"><i class="ion-ios-paper-outline" style="color: blue;"></i></div>
-            <h4 class="title"><a href="/DIGED/Admin_page/TablaDocentes.html">Administrar Docentes</a></h4>
-            <p class="description text-secondary">Apartado para Eliminar un docente existente
-              o modificar nombre,apellido y contraseña de un docente registrado en la plataforma</p>
-          </div>
+
+        <!-- Portfolio Item 4 -->
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <a href="/DIGED/Admin_page/TablaDocentes.html">
+            <div class="portfolio-item mx-auto bg-secondary">
+              <div
+                class="portfolio-item-caption d-flex align-items-center bg-primary  justify-content-center h-100 w-100">
+
+                <div class="portfolio-item-caption-content text-center text-white">
+                  <h4 class="display-7">ADMINISTRAR <br> DOCENTES</h4>
+                  <i class="fas fa-hand-pointer fa-3x"></i>
+                </div>
+
+              </div>
+              <div class="container align-self-center ml-4">
+                <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/editarProfesor2.png" alt="">
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
