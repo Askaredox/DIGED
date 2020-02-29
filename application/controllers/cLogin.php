@@ -24,11 +24,11 @@ class CLogin extends CI_Controller{
         if($data['user_name']=="admin" && $data['user_pass']=="admin"){
             $this->session->set_userdata('logged_in', $data);
             $this->load->view('vAdmin_page');
-            /*
+            
             echo '<pre>';
             print_r($this->session->userdata());
             echo '</pre>';
-            */
+            
         }
         else{
             $this->session->sess_destroy();
