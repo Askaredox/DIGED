@@ -13,7 +13,8 @@
   <!-- Custom fonts for this theme -->
   <link href="/DIGED/Admin_page/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
 
   <link href="/DIGED/Admin_page/lib/animate/animate.min.css" rel="stylesheet">
   <link href="/DIGED/Admin_page/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
@@ -38,7 +39,8 @@
       <div class="logo float-left">
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="/DIGED/Admin_page/img/dedev (3).png" alt="Responsive image" class="img-fluid"></a>
+        <a href="#intro" class="scrollto"><img src="/DIGED/Admin_page/img/dedev (3).png" alt="Responsive image"
+            class="img-fluid"></a>
       </div>
       <button
         class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-secondary text-white rounded"
@@ -49,6 +51,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#intro">HOME</a>
+          </li>
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#CURSOS">CURSOS</a>
           </li>
@@ -61,41 +66,44 @@
   </nav>
 
   <!-- Masthead -->
-  <header class="masthead bg-secondary text-white text-center">
-    <div class="container d-flex align-items-center flex-column">
+  <section id="intro">
+    <header class="masthead bg-secondary text-white text-center">
+      <div class="container d-flex align-items-center flex-column">
 
-      <!-- Masthead Avatar Image -->
-      <img class="masthead-avatar mb-5" src="/DIGED/Admin_page/img/admin.png" alt="">
+        <!-- Masthead Avatar Image -->
+        <img class="masthead-avatar mb-5" src="/DIGED/Admin_page/img/admin.png" alt="">
 
-      <!-- Masthead Heading -->
-      <h1 class="masthead-heading text-uppercase mb-0">ADMINISTRACIÓN</h1>
+        <!-- Masthead Heading -->
+        <h1 class="masthead-heading text-uppercase mb-0">ADMINISTRACIÓN</h1>
 
-      <!-- Icon Divider -->
-      <div class="divider-custom divider-light">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon">
-          <i class="fas fa-star"></i>
+        <!-- Icon Divider -->
+        <div class="divider-custom divider-light">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="divider-custom-line"></div>
         </div>
-        <div class="divider-custom-line"></div>
+
+        <!-- Masthead Subheading -->
+        <p class="masthead-subheading font-weight-light mb-0">SISTEMA ADMINISTRADOR DE CURSOS DEDEV</p>
+
       </div>
+    </header>
+  </section>
 
-      <!-- Masthead Subheading -->
-      <p class="masthead-subheading font-weight-light mb-0">SISTEMA-ADMINISTRADOR-DE-CURSOS-DEDEV</p>
-
-    </div>
-  </header>
 
   <!-- Cursos Section -->
   <section class="page-section portfolio" id="CURSOS">
     <div class="container">
 
       <!-- Portfolio Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">CURSOS</h2>
+      <h2 class="page-section-heading text-center text-uppercase text-secondary">CURSOS</h2>
 
       <!-- Icon Divider -->
-      <div class="divider-custom">
+      <div class="divider-custom text-white">
         <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon">
+        <div class="divider-custom-icon ">
           <i class="fas fa-star"></i>
         </div>
         <div class="divider-custom-line"></div>
@@ -105,77 +113,34 @@
       <div class="row">
 
         <!-- Portfolio Item 1 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="portfolio-item mx-auto bg-secondary" data-toggle="modal" data-target="#portfolioModal1">
             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
               <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
+                <h4 class="display-7">CREAR CURSOS</h4>
+                <i class="fas fa-hand-pointer fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/cabin.png" alt="">
+            <div class="container align-self-center ml-4 ">
+              <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/crear2.png" alt="">
+            </div>
           </div>
         </div>
 
         <!-- Portfolio Item 2 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="portfolio-item mx-auto bg-secondary" data-toggle="modal" data-target="#portfolioModal2">
             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
               <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
+                <h4 class="display-7">ADMINISTRAR CURSOS</h4>
+                <i class="fas fa-hand-pointer fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/cake.png" alt="">
-          </div>
-        </div>
-
-        <!-- Portfolio Item 3 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
+            <div class="container align-self-center ml-4">
+              <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/modificarCurso2.png" alt="">
             </div>
-            <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/circus.png" alt="">
           </div>
         </div>
-
-        <!-- Portfolio Item 4 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal4">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/game.png" alt="">
-          </div>
-        </div>
-
-        <!-- Portfolio Item 5 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal5">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/safe.png" alt="">
-          </div>
-        </div>
-
-        <!-- Portfolio Item 6 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal6">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/submarine.png" alt="">
-          </div>
-        </div>
-
       </div>
       <!-- /.row -->
 
@@ -190,7 +155,7 @@
 
       <!-- Icon Divider -->
       <div class="divider-custom">
-        <div class="divider-custom-line bg-light" ></div>
+        <div class="divider-custom-line bg-light"></div>
         <div class="divider-custom-icon ">
           <i class="fas fa-star" style="color: white;"></i>
         </div>
