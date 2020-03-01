@@ -132,7 +132,8 @@
 
         <!-- Portfolio Item 1 -->
         <div class="col-sm-12 col-md-6 col-lg-6">
-          <div class="portfolio-item mx-auto bg-secondary text-center" data-toggle="modal" data-target="#portfolioModal1">
+          <div class="portfolio-item mx-auto bg-secondary text-center" data-toggle="modal"
+            data-target="#portfolioModal1">
             <h5 class="display-8 text-white">CREAR CURSOS</h5>
             <div
               class="portfolio-item-caption d-flex bg-primary  align-items-center justify-content-center h-100 w-100">
@@ -149,7 +150,8 @@
 
         <!-- Portfolio Item 2 -->
         <div class="col-sm-12 col-md-6 col-lg-6">
-          <div class="portfolio-item mx-auto bg-secondary  text-center" data-toggle="modal" data-target="#portfolioModal2">
+          <div class="portfolio-item mx-auto bg-secondary  text-center" data-toggle="modal"
+            data-target="#portfolioModal2">
             <h5 class="display-8 text-white ">ADMINISTRAR CURSOS</h5>
             <div
               class="portfolio-item-caption d-flex  bg-primary  align-items-center justify-content-center h-100 w-100">
@@ -308,7 +310,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-8">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Log Cabin</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Crear Curso</h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -317,12 +319,45 @@
                   </div>
                   <div class="divider-custom-line"></div>
                 </div>
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="/DIGED/Admin_page/img/portfolio/cabin.png" alt="">
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam
-                  nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae?
-                  Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <div class="row">
+                  <div class="col-lg-8 mx-auto">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <form name="sentMessage" id="registerForm" novalidate="novalidate">
+                      <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                          <label>Nombre Curso</label>
+                          <input class="form-control" id="name" type="text" placeholder="Nombre Curso" required="required"
+                            data-validation-required-message="Por favor ingresa el nombre del Curso">
+                          <p class="help-block text-danger"></p>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                          <label>Apellido</label>
+                          <input class="form-control" id="lastname" type="text" placeholder="Apellido"
+                            required="required"
+                            data-validation-required-message="Por favor ingresa el apellido del docente">
+                          <p class="help-block text-danger"></p>
+                        </div>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            <input type="checkbox" id="show" onclick="MostrarContrasenia()" />
+                          </div>
+                        </div>
+                        <input type="password" class="form-control" id="password" placeholder="Contraseña"
+                          name="password">
+                        <button class="btn btn-primary " type="button" onclick="">Generar</button>
+                      </div>
+                      <br>
+                      <div id="success"></div>
+                      <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-xl" id="sendMessageButton" value="SEND" />
+                      </div>
+                    </form>
+                  </div>
+                </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
                   Close Window
