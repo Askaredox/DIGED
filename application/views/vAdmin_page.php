@@ -298,19 +298,19 @@
   <!-- Portfolio Modal 1 -->
   <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog"
     aria-labelledby="portfolioModal1Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">
             <i class="fas fa-times"></i>
           </span>
         </button>
-        <div class="modal-body text-center">
-          <div class="container">
+        <div class="modal-body">
+          <div class="container-md">
             <div class="row justify-content-center">
-              <div class="col-lg-8">
+              <div class="col-lg-8 ">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Crear Curso</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase text-center mb-0">Crear Curso</h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -320,48 +320,37 @@
                   <div class="divider-custom-line"></div>
                 </div>
                 <div class="row">
-                  <div class="col-lg-8 mx-auto">
+                  <div class="col-lg-10 mx-auto">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <form name="sentMessage" id="registerForm" novalidate="novalidate">
+                    <form class="needs-validation" name="sentMessage" id="registerForm" novalidate>
                       <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                          <label>Nombre Curso</label>
-                          <input class="form-control" id="name" type="text" placeholder="Nombre Curso" required="required"
-                            data-validation-required-message="Por favor ingresa el nombre del Curso">
-                          <p class="help-block text-danger"></p>
+                        <label for="validationCustom01">Nombre Curso</label>
+                        <input type="text" class="form-control" id="validationCustom01" placeholder="Curso" required>
+                        <div class="valid-feedback">
+                          Válido
+                        </div>
+                        <div class="invalid-feedback">
+                          Por favor Ingresa el nombre del Curso
                         </div>
                       </div>
-                      <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                          <label>Apellido</label>
-                          <input class="form-control" id="lastname" type="text" placeholder="Apellido"
-                            required="required"
-                            data-validation-required-message="Por favor ingresa el apellido del docente">
-                          <p class="help-block text-danger"></p>
-                        </div>
-                      </div>
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">
-                            <input type="checkbox" id="show" onclick="MostrarContrasenia()" />
-                          </div>
-                        </div>
-                        <input type="password" class="form-control" id="password" placeholder="Contraseña"
-                          name="password">
-                        <button class="btn btn-primary " type="button" onclick="">Generar</button>
+                      <div class="form-group">
+                        <select class="custom-select" searchable="Search here.." required>
+                          <option value="" disabled selected>Seleccione un profesor</option>
+                          <option value="1">Luis Espino</option>
+                          <option value="2">Francisco Guevara</option>
+                          <option value="3">Erik Ruiz</option>
+                        </select>
+                        <div class="invalid-feedback">Por favor selecciona un profesor.</div>
                       </div>
                       <br>
                       <div id="success"></div>
-                      <div class="form-group">
-                        <input type="submit" class="btn btn-primary btn-xl" id="sendMessageButton" value="SEND" />
+                      <div class="form-group ">
+                        <input type="submit" class="btn btn-secondary rounded-pill btn-xl bg-secondary" id="sendMessageButton"
+                          value="Registrar Curso" />
                       </div>
                     </form>
                   </div>
                 </div>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
-                </button>
               </div>
             </div>
           </div>
@@ -373,19 +362,19 @@
   <!-- Portfolio Modal 2 -->
   <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog"
     aria-labelledby="portfolioModal2Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">
             <i class="fas fa-times"></i>
           </span>
         </button>
-        <div class="modal-body text-center">
+        <div class="modal-body text-justify">
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-lg-8">
                 <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Tasty Cake</h2>
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0 text-center">ADMINISTRAR CURSOS</h2>
                 <!-- Icon Divider -->
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
@@ -394,16 +383,16 @@
                   </div>
                   <div class="divider-custom-line"></div>
                 </div>
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="/DIGED/Admin_page/img/portfolio/cake.png" alt="">
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam
-                  nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae?
-                  Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
-                </button>
+                <h4>
+                  <p class="mb-5">En esta sección puede eliminar y editar los cursos existentes, cambiar
+                    el profesor que la imparte, y los datos del curso.
+                  </p>
+                </h4>
+                <div class="row justify-content-center">
+                  <button class="btn btn-primary rounded-pill" href="#">
+                    IR A SECCIÓN
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -426,6 +415,30 @@
 
   <!-- Custom scripts for this template -->
   <script src="/DIGED/Admin_page/js/freelancer.min.js"></script>
+
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict';
+      window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+
+    $('.mdb-select.select-wrapper .select-dropdown').val("").removeAttr('readonly').attr("placeholder", "Choose your country").prop('required', true).addClass('form-control');
+
+  </script>
 
 </body>
 
