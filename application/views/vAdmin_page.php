@@ -310,7 +310,7 @@
             <form class="needs-validation" name="sentMessage" id="UpdatePassword" novalidate>
               <div class="control-group">
                 <label for="validationCustom01">NUEVA CONTRASEÑA</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Curso" required>
+                <input type="text" class="form-control" id="pass1" placeholder="contraseña" required>
                 <div class="valid-feedback">
                   CONTRASEÑA
                 </div>
@@ -320,11 +320,15 @@
               </div>
               <div class="form-group">
                 <label for="validationCustom01">CONFIRMACIÓN</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Curso" required>
+                <input type="text" class="form-control" id="pass2" placeholder="nueva contraseña" required>
                 <div class="valid-feedback">
-                   NUEVA CONTRASEÑA
+                  NUEVA CONTRASEÑA
                 </div>
                 <div class="invalid-feedback">Por favor ingresa de nuevo la contraseña.</div>
+                <a href="#" title="Verficación" data-toggle="popover" data-placement="top"
+                  data-content="Contraseñas Iguales" id="pop1"></a>
+                <a href="#" title="Verficación" data-toggle="popover" data-placement="top"
+                  data-content="Contraseñas NO Iguales" id="pop2"></a>
               </div>
               <br>
               <div id="success"></div>
@@ -483,9 +487,6 @@
         });
       }, false);
     })();
-
-    $('.mdb-select.select-wrapper .select-dropdown').val("").removeAttr('readonly').attr("placeholder", "Choose your country").prop('required', true).addClass('form-control');
-
   </script>
 
 </body>
