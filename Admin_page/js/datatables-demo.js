@@ -25,9 +25,12 @@ $('#dataTable tr').on('click', function(){
 $(".btn-primary").click(function(){
   $('#collapseExample').collapse('show');
 });
-$('#sendUpdate').click(function(){
-  $('#collapseExample').collapse('hide');
+//si no desea modificar nada 
+$('#cancelar').click(function () {
+  $('#collapseExample').collapse('hide');  
 });
+
+
 function MostrarContrasenia() {
   var x = document.getElementById("password");
   if (x.type === "password") {
@@ -56,11 +59,6 @@ $('#verificar').click(function(){
     $('#pop2').popover('show');
   }
 });
-
-function VerificarContraseña() {
-  var x0 = document.getElementById("disabledTextInput");
-  
-}
 
 function MostrarContrasenia2() {
   var x = document.getElementById("password2");

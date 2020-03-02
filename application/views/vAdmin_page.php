@@ -389,9 +389,9 @@
                   </p>
                 </h4>
                 <div class="row justify-content-center">
-                  <button class="btn btn-primary rounded-pill" href="#">
+                  <a class="btn btn-primary rounded-pill" href="/DIGED/Admin_page/TablaCursos.html">
                     IR A SECCIÓN
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
