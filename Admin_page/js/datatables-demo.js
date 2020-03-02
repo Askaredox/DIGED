@@ -28,7 +28,6 @@ $(".btn-primary").click(function(){
 $('#sendUpdate').click(function(){
   $('#collapseExample').collapse('hide');
 });
-
 function MostrarContrasenia() {
   var x = document.getElementById("password");
   if (x.type === "password") {
