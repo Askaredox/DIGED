@@ -38,8 +38,7 @@
   <nav class="navbar navbar-expand-lg bg-primary text-uppercase  text-sm fixed-top" id="mainNav">
     <div class="container">
       <div class="logo float-left">
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+        <!--LOGO-->
         <a href="#intro" class="scrollto"><img src="/DIGED/Admin_page/img/dedev (3).png" alt="Responsive image"
             class="img-fluid"></a>
       </div>
@@ -72,7 +71,8 @@
               </a>
 
               <div class="dropdown-menu bg-info " aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item text-white" href="#"><i class="fas fa-user-edit"></i>Editar</a>
+                <a class="dropdown-item text-white" type="button" class="btn" data-toggle="modal"
+                  data-target="#EDITARUSER"><i class="fas fa-user-edit"></i>Editar</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item text-white" type="button" class="btn" data-toggle="modal"
                   data-target="#CERRARSESSION"><i class="fas fa-power-off"></i> Salir</a>
@@ -130,7 +130,7 @@
       <!-- CURSOS Grid Items -->
       <div class="row">
 
-        <!-- Portfolio Item 1 -->
+        <!-- Portfolio Item 1 crear curso -->
         <div class="col-sm-12 col-md-6 col-lg-6">
           <div class="portfolio-item mx-auto bg-secondary text-center" data-toggle="modal"
             data-target="#portfolioModal1">
@@ -148,7 +148,7 @@
           </div>
         </div>
 
-        <!-- Portfolio Item 2 -->
+        <!-- Portfolio Item 2  administrar cursos-->
         <div class="col-sm-12 col-md-6 col-lg-6">
           <div class="portfolio-item mx-auto bg-secondary  text-center" data-toggle="modal"
             data-target="#portfolioModal2">
@@ -189,7 +189,7 @@
 
       <div class="row">
 
-        <!-- Portfolio Item 3 -->
+        <!-- Portfolio Item 3  crear docente-->
         <div class="col-sm-12 col-md-6 col-lg-6">
           <a href="/DIGED/Admin_page/RegistroDocentes.html">
             <div class="portfolio-item mx-auto bg-secondary">
@@ -212,7 +212,7 @@
           </a>
         </div>
 
-        <!-- Portfolio Item 4 -->
+        <!-- Portfolio Item 4  modificar o borrar docentes-->
         <div class="col-sm-12 col-md-6 col-lg-6">
           <a href="/DIGED/Admin_page/TablaDocentes.html">
             <div class="portfolio-item mx-auto bg-secondary">
@@ -272,6 +272,7 @@
     </a>
   </div>
 
+  <!--EDITAR USUARIO Y CERRAR SESIÓN-->
   <div class="modal fade" id="CERRARSESSION" tabindex="-1" role="dialog" aria-labelledby="CERRARSESSION"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -293,9 +294,56 @@
     </div>
   </div>
 
-  <!-- Portfolio Modals -->
+  <!--EDITAR CONTRASEÑA-->
+  <div class="modal fade" id="EDITARUSER" tabindex="-1" role="dialog" aria-labelledby="EDITARUSER" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="EDITUSR">CAMBIAR CONTRASEÑA</p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="col-lg-10 mx-auto">
+            <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+            <form class="needs-validation" name="sentMessage" id="UpdatePassword" novalidate>
+              <div class="control-group">
+                <label for="validationCustom01">NUEVA CONTRASEÑA</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Curso" required>
+                <div class="valid-feedback">
+                  CONTRASEÑA
+                </div>
+                <div class="invalid-feedback">
+                  Por favor Ingresa una nueva contraseña
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="validationCustom01">CONFIRMACIÓN</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Curso" required>
+                <div class="valid-feedback">
+                   NUEVA CONTRASEÑA
+                </div>
+                <div class="invalid-feedback">Por favor ingresa de nuevo la contraseña.</div>
+              </div>
+              <br>
+              <div id="success"></div>
+              <div class="form-group ">
+                <input type="submit" class="btn btn-secondary rounded-pill btn-xl bg-secondary" id="actualizarPass"
+                  value="Cambiar Contraseña" />
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger rounded-pill" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Portfolio Modal 1 -->
+  <!-- Portfolio Modals -->
+  <!-- Portfolio Modal CREAR CURSO-->
   <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog"
     aria-labelledby="portfolioModal1Label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -345,8 +393,8 @@
                       <br>
                       <div id="success"></div>
                       <div class="form-group ">
-                        <input type="submit" class="btn btn-secondary rounded-pill btn-xl bg-secondary" id="sendMessageButton"
-                          value="Registrar Curso" />
+                        <input type="submit" class="btn btn-secondary rounded-pill btn-xl bg-secondary"
+                          id="sendMessageButton" value="Registrar Curso" />
                       </div>
                     </form>
                   </div>
@@ -359,7 +407,7 @@
     </div>
   </div>
 
-  <!-- Portfolio Modal 2 -->
+  <!-- Portfolio Modal 2 DIRIGIR A LA PAGINA TablaCursos.html para editarlos o eliminarlos -->
   <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog"
     aria-labelledby="portfolioModal2Label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

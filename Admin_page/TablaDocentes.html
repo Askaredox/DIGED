@@ -424,7 +424,6 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 mx-auto">
-                            <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                             <form name="sentMessage" id="registerForm" novalidate="novalidate">
                                 <div class="control-group">
                                     <div class="form-group floating-label-form-group controls mb-0 pb-2">
@@ -447,16 +446,16 @@
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
-                                            <input type="checkbox" id="show" onclick="MostrarContrasenia()" />
+                                            <input type="checkbox" id="show1" onclick="MostrarContrasenia()" />
                                         </div>
                                     </div>
                                     <input type="password" class="form-control" id="password" placeholder="Contraseña"
                                         name="password">
-                                    <button class="btn btn-success" type="button" data-toggle="collapse"
-                                        data-target="#ConfirmarContraseña" aria-expanded="false"
-                                        aria-controls="ConfirmarContraseña">
+                                    <button class="btn btn-success" type="button" id="confirm">
                                         <i class="fas fa-check-double"></i>
                                     </button>
+                                    <a href="#" title="" data-toggle="popover" data-placement="top"
+                                        data-content="¡CAMPO NO VÁLIDO!" id="pop3"></a>
                                 </div>
                                 <div class="collapse" id="ConfirmarContraseña">
                                     <div class="input-group mb-3">
@@ -474,12 +473,15 @@
                                             data-content="Contraseñas Iguales" id="pop1"></a>
                                         <a href="#" title="Verficación" data-toggle="popover" data-placement="top"
                                             data-content="Contraseñas NO Iguales" id="pop2"></a>
+                                        <a href="#" title="Verficación" data-toggle="popover" data-placement="top"
+                                            data-content="Debe llenar el campo de confirmación" id="pop4"></a>
 
                                     </div>
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    
+                                    <input type="submit" class="btn btn-success rounded-pill btn-xl" id="sendUpdate"
+                                        value="Actualizar" />
                                     <button type="button" class="btn btn-danger rounded-pill btn-xl"
                                         id="cancelar">Cancelar</button>
                                 </div>
@@ -523,6 +525,7 @@
             </div>
         </div>
 
+        
 
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
@@ -553,7 +556,7 @@
     <script src="css/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script src="js/datatables-demo.js"></script>
+    <script src="/DIGED/Admin_page/js/Tabla_Docentes_Form.js"></script>
 
 </body>
 
