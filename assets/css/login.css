@@ -1,13 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body{
-  background-color: #37ace7;
+  background-color: #002C76;
   padding-top:50px;
   font-family: 'Open Sans', sans-serif;
 }
 
 .border-login{
-  border-right:1px solid rgb(17, 8, 8);
+  border-right:1px solid white;
   min-height:600px;
   float:right;
 }

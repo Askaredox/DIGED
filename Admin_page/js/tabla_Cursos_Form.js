@@ -7,20 +7,18 @@ $(document).ready(function () {
 $('#dataTable tr').on('click', function () {
     var datoU = $(this).find('td:nth-child(1)').html();
     var datoD = $(this).find('td:nth-child(2)').html();
-    var datoT = $(this).find('td:nth-child(3)').html();
     // para actualizar o editar 
-    document.getElementById('curso').placeholder = datoD;
-    document.getElementById('docente').placeholder = datoT;
+    document.getElementById('curso').placeholder = datoU;
+    document.getElementById('docente').placeholder = datoD;
 
     //para mantener los temporales.
-    document.getElementById('TEMPcodigo').placeholder = datoU;
-    document.getElementById('TEMPcurso').placeholder = datoD;
-    document.getElementById('TEMPdocente').placeholder = datoT;
+    document.getElementById('TEMPcurso').placeholder = datoU;
+    document.getElementById('TEMPdocente').placeholder = datoD;
 
 
     //para eliminar el curso
-    $('#CursoEliminar').val(datoD);
-    $('#DocentedeEliminar').val(datoT);
+    $('#CursoEliminar').val(datoU);
+    $('#DocentedeEliminar').val(datoD);
 });
 
 

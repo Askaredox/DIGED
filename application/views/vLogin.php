@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title>Aulas virtuales DIGED</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' href="/DIGED/Admin_page/css/css/bootstrap.min.css">
     <link rel="stylesheet" href="/DIGED/assets/css/login.css">
   </head>
   
-  <body>
-    <div class="container">
+  <body style="background-color: #002C76;">
+    <div class="container text-white">
       <div class="row">
 
         <div class="col-sm-12 col-xs-12 col-md-4">            
@@ -22,13 +22,13 @@
                 <label class=""> Password </label>
                 <input type="password" name="txtPass" class="form-control" placeholder="" required>
                 </br>
-                <input class="btn btn-dark btn-lg btn-block" type="submit" value="Entrar">
+                <input class="btn btn-light rounded-pill btn-lg btn-block" type="submit" value="Entrar">
               </form>
           </div>
         </div>
       
         <div class="col-md-1 hidden-xs hidden-sm">   
-          <div class="border-login"></div>
+          <div class="border-login" style="border-right:1px solid white;"></div>
         </div>
 
         <div class="col-sm-6 col-md-5 hidden-xs hidden-sm" >

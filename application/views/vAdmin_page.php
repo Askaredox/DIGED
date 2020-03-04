@@ -18,19 +18,9 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
     rel="stylesheet">
 
-  <link href="/DIGED/Admin_page/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="/DIGED/Admin_page/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="/DIGED/Admin_page/lib/boxes.css" rel="stylesheet">
-
   <!-- Theme CSS -->
   <link href="/DIGED/Admin_page/css/freelancer.min.css" rel="stylesheet">
   <link rel='stylesheet' href="/DIGED/Admin_page/css/css/bootstrap.min.css">
-  <style>
-    .alto {
-      height: 600px;
-    }
-  </style>
-
 </head>
 
 <body id="page-top">
