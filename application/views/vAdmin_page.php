@@ -165,7 +165,7 @@
   <section class="page-section portfolio bg-secondary text-white mb-0 " id="DOCENTES">
     <div class="container">
       <!-- DOCENTES Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-light mb-0">Docentes</h2>
+      <h2 class="page-section-heading text-center text-uppercase text-light mb-0">DOCENTES</h2>
 
       <!-- Icon Divider -->
       <div class="divider-custom">
