@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="stylesheet" href="DataTables/DataTables-1.10.20/css/dataTables.bootstrap4.min.css" />
 
 
-    <title>Docentes</title>
+    <title>Cursos</title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
     <nav class="navbar navbar-expand-lg text-uppercase  bg-primary fixed-top" id="mainNav">
         <div class="container">
             <div class="logo float-left">
-                <a href="vAdmin_page.php?>"><img
+                <a href="/DIGED/Admin_page/RegistroDocentes.html/vAdmin_page.php" class="scrollto"><img
                         src="img/dedev (3).png" alt="Responsive image" class="img-fluid"></a>
             </div>
             <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
@@ -32,46 +32,47 @@
                 <i class="fas fa-home"></i>
             </button>
     </nav>
-    <!-- CAMBIANDO ESTO A VER SI SE VE TABLA DE DOCENTES -->
+    <!-- CAMBIANDO ESTO A VER SI SE VE TABLA DE CURSOS -->
     <div id="layoutSidenav_content">
 
         <div class="container-fluid">
             <div class="container bg-primary" style="height: 110px;"></div>
             <div class="card mb-4">
-                <h1 class="display-4">DOCENTES</h1>
+                <h1 class="display-4">CURSOS</h1>
             </div>
             <div class="card mb-4">
                 <!--empieza la tablilla-->
-                <div class="card-header"><i class="fas fa-table mr-1"></i>DOCENTES-REGISTRADOS
-                    <input id="TEMPName" type="hidden">
-                    <input id="TEMPLastname" type="hidden">
-                    <input id="TEMPPassword" type="hidden">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Listado Cursos
+                    <!--CAMPOS TEMPORALES QUE TE PODRÍAN SERVIR-->
+                    <input id="TEMPcodigo" type="hidden">
+                    <input id="TEMPcurso" type="hidden">
+                    <input id="TEMPdocente" type="hidden">
 
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <!--DEFINIR CABECERAS, NUMERO DE COLUMNAS EN ACCION VAN LOS BOTONES DE EDITAR O BORRAR-->
                             <thead>
                                 <tr class="text-center text-uppercase">
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Contraseña</th>
+                                    <th>Curso</th>
+                                    <th>Docente</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
+                        <!--DEFINICIION DE PIES DE TABLA -->
                             <tfoot>
                                 <tr class="text-center text-uppercase">
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Contraseña</th>
+                                    <th>Curso</th>
+                                    <th>Docente</th>
                                     <th>Accion</th>
                                 </tr>
                             </tfoot>
+                            <!--INSERCIÓN DE DATOS TODAS SON  DATO2, DATO3, BOTONES DE ACCIONES-->
                             <tbody>
                                 <tr>
-                                    <td>Tiger </td>
-                                    <td>Nixon</td>
-                                    <td>Edinburgh</td>
+                                    <td>Herman Veliz</td>
+                                    <td>Programación de Computadoras 2</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -87,9 +88,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Garrett </td>
-                                    <td>Winters</td>
-                                    <td>Tokyo</td>
+                                    <td>Programacion Comercial 1</td>
+                                    <td>Guippsy Menendez</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -105,28 +105,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Ashton </td>
-                                    <td>Cox</td>
-                                    <td>San Francisco</td>
-                                    <td class="text-center">
-                                        <a class="scrollto" href="#EDITAR" style="color: white;">
-                                            <button type="button " class="btn btn-primary btn-sm" role="button">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </a>
-                                        <a class="scrollto" style="color: white;">
-                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#ELIMINAR" role="button">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>Cedric </td>
-                                    <td>Kelly</td>
-                                    <td>Edinburgh</td>
+                                    <td>Estructuras de Datos</td>
+                                    <td>Jesus Polanco</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -143,27 +123,8 @@
 
                                 </tr>
                                 <tr>
-                                    <td>Airi </td>
-                                    <td>Satou</td>
-                                    <td>Tokyo</td>
-                                    <td class="text-center">
-                                        <a class="scrollto" href="#EDITAR" style="color: white;">
-                                            <button type="button " class="btn btn-primary btn-sm" role="button">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </a>
-                                        <a class="scrollto" style="color: white;">
-                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#ELIMINAR" role="button">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Brielle </td>
-                                    <td>Williamson</td>
-                                    <td>New York</td>
+                                    <td>Manejo e Implementacion de Archivos</td>
+                                    <td>Oscar Paz</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -180,9 +141,25 @@
 
                                 </tr>
                                 <tr>
-                                    <td>Herrod </td>
-                                    <td>Chandler</td>
-                                    <td>San Francisco</td>
+                                    <td>Sistemas Operativos 1</td>
+                                    <td>Sergio Méndez</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sistemas Operativos 2</td>
+                                    <td>Neftali Calderon</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -199,9 +176,26 @@
 
                                 </tr>
                                 <tr>
-                                    <td>Rhona </td>
-                                    <td>Davidson</td>
-                                    <td>Tokyo</td>
+                                    <td>Org de Lenguajes y Compiladores 1</td>
+                                    <td>Mario Bautista</td>
+                                    <td class="text-center">
+                                        <a class="scrollto" href="#EDITAR" style="color: white;">
+                                            <button type="button " class="btn btn-primary btn-sm" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a class="scrollto" style="color: white;">
+                                            <button type="button " class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#ELIMINAR" role="button">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Arq. de Computadores y Ensambladores 1</td>
+                                    <td>Otto Escobar</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -217,9 +211,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Colleen </td>
-                                    <td>Hurst</td>
-                                    <td>San Francisco</td>
+                                    <td>Arq. de Computadores y Ensambladores 1</td>
+                                    <td>Gabriel Diaz</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -235,9 +228,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Sonya </td>
-                                    <td>Frost</td>
-                                    <td>Edinburgh</td>
+                                    <td>Org. de Lenguajes y Compiladores 2</td>
+                                    <td>Edgar Saban</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -253,9 +245,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Jena </td>
-                                    <td>Gaines</td>
-                                    <td>London</td>
+                                    <td>Lenguajes Formales y de Programación</td>
+                                    <td>Zulma Aguirre</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -271,9 +262,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Quinn </td>
-                                    <td>Flynn</td>
-                                    <td>Edinburgh</td>
+                                    <td>Organización Computacional</td>
+                                    <td>Otto Escobar</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -289,9 +279,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Charde </td>
-                                    <td>Marshall</td>
-                                    <td>San Francisco</td>
+                                    <td>Redes de Computadoras 1</td>
+                                    <td>Manuel Lopez</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -307,9 +296,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Haley </td>
-                                    <td>Kennedy</td>
-                                    <td>London</td>
+                                    <td>Inteligencia Artificial</td>
+                                    <td>Luis Espino</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -325,9 +313,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Tatyana</td>
-                                    <td>Fitzpatrick</td>
-                                    <td>London</td>
+                                    <td>Redes de Computadoras 2</td>
+                                    <td>Pedro Hernández</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -343,9 +330,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Michael </td>
-                                    <td>Silva</td>
-                                    <td>London</td>
+                                    <td>Análisis y Diseño de Sistemas 1</td>
+                                    <td>Mirna Aldana</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -361,9 +347,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Paul </td>
-                                    <td>Byrd</td>
-                                    <td>New York</td>
+                                    <td>Sist. de Admon. de Bases de Datos 1</td>
+                                    <td>Francisco Guevara</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -379,9 +364,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Gloria </td>
-                                    <td>Little</td>
-                                    <td>New York</td>
+                                    <td>Software Avanzado</td>
+                                    <td>Everest Medinilla</td>
                                     <td class="text-center">
                                         <a class="scrollto" href="#EDITAR" style="color: white;">
                                             <button type="button " class="btn btn-primary btn-sm" role="button">
@@ -404,12 +388,12 @@
         </div>
 
 
-        <!-- Modal ACTUALIZAR FORM-->
+        <!-- SECCIÓN EDITAR-->
         <section class="page-section" id="EDITAR">
             <div class="collapse" id="collapseExample">
                 <header>
                     <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Actualizar
-                        Docente</h2>
+                        Curso</h2>
 
                     <!-- Icon Divider -->
                     <div class="divider-custom">
@@ -424,66 +408,34 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 mx-auto">
-                            <form name="sentMessage" id="registerForm" novalidate="novalidate">
+                            
+                            <form id="UpdateForm" novalidate="novalidate">
                                 <div class="control-group">
                                     <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                        <label>Nombre</label>
-                                        <input class="form-control" id="name" type="text" placeholder="Nombre"
-                                            required="required"
-                                            data-validation-required-message="Por favor ingresa el nombre del docente">
-                                        <p class="help-block text-danger"></p>
+                                        <label>Nombre Curso</label>
+                                        <input class="form-control" id="curso" type="text" placeholder="Nombre Curso">
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                        <label>Apellido</label>
-                                        <input class="form-control" id="lastname" type="text" placeholder="Apellido"
-                                            required="required"
-                                            data-validation-required-message="Por favor ingresa el apellido del docente">
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <input type="checkbox" id="show1" onclick="MostrarContrasenia()" />
-                                        </div>
-                                    </div>
-                                    <input type="password" class="form-control" id="password" placeholder="Contraseña"
-                                        name="password">
-                                    <button class="btn btn-success" type="button" id="confirm">
-                                        <i class="fas fa-check-double"></i>
-                                    </button>
-                                    <a href="#" title="" data-toggle="popover" data-placement="top"
-                                        data-content="¡CAMPO NO VÁLIDO!" id="pop3"></a>
-                                </div>
-                                <div class="collapse" id="ConfirmarContraseña">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input type="checkbox" id="show" onclick="MostrarContrasenia2()" />
-                                            </div>
-                                        </div>
-                                        <input type="password" class="form-control" id="password2"
-                                            placeholder="Confirmar Contraseña" name="password2">
-                                        <button class="btn btn-success" type="button" id="verificar">
-                                            <i class="fas fa-check-double"></i>
-                                        </button>
-                                        <a href="#" title="Verficación" data-toggle="popover" data-placement="top"
-                                            data-content="Contraseñas Iguales" id="pop1"></a>
-                                        <a href="#" title="Verficación" data-toggle="popover" data-placement="top"
-                                            data-content="Contraseñas NO Iguales" id="pop2"></a>
-                                        <a href="#" title="Verficación" data-toggle="popover" data-placement="top"
-                                            data-content="Debe llenar el campo de confirmación" id="pop4"></a>
-
+                                <label for="docente">Docente</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" aria-label="Text input with dropdown button"
+                                        id="docente">
+                                    <div class="input-group-append">
+                                        <select class="custom-select" searchable="Search here.." id="selectorProfesor" onchange="MostrarSeleccion();">
+                                            <option value="" disabled selected>Seleccione un profesor</option>
+                                            <option value="1">Luis Espino</option>
+                                            <option value="2">Francisco Guevara</option>
+                                            <option value="3">Erik Ruiz</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <br>
+                                <div id="success"></div>
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-success rounded-pill btn-xl" id="sendUpdate"
                                         value="Actualizar" />
                                     <button type="button" class="btn btn-danger rounded-pill btn-xl"
-                                        id="cancelar">Cancelar</button>
+                                        id="cancel">Cancelar</button>
                                 </div>
                             </form>
                         </div>
@@ -493,27 +445,27 @@
             </div>
         </section>
 
-        <!-- Modal ELIMINAR-->
+        <!-- Modal ELIMINAR CURSO -->
         <div class="modal fade" id="ELIMINAR" tabindex="-1" role="dialog" aria-labelledby="ELIMINAR" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="ELIMINARtitle">Eliminar Docente</h5>
+                        <h5 class="modal-title" id="ELIMINARtitle">Eliminar Curso</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label for="NombreEliminar" class="col-sm-2 col-form-label">Nombre</label>
+                            <label for="CursoEliminar" class="col-sm-2 col-form-label">Curso</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="NombreEliminar">
+                                <input type="text" readonly class="form-control-plaintext" id="CursoEliminar">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="ApellidoEliminar" class="col-sm-2 col-form-label">Apellido</label>
+                            <label for="DocentedeEliminar" class="col-sm-2 col-form-label">Docente</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="ApellidoEliminar">
+                                <input type="text" readonly class="form-control-plaintext" id="DocentedeEliminar">
                             </div>
                         </div>
                     </div>
@@ -525,7 +477,6 @@
             </div>
         </div>
 
-        
 
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
@@ -553,7 +504,8 @@
     <script src="css/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/DIGED/Admin_page/js/Tabla_Docentes_Form.js"></script>
+    <script src="js/tabla_Cursos_Form.js"></script>
+
 </body>
 
 </html>
