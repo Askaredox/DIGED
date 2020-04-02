@@ -15,7 +15,7 @@
           <div class="space-top">
             <h3 class="text-center">Inicia Sesión</h3>
               
-              <form class="form-signin" class="form-horizontal" action="<?php echo site_url('cLogin/user_login_process'); ?>">
+              <form class="form-signin" class="form-horizontal"  method="post" action="<?php echo base_url()?>Login/user_login_process">
                 <label class=""> Usuario </label>
                 <input type="text" name="txtUser" class="form-control" placeholder="" required autofocus>
             
