@@ -13,14 +13,12 @@
   <!-- Custom fonts for this theme -->
   <link href="/DIGED/Admin_page/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
-    type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
   <!-- Theme CSS -->
-  <link href="/DIGED/Admin_page/css/freelancer.min.css" rel="stylesheet">
-  <link rel='stylesheet' href="/DIGED/Admin_page/css/css/bootstrap.min.css">
+  <link href="<?= base_url('Admin_page/css/freelancer.min.css') ?>" rel="stylesheet">
+  <link rel='stylesheet' href="<?= base_url('Admin_page/css/css/bootstrap.min.css') ?>">
 </head>
 
 <body id="page-top">
@@ -29,43 +27,36 @@
     <div class="container">
       <div class="logo float-left">
         <!--LOGO-->
-        <a href="#intro" class="scrollto"><img src="/DIGED/Admin_page/img/dedev (3).png" alt="Responsive image"
-            class="img-fluid"></a>
+        <a href="<?= base_url('Administracion#intro') ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
       </div>
-      <button
-        class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-secondary text-white rounded"
-        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-        aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-secondary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse align-items-center" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#intro">HOME</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded scrollto" href="#intro">HOME</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#CURSOS">CURSOS</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scrollto" href="#CURSOS">CURSOS</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#DOCENTES">DOCENTES</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scrollto" href="#DOCENTES">DOCENTES</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contacto">CONTACTO</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scrollto" href="#contacto">CONTACTO</a>
           </li>
           <li class="nav-item dropdown mx-0 mx-lg-1">
             <div class="dropdown">
-              <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded" href="#" id="navbarDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 USUARIO<i class="fas fa-user"></i>
               </a>
 
               <div class="dropdown-menu bg-info " aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item text-white" type="button" class="btn" data-toggle="modal"
-                  data-target="#EDITARUSER"><i class="fas fa-user-edit"></i>Editar</a>
+                <a class="dropdown-item text-white" type="button" class="btn" data-toggle="modal" data-target="#EDITARUSER"><i class="fas fa-user-edit"></i>Editar</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-white" type="button" class="btn" data-toggle="modal"
-                  data-target="#CERRARSESSION"><i class="fas fa-power-off"></i> Salir</a>
+                <a class="dropdown-item text-white" type="button" class="btn" data-toggle="modal" data-target="#CERRARSESSION"><i class="fas fa-power-off"></i> Salir</a>
               </div>
             </div>
           </li>
@@ -77,9 +68,32 @@
   <section id="intro">
     <header class="bg-secondary text-white text-center" style="padding-top: calc(6rem + 50px);
     padding-bottom: 6rem;">
+      <div id=notificacion>
+        <!--MENSAJE DE BIENVENIDA TEMPORAL-->
+        <?php if ($dat = $this->session->flashdata('msg')) : ?>
+          <div class="container-sm">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong><?= $dat ?></strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        <?php elseif ($dat = $this->session->flashdata('msge')) : ?>
+          <div class="container-sm">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong><?= $dat ?></strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        <?php endif; ?>
+      </div>
+
 
       <!-- Masthead Avatar Image -->
-      <img class="mt-20" src="/DIGED/Admin_page/img/admin.png" alt="" style="width: 15rem;">
+      <img class="mt-20" src="<?= base_url('Admin_page/img/admin.png') ?>" alt="" style="width: 15rem;">
 
       <!-- Masthead Heading -->
       <h3 class="masthead-heading text-uppercase mb-0">ADMINISTRACIÓN</h3>
@@ -122,36 +136,32 @@
 
         <!-- Portfolio Item 1 crear curso -->
         <div class="col-sm-12 col-md-6 col-lg-6">
-          <div class="portfolio-item mx-auto bg-secondary text-center" data-toggle="modal"
-            data-target="#portfolioModal1">
+          <div class="portfolio-item mx-auto bg-secondary text-center" data-toggle="modal" id="CrearCursos">
             <h5 class="display-8 text-white">CREAR CURSOS</h5>
-            <div
-              class="portfolio-item-caption d-flex bg-primary  align-items-center justify-content-center h-100 w-100">
+            <div class="portfolio-item-caption d-flex bg-primary  align-items-center justify-content-center h-100 w-100">
               <div class="portfolio-item-caption-content text-center text-white">
                 <h4 class="display-7">CREAR CURSOS</h4>
                 <i class="fas fa-hand-pointer fa-3x"></i>
               </div>
             </div>
             <div class="container align-self-center mx-0">
-              <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/crear2.png" alt="">
+              <img class="img-fluid" src="<?= base_url('Admin_page/img/portfolio/crear2.png') ?>" alt="">
             </div>
           </div>
         </div>
 
         <!-- Portfolio Item 2  administrar cursos-->
         <div class="col-sm-12 col-md-6 col-lg-6">
-          <div class="portfolio-item mx-auto bg-secondary  text-center" data-toggle="modal"
-            data-target="#portfolioModal2">
+          <div class="portfolio-item mx-auto bg-secondary  text-center" data-toggle="modal" data-target="#portfolioModal2">
             <h5 class="display-8 text-white ">ADMINISTRAR CURSOS</h5>
-            <div
-              class="portfolio-item-caption d-flex  bg-primary  align-items-center justify-content-center h-100 w-100">
+            <div class="portfolio-item-caption d-flex  bg-primary  align-items-center justify-content-center h-100 w-100">
               <div class="portfolio-item-caption-content text-center text-white">
                 <h4 class="display-7">ADMINISTRAR CURSOS</h4>
                 <i class="fas fa-hand-pointer fa-3x"></i>
               </div>
             </div>
             <div class="container align-self-center mx-0">
-              <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/modificarCurso2.png" alt="">
+              <img class="img-fluid" src="<?= base_url('Admin_page/img/portfolio/modificarCurso2.png') ?>" alt="">
             </div>
           </div>
         </div>
@@ -181,12 +191,10 @@
 
         <!-- Portfolio Item 3  crear docente-->
         <div class="col-sm-12 col-md-6 col-lg-6">
-          <a href="/DIGED/Admin_page/RegistroDocentes.html">
+          <a href="<?=base_url('Registrar/Docentes')?>">
             <div class="portfolio-item mx-auto bg-secondary">
               <h5 class="display-7 text-center">REGISTRAR DOCENTE</h5>
-              <div
-                class="portfolio-item-caption d-flex align-items-center bg-primary  justify-content-center h-100 w-100"
-                id="caption3">
+              <div class="portfolio-item-caption d-flex align-items-center bg-primary  justify-content-center h-100 w-100" id="caption3">
                 <div class="portfolio-item-caption-content  text-center text-white">
                   <h5 class="display-7 ">REGISTRAR DOCENTE</h5>
                   <i class="fas fa-hand-pointer fa-3x"></i>
@@ -194,20 +202,18 @@
 
               </div>
               <div class="container align-self-center mx-0 ">
-                <a href="" title="Docente" data-toggle="popover" data-placement="top" data-content="Registrar Docentes"
-                  id="pop3"></a>
-                <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/docente2.png" alt="">
+                <a href="" title="Docente" data-toggle="popover" data-placement="top" data-content="Registrar Docentes" id="pop3"></a>
+                <img class="img-fluid" src="<?= base_url('Admin_page/img/portfolio/docente2.png') ?>" alt="">
               </div>
             </div>
           </a>
         </div>
         <!-- Portfolio Item 4  modificar o borrar docentes-->
         <div class="col-sm-12 col-md-6 col-lg-6">
-          <a href="/DIGED/Admin_page/TablaDocentes.html">
+          <a href="<?=base_url('Administrar/Docentes')?>">
             <div class="portfolio-item mx-auto bg-secondary">
               <h5 class="display-7 text-center">ADMINISTRAR DOCENTES</h5>
-              <div
-                class="portfolio-item-caption d-flex align-items-center bg-primary  justify-content-center h-100 w-100">
+              <div class="portfolio-item-caption d-flex align-items-center bg-primary  justify-content-center h-100 w-100">
                 <div class="portfolio-item-caption-content text-center text-white">
                   <h4 class="display-7">ADMINISTRAR <br> DOCENTES</h4>
                   <i class="fas fa-hand-pointer fa-3x"></i>
@@ -215,7 +221,7 @@
 
               </div>
               <div class="container align-self-center mx-0">
-                <img class="img-fluid" src="/DIGED/Admin_page/img/portfolio/editarProfesor2.png" alt="">
+                <img class="img-fluid" src="<?= base_url('Admin_page/img/portfolio/editarProfesor2.png') ?>" alt="">
               </div>
             </div>
           </a>
@@ -262,8 +268,7 @@
   </div>
 
   <!--EDITAR USUARIO Y CERRAR SESIÓN-->
-  <div class="modal fade" id="CERRARSESSION" tabindex="-1" role="dialog" aria-labelledby="CERRARSESSION"
-    aria-hidden="true">
+  <div class="modal fade" id="CERRARSESSION" tabindex="-1" role="dialog" aria-labelledby="CERRARSESSION" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -277,7 +282,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Si</button>
+          <a role="button" class="btn btn-primary" href="cLogin/logout">Si</a>
         </div>
       </div>
     </div>
@@ -296,34 +301,21 @@
         <div class="modal-body">
           <div class="col-lg-10 mx-auto">
             <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-            <form class="needs-validation" name="sentMessage" id="UpdatePassword" novalidate>
-              <div class="control-group">
+            <form id="UpdatePassword">
+              <div class="form-group" id="Pw1">
                 <label for="validationCustom01">NUEVA CONTRASEÑA</label>
-                <input type="text" class="form-control" id="pass1" placeholder="contraseña" required>
-                <div class="valid-feedback">
-                  CONTRASEÑA
-                </div>
+                <input type="text" class="form-control" name="Pass1" id="Pass1" placeholder="contraseña">
                 <div class="invalid-feedback">
-                  Por favor Ingresa una nueva contraseña
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group" id="Pw2">
                 <label for="validationCustom01">CONFIRMACIÓN</label>
-                <input type="text" class="form-control" id="pass2" placeholder="nueva contraseña" required>
-                <div class="valid-feedback">
-                  NUEVA CONTRASEÑA
-                </div>
-                <div class="invalid-feedback">Por favor ingresa de nuevo la contraseña.</div>
-                <a href="#" title="Verficación" data-toggle="popover" data-placement="top"
-                  data-content="Contraseñas Iguales" id="pop1"></a>
-                <a href="#" title="Verficación" data-toggle="popover" data-placement="top"
-                  data-content="Contraseñas NO Iguales" id="pop2"></a>
+                <input type="text" class="form-control" name="Pass2" id="Pass2" placeholder="nueva contraseña">
+                <div class="invalid-feedback"></div>
               </div>
               <br>
-              <div id="success"></div>
               <div class="form-group ">
-                <input type="submit" class="btn btn-secondary rounded-pill btn-xl bg-secondary" id="actualizarPass"
-                  value="Cambiar Contraseña" />
+                <input type="submit" class="btn btn-secondary rounded-pill btn-xl bg-secondary" value="Cambiar Contraseña" />
               </div>
             </form>
           </div>
@@ -337,8 +329,7 @@
 
   <!-- Portfolio Modals -->
   <!-- Portfolio Modal CREAR CURSO-->
-  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog"
-    aria-labelledby="portfolioModal1Label" aria-hidden="true">
+  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -364,30 +355,22 @@
                   <div class="col-lg-10 mx-auto">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <form class="needs-validation" name="sentMessage" id="registerForm" novalidate>
-                      <div class="control-group">
+                      <div class="control-group" id="GroupCurso">
                         <label for="validationCustom01">Nombre Curso</label>
-                        <input type="text" class="form-control" id="validationCustom01" placeholder="Curso" required>
-                        <div class="valid-feedback">
-                          Válido
-                        </div>
+                        <input type="text" class="form-control" name="NombreCurso" id="NombreCurso" placeholder="Curso" required>
                         <div class="invalid-feedback">
-                          Por favor Ingresa el nombre del Curso
                         </div>
                       </div>
-                      <div class="form-group">
-                        <select class="custom-select" searchable="Search here.." required>
-                          <option value="" disabled selected>Seleccione un profesor</option>
-                          <option value="1">Luis Espino</option>
-                          <option value="2">Francisco Guevara</option>
-                          <option value="3">Erik Ruiz</option>
+                      <div class="form-group" id="GroupDocente">
+                        <select class="custom-select" searchable="Search here.." name="selectDocente" id="selectDocente" required>
+
                         </select>
-                        <div class="invalid-feedback">Por favor selecciona un profesor.</div>
+                        <div class="invalid-feedback"></div>
                       </div>
                       <br>
                       <div id="success"></div>
                       <div class="form-group ">
-                        <input type="submit" class="btn btn-secondary rounded-pill btn-xl bg-secondary"
-                          id="sendMessageButton" value="Registrar Curso" />
+                        <input type="submit" class="btn btn-secondary rounded-pill btn-xl bg-secondary" id="RegistrarCurso" value="Registrar Curso" />
                       </div>
                     </form>
                   </div>
@@ -401,8 +384,7 @@
   </div>
 
   <!-- Portfolio Modal 2 DIRIGIR A LA PAGINA TablaCursos.html para editarlos o eliminarlos -->
-  <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog"
-    aria-labelledby="portfolioModal2Label" aria-hidden="true">
+  <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-labelledby="portfolioModal2Label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -430,7 +412,7 @@
                   </p>
                 </h4>
                 <div class="row justify-content-center">
-                  <a class="btn btn-primary rounded-pill" href="/DIGED/Admin_page/TablaCursos.html">
+                  <a class="btn btn-primary rounded-pill" href="<?=base_url('Administrar/Cursos')?>">
                     IR A SECCIÓN
                   </a>
                 </div>
@@ -444,40 +426,14 @@
 
 
   <!-- Bootstrap core JavaScript -->
-  <script src="/DIGED/Admin_page/vendor/jquery/jquery.min.js"></script>
-  <script src="/DIGED/Admin_page/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="/DIGED/Admin_page/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="<?= base_url('Admin_page/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 
   <!-- Contact Form JavaScript -->
-  <script src="/DIGED/Admin_page/js/jqBootstrapValidation.js"></script>
-  <script src="/DIGED/Admin_page/js/contact_me.js"></script>
-
+  <!--<script src="<//?=base_url('Admin_page/js/jqBootstrapValidation.js')?>"></script>-->
   <!-- Custom scripts for this template -->
-  <script src="/DIGED/Admin_page/js/freelancer.min.js"></script>
-
-  <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-      'use strict';
-      window.addEventListener('load', function () {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function (form) {
-          form.addEventListener('submit', function (event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
-  </script>
-
+  <script src="<?= base_url('Admin_page/js/freelancer.min.js') ?>"></script>
+  <script src=<?= base_url('assets/js/JAdmin.js') ?>></script>
 </body>
 
 </html>

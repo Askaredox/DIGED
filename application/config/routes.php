@@ -52,3 +52,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'cLogin';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['Login'] = 'cLogin/user_login_process';
+$route['cLogin/user_login_process'] = 'none';
+
+$route['Administracion'] = 'Admin_home';
+$route['Admin_home'] = 'none';
+$route['vAdmin_page'] = 'none';
+
+$route['Administrar/Cursos'] = 'cTablaCursos';
+$route['cTablaCursos'] = 'none';
+
+$route['Registrar/Docentes'] = 'cRegistroDocentes';
+$route['cRegistroDocentes'] = 'none';
+
+$route['Administrar/Docentes'] = 'cTablaDocentes';
+$route['cTablaDocentess'] = 'none';
