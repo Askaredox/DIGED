@@ -16,7 +16,7 @@ class cTablaDocentes extends CI_Controller
                 $this->session->set_flashdata('msge', '¡Aún no hay Docentes registrados!');
                 redirect('Administracion');
             } else {
-                $this->load->view('vTablaDocentes', array('data' => $res)); //mandar el array a la vista
+                $this->load->view('Admin/vTablaDocentes', array('data' => $res)); //mandar el array a la vista
             }
         } else {
             show_404();

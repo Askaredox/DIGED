@@ -16,7 +16,7 @@ class cTablaCursos extends CI_Controller
                 $this->session->set_flashdata('msge', '¡Aún no hay cursos registrados!');
                 redirect('Administracion');
             } else {
-                $this->load->view('vTablaCursos', array('data' => $res)); //mandar el array a la vista
+                $this->load->view('Admin/vTablaCursos', array('data' => $res)); //mandar el array a la vista
                 // var_dump(json_encode($res));
             }
         } else {

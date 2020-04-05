@@ -56,15 +56,18 @@ $route['translate_uri_dashes'] = FALSE;
 $route['Login'] = 'CLogin/user_login_process';
 $route['cLogin/user_login_process'] = 'none';
 
-$route['Administracion'] = 'Admin_home';
+//PARA LA PARTE DEL ADMINISTRADOR
+$route['Administracion'] = 'Admin/Admin_home';
 $route['Admin_home'] = 'none';
 $route['vAdmin_page'] = 'none';
 
-$route['Administrar/Cursos'] = 'CTablaCursos';
+$route['Administrar/Cursos'] = 'Admin/CTablaCursos';
 $route['cTablaCursos'] = 'none';
 
-$route['Registrar/Docentes'] = 'CRegistroDocentes';
+$route['Registrar/Docentes'] = 'Admin/CRegistroDocentes';
 $route['cRegistroDocentes'] = 'none';
 
-$route['Administrar/Docentes'] = 'CTablaDocentes';
+$route['Administrar/Docentes'] = 'Admin/CTablaDocentes';
 $route['cTablaDocentess'] = 'none';
+
+//PARA LA PARTE DEL DOCENTE

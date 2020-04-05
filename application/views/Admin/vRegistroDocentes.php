@@ -74,49 +74,33 @@
                                 </div>
                             <?php endif; ?>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="CodGroup">
                             <label for="CodigoDocente">Código</label>
-                            <input type="text" class="form-control" name="CodigoDocente" id="CodigoDocente" placeholder="Código del Docente" required>
-                            <div class="valid-feedback">
-                                Campo válido
-                            </div>
+                            <input type="text" class="form-control" name="Codigo" id="Codigo" placeholder="Código del Docente" required>
                             <div class="invalid-feedback">
-                                Por favor Ingresa el Código del docente
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="NombreGroup">
                             <label for="Nombre">Nombre</label>
                             <input type="text" class="form-control" name="Nombre" id="Nombre" placeholder="Nombre Docente" required>
-                            <div class="valid-feedback">
-                                Campo válido
-                            </div>
                             <div class="invalid-feedback">
-                                Por favor Ingresa el nombre del docente
                             </div>
                         </div>
-                        <div class="control-group">
+                        <div class="control-group" id="ApellidoGroup">
                             <label for="Apellido">Apellido</label>
                             <input type="text" class="form-control" name="Apellido" id="Apellido" placeholder="Apellido" required>
-                            <div class="valid-feedback">
-                                Campo Válido
-                            </div>
                             <div class="invalid-feedback">
-                                Por favor Ingresa el apellido del docente
                             </div>
                         </div>
                         <label for="password">Contraseña</label>
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3" id="PassGroup">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <input type="checkbox" name="show" id="show" onclick="MostrarContrasenia()" />
                                 </div>
                             </div>
                             <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
-                            <div class="valid-feedback">
-                                Campo Válido
-                            </div>
-                            <div class="invalid-feedback">
-                                Por favor Ingresa una contraseña
+                            <div class="invalid-feedback" id="invalido">
                             </div>
                             <button class="btn btn-primary " type="button" onclick="GenerarCotraseña()">Generar</button>
                         </div>
@@ -138,7 +122,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="<?= base_url('Admin_page/css/js/bootstrap.min.js') ?>"></script>
     <script src="<?= base_url('Admin_page/js/FormRegistroDocentes.js') ?>"></script>
-    <script src="<?= base_url('Admin_page/js/Validation.js') ?>"></script>
+    <!--<script src="<//?= base_url('Admin_page/js/Validation.js') ?>"></script>-->
 
 </body>
 
