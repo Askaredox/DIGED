@@ -49,22 +49,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'cLogin';
+$route['default_controller'] = 'CLogin';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['Login'] = 'cLogin/user_login_process';
+$route['Login'] = 'CLogin/user_login_process';
 $route['cLogin/user_login_process'] = 'none';
 
 $route['Administracion'] = 'Admin_home';
 $route['Admin_home'] = 'none';
 $route['vAdmin_page'] = 'none';
 
-$route['Administrar/Cursos'] = 'cTablaCursos';
+$route['Administrar/Cursos'] = 'CTablaCursos';
 $route['cTablaCursos'] = 'none';
 
-$route['Registrar/Docentes'] = 'cRegistroDocentes';
+$route['Registrar/Docentes'] = 'CRegistroDocentes';
 $route['cRegistroDocentes'] = 'none';
 
-$route['Administrar/Docentes'] = 'cTablaDocentes';
+$route['Administrar/Docentes'] = 'CTablaDocentes';
 $route['cTablaDocentess'] = 'none';

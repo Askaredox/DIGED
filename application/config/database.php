@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'diged',
+	'hostname' => 'localhost:3306',
+	'username' => 'appmovil@desarrollo.virtual.usac',
+	'password' => 'p*bLPycSKx]A',
+	'database' => 'virtual18desar',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
