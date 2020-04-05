@@ -23,7 +23,7 @@ $('#dataTable tr').on('click', function () {
 // CERRAR EL ÁREA DE EDICION
 $('#cancelar').click(function () {
     $('#collapseExample').collapse('hide');
-    var myNewURL = "/DIGED/Administrar/Docentes";//the new URL
+    var myNewURL = "/DEDEV/Administrar/Docentes";//the new URL
     window.location.replace(myNewURL);
 });
 
@@ -176,7 +176,7 @@ function MostrarContrasenia2() {
             'Contraseña': $Contraseña
         }
         $.ajax({
-            url: '/DIGED/cTablaDocentes/EditD',
+            url: '/DEDEV/Admin/cTablaDocentes/EditD',
             type: 'POST',
             data: $datos,
             success: function (data) {
@@ -199,7 +199,7 @@ function MostrarContrasenia2() {
         var self = this;
         $Id_Usuario = $(this).attr('data-id');
         $.ajax({
-            url: '/DIGED/cTablaDocentes/DeleteD',
+            url: '/DEDEV/Admin/cTablaDocentes/DeleteD',
             type: 'POST',
             data: { 'Id_Usuario': $Id_Usuario },
             success: function (data) {

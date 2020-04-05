@@ -3,7 +3,7 @@
         ev.preventDefault();
         var self = this;
         $.ajax({
-            url: 'Admin_home/changePassword',
+            url: 'Admin/Admin_home/changePassword',
             type: 'POST',
             data: $(this).serialize(),
             success: function (data) {
@@ -36,7 +36,7 @@
     $("#CrearCursos").click(function (ev) {// este es para el modal para que abra y cargue los nombres de los profes al inicio
         $("#selectDocente").html('<option value="" disabled selected>Seleccione un profesor</option>');
         $.ajax({
-            url: 'Admin_home/MostrarProfesores',
+            url: 'Admin/Admin_home/MostrarProfesores',
             type: 'GET',
             data: '',
             success: function (data) {
@@ -59,7 +59,7 @@
         ev.preventDefault();
         var self = this;
         $.ajax({
-            url: 'Admin_home/RegistrarCurso',
+            url: 'Admin/Admin_home/RegistrarCurso',
             type: 'POST',
             data: $(this).serialize(),
             success: function (data) {

@@ -11,7 +11,7 @@
   <title>DEDEV-ADMINISTRADOR</title>
 
   <!-- Custom fonts for this theme -->
-  <link href="/DIGED/Admin_page/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="<?=base_url('Admin_page/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">

@@ -44,3 +44,46 @@ function getRegisterCurseRules()
         ),
     );
 }
+
+function getRegisterDocenteRules()
+{
+    return array(
+        array(
+            'field' => 'Codigo',
+            'label' => 'Codigo',
+            'rules' => 'required|max_length[11]|trim',
+            'errors' => array(
+                'required' => 'El Código del Docente es Requerido',
+                'max_legth' => 'El Código del Docente es demasiado largo',
+            ),
+        ),
+        array(
+            'field' => 'Nombre',
+            'label' => 'Nombre',
+            'rules' => 'required|max_length[255]|trim',
+            'errors' => array(
+                'required' => 'El Nombre del Docente es Requerido',
+                'max_legth' => 'El Nombre del Docente es demasiado largo',
+            ),
+        ),
+        array(
+            'field' => 'Apellido',
+            'label' => 'Apellido',
+            'rules' => 'required|max_length[255]|trim',
+            'errors' => array(
+                'required' => 'El Apellido del Docente es Requerido',
+                'max_legth' => 'El Apellido del Docente es demasiado largo',
+            ),
+        ),
+        array(
+            'field' => 'password',
+            'label' => 'password',
+            'rules' => 'required|max_length[255]|trim',
+            'errors' => array(
+                'required' => 'La Contraseña es Requerida',
+                'max_legth' => 'La Contraseña es demasiada larga',
+            ),
+        ),
+        
+    );
+}

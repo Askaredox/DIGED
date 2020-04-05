@@ -28,7 +28,7 @@ $('#dataTable tr').on('click', function () {
         $valor = $(this).attr('data-docente');
         $("#TEMPdocenteNuevo").val($valor);// codigo del docente nuevo o no
         $.ajax({
-            url: '/DIGED/Admin_home/MostrarProfesores',
+            url: '/DEDEV/Admin/Admin_home/MostrarProfesores',
             type: 'GET',
             data: '',
             success: function (data) {
@@ -67,7 +67,7 @@ $('#dataTable tr').on('click', function () {
             'Nombre': $nombreCurso
         }
         $.ajax({
-            url: '/DIGED/cTablaCursos/Editar',
+            url: '/DEDEV/Admin/cTablaCursos/Editar',
             type: 'POST',
             data: $datos,
             success: function (data) {
@@ -90,7 +90,7 @@ $('#dataTable tr').on('click', function () {
     $("#ButtonConfirm").click(function (ev) {
         $Id_Curso = $(this).attr('data-id');
         $.ajax({
-            url: '/DIGED/cTablaCursos/Eliminar',
+            url: '/DEDEV/Admin/cTablaCursos/Eliminar',
             type: 'POST',
             data: { 'Id_Curso': $Id_Curso },
             success: function (data) {
@@ -115,7 +115,7 @@ $(".btn-eliminar").click(function (ev) {
 
 $('#cancel').click(function () {
     $('#collapseExample').collapse('hide');
-    var myNewURL = "/DIGED/Administrar/Cursos";//the new URL
+    var myNewURL = "/DEDEV/Administrar/Cursos";//the new URL
     window.location.replace(myNewURL);
     $("#TEMPcurso").val("");
     $("#TEMPdocenteNuevo").val("");

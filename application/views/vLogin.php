@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Aulas virtuales DIGED</title>
+  <title>Aulas virtuales DEDEV</title>
   <link rel='stylesheet' href="<?= base_url('Admin_page/css/css/bootstrap.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/login.css') ?>">
 </head>
@@ -41,7 +41,7 @@
         </div>
 
         <div class="col-sm-6 col-md-5 hidden-xs hidden-sm" >
-          <img width="130%" src="/DIGED/assets/teacher.svg">
+          <img width="130%" src="<?=base_url('assets/teacher.svg')?>">
         </div>
 
       </div>
