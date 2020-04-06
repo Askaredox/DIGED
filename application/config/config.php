@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //https://desarrollo.virtual.usac.edu.gt'http://localhost/DIGED/'
-$config['base_url'] = 'http://localhost/DEDEV/';
+$config['base_url'] = 'http://localhost/DIGED/';
 
 /*
 |--------------------------------------------------------------------------
