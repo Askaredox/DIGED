@@ -41,4 +41,12 @@ class Admin_Cursos_model extends CI_Model
         return $query;
        // var_dump($query);
     }
+
+    public function getCursosDocente($data){
+        $query = $this->db->get_where('CURSO', $data);
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
+        return $query->result_array();
+    }
 }

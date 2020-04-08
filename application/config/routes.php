@@ -71,3 +71,4 @@ $route['Administrar/Docentes'] = 'Admin/CTablaDocentes';
 $route['cTablaDocentess'] = 'none';
 
 //PARA LA PARTE DEL DOCENTE
+$route['HOME'] = 'Docente/Docente_home';

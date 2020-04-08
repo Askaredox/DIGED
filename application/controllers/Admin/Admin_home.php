@@ -11,7 +11,7 @@ class Admin_home extends CI_Controller
     }
     public function index()
     {
-        if ($this->session->userdata('is_logged')) { // si hay alguien loggeado muestra eso
+        if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo')==1)) { // si hay alguien loggeado muestra eso
             $this->load->view('Admin/vAdmin_page');
         } else {
             show_404();
