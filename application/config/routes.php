@@ -72,3 +72,7 @@ $route['cTablaDocentess'] = 'none';
 
 //PARA LA PARTE DEL DOCENTE
 $route['HOME'] = 'Docente/Docente_home';
+
+$route['Temas/(:num)'] = 'Docente/Docente_Home/Temas/(:num)';
+
+$route['Temas/Crear/(:num)'] = 'Docente/Docente_Home/CrearTema/(:num)';
