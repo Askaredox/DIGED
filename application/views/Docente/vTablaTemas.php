@@ -13,6 +13,9 @@
     <link rel='stylesheet' href="<?= base_url('Admin_page/css/css/bootstrap.min.css') ?>">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="stylesheet" href="<?= base_url('Admin_page/DataTables/DataTables-1.10.20/css/dataTables.bootstrap4.min.css') ?>" />
+    <script>
+        var base_url = '<?php echo base_url(); ?>';
+    </script>
     <title>TEMAS</title>
 </head>
 
@@ -21,12 +24,12 @@
     <nav class="navbar navbar-expand-lg text-uppercase  bg-primary fixed-top" id="mainNav">
         <div class="container">
             <div class="logo float-left">
-                <a href="<?= base_url('HOME#intro') ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid">
+                <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid">
                 </a>
             </div>
             <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
-                <a href="<?= base_url('HOME#intro') ?>" style="color: white;">HOME</a>
-                <i class="fas fa-home"></i>
+                <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" style="color: white;">Atrás</a>
+                <i class="fas fa-arrow-left"></i>
             </button>
     </nav>
     <!-- CAMBIANDO ESTO A VER SI SE VE TABLA DE CURSOS -->
@@ -60,6 +63,7 @@
                 <!--empieza la tablilla-->
                 <div class="card-header"><i class="fas fa-table mr-1"></i>
                     Listado Temas
+                    <input type="text" id="TEMPCodCurso" name="TEMPCodCurso" value="<?= $this->uri->segment(3) ?>">
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -68,6 +72,7 @@
                             <thead>
                                 <tr class="text-center text-uppercase">
                                     <th>Nombre</th>
+                                    <th>Imagen</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -75,6 +80,7 @@
                             <tfoot>
                                 <tr class="text-center text-uppercase">
                                     <th>Nombre</th>
+                                    <th>Imagen</th>
                                     <th>Accion</th>
                                 </tr>
                             </tfoot>
@@ -83,16 +89,17 @@
                                 <?php foreach ($data as $tema) : ?>
                                     <tr id="<?= "fila" . $tema['Cod_Tema'] ?>">
                                         <td><?= strtoupper($tema['Nombre_T']); ?></td>
+                                        <td><?= strtoupper($tema['Imagen']); ?></td>
                                         <td class="text-center">
                                             <button type="button " class="btn btn-primary btn-sm" role="button" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
-                                                Ver Titulos
+                                                <i class="fas fa-eye"></i>
                                             </button>
                                             <a class="scrollto" href="#EDITAR" style="color: white;">
-                                                <button type="button " class="btn btn-primary btn-sm" role="button" data-id="<?= $tema['Cod_Curso'] ?>" data-docente="<?= $tema['Id_Usuario'] ?>">
+                                                <button type="button " class="btn btn-primary btn-sm" role="button" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                             </a>
-                                            <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $curso['Cod_Curso'] ?>">
+                                            <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </td>
@@ -106,12 +113,12 @@
         </div>
 
 
-        <!-- SECCIÓN EDITAR-->
+        <!-- SECCIÓN EDITAR COMPLETA-->
         <section class="page-section" id="EDITAR">
             <div class="collapse" id="collapseExample">
                 <header>
                     <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Actualizar
-                        Curso</h2>
+                        Tema</h2>
 
                     <!-- Icon Divider -->
                     <div class="divider-custom">
@@ -138,25 +145,36 @@
                                         <div class="col-4"></div>
                                         <!--para el codigo del curso a editar-->
                                         <div class="col-4">
-                                            <label>Codigo del Docente</label>
-                                            <input class="form-control" id="TEMPdocenteNuevo" name="TEMPdocenteNuevo" type="text" readonly> <!-- para el codigo del docete nuevo-->
+                                            <label>Codigo del Tema</label>
+                                            <input class="form-control" id="TEMPTema" name="TEMPTema" type="text" readonly> <!-- para el codigo del docete nuevo-->
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="form-group" id="GroupNombre">
                                     <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                        <label>Nombre Curso</label>
-                                        <input class="form-control" id="curso" name="curso" type="text" placeholder="Nombre Curso">
+                                        <label>Nombre Tema</label>
+                                        <input class="form-control" id="Nombre_T" name="Nombre_T" type="text" placeholder="Nombre Tema" value="<?=set_value('Nombre_T')?>">
                                     </div>
                                 </div>
-                                <label for="docente">Docente</label>
-                                <div class="input-group" id="GroupDocente">
-                                    <input type="text" class="form-control" aria-label="Text input with dropdown button" name="docente" id="docente" readonly>
-                                    <div class="input-group-append">
-                                        <select class="custom-select" searchable="Search here.." id="selectorProfesor" onchange="MostrarSeleccion();">
-                                        </select>
+                                <div class="form-group" id="GroupI">
+                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                        <label>Imagen</label>
+                                        <input class="form-control" id="Img" name="Img" type="text" placeholder="Imagen Tema" readonly>
                                     </div>
+                                </div>
+                                <div id="GroupImg">
+                                    <!--IRIA LA PREVISUALIZACIÓN DE LA IMAGEN-->
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" class="form-control-file" id="image" name='image'>
+                                    <small id="fileHelp" class="form-text text-muted">Cambia o Sube una nueva Imagen</small>
+                                    <div class="text-danger">
+                                    </div>
+                                    <button type="button" class="btn btn-secondary rounded-pill btn-xl" id="SubirImg">Subir Imagen</button>
+                                    <button type="button" class="btn btn-secondary rounded-pill btn-xl" id="EliminarImg" disabled>Eliminar Imagen</button>
+                                </div>
+                                <div id="GroupNotificacionSubida">
                                 </div>
                                 <br>
                                 <div id="success"></div>
@@ -172,27 +190,21 @@
             </div>
         </section>
 
-        <!-- Modal ELIMINAR CURSO -->
+        <!-- Modal ELIMINAR CURSO PENDIENTE-->
         <div class="modal fade" id="EliminarModal" tabindex="-1" role="dialog" aria-labelledby="ELIMINAR" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="ELIMINARtitle">Eliminar Curso</h5>
+                        <h5 class="modal-title" id="ELIMINARtitle">Eliminar Tema</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label for="CursoEliminar" class="col-sm-2 col-form-label">Curso</label>
+                            <label for="TemaEliminar" class="col-sm-2 col-form-label">Tema</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="CursoEliminar">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="DocentedeEliminar" class="col-sm-2 col-form-label">Docente</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="DocentedeEliminar">
+                                <input type="text" readonly class="form-control-plaintext" id="TemaEliminar">
                             </div>
                         </div>
                     </div>
@@ -229,7 +241,7 @@
     <script src="<?= base_url('Admin_page/css/js/bootstrap.min.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('Admin_page/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('Admin_page/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js') ?>"></script>
-    <script src="<?= base_url('Admin_page/js/tabla_Cursos_Form.js') ?>"></script>
+    <script src="<?= base_url('assets/js/tabla_Temas.js') ?>"></script>
 
 </body>
 

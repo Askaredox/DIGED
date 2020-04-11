@@ -38,6 +38,7 @@
     <section class="page-section portfolio" id="TEMAS">
         <div class="container-sm">
 
+
             <!-- Portfolio Section Heading -->
             <h2 class="page-section-heading text-center text-uppercase text-secondary">TEMAS</h2>
 
@@ -50,12 +51,34 @@
                 <div class="divider-custom-line"></div>
             </div>
 
+            <div id=notificacion>
+                <!--MENSAJE DE BIENVENIDA TEMPORAL-->
+                <?php if ($dat = $this->session->flashdata('msg')) : ?>
+                    <div class="container-sm">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong><?= $dat ?></strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                <?php elseif ($dat = $this->session->flashdata('msge')) : ?>
+                    <div class="container-sm">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong><?= $dat ?></strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
             <!-- CURSOS Grid Items -->
             <div class="row">
 
                 <!-- Portfolio Item 1 crear Tema -->
                 <div class="col-sm-12 col-md-6 col-lg-6">
-                    <a href="<?=base_url('Temas/Crear/'.$this->uri->segment(2))?>">
+                    <a href="<?= base_url('Temas/Crear/' . $this->uri->segment(2)) ?>">
                         <div class="portfolio-item mx-auto bg-secondary text-center" id="CrearTema">
                             <h5 class="display-8 text-white">CREAR TEMA</h5>
                             <div class="portfolio-item-caption d-flex bg-primary  align-items-center justify-content-center h-100 w-100">
@@ -71,20 +94,22 @@
                     </a>
                 </div>
 
-                <!-- Portfolio Item 2  administrar cursos-->
+                <!-- Portfolio Item 2  administrar Temas-->
                 <div class="col-sm-12 col-md-6 col-lg-6">
-                    <div class="portfolio-item mx-auto bg-secondary  text-center" data-toggle="modal" data-target="#portfolioModal2">
-                        <h5 class="display-8 text-white ">ADMINISTRAR TEMAS</h5>
-                        <div class="portfolio-item-caption d-flex  bg-primary  align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white">
-                                <h4 class="display-7">ADMINISTRAR TEMAS</h4>
-                                <i class="fas fa-hand-pointer fa-3x"></i>
+                    <a href="<?= base_url('Temas/Administrar/' . $this->uri->segment(2)) ?>">
+                        <div class="portfolio-item mx-auto bg-secondary  text-center">
+                            <h5 class="display-8 text-white ">ADMINISTRAR TEMAS</h5>
+                            <div class="portfolio-item-caption d-flex  bg-primary  align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white">
+                                    <h4 class="display-7">ADMINISTRAR TEMAS</h4>
+                                    <i class="fas fa-hand-pointer fa-3x"></i>
+                                </div>
+                            </div>
+                            <div class="container align-self-center mx-0">
+                                <img class="img-fluid" src="<?= base_url('Admin_page/img/portfolio/modificarCurso2.png') ?>" alt="">
                             </div>
                         </div>
-                        <div class="container align-self-center mx-0">
-                            <img class="img-fluid" src="<?= base_url('Admin_page/img/portfolio/modificarCurso2.png') ?>" alt="">
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <!-- /.row -->
@@ -133,10 +158,6 @@
     <!-- Bootstrap core JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="<?= base_url('Admin_page/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-
-    <!-- Contact Form JavaScript -->
-    <!--<script src="<//?=base_url('Admin_page/js/jqBootstrapValidation.js')?>"></script>-->
-    <!-- Custom scripts for this template -->
     <script src="<?= base_url('Admin_page/js/freelancer.min.js') ?>"></script>
 </body>
 

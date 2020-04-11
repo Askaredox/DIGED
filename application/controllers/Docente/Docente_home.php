@@ -60,7 +60,7 @@ class Docente_home extends CI_Controller
             show_404();
         }
     }
-
+// TODO ESTO ES PARA LA VISTA DE CREAR TEMAS
     public function CrearTema($idCurso)
     {
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso

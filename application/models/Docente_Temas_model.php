@@ -10,6 +10,7 @@ class Docente_Temas_model extends CI_Model
 
     public function getTemas($data) //segun el curso que seleccione el doceente
     {
+      //  var_dump($data);
         $query = $this->db->get_where('TEMA', $data);
         if ($query->num_rows() > 0) {
             return $query->result_array();
