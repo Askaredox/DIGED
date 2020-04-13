@@ -121,7 +121,7 @@ $(".btn-primary").click(function (ev) {
         });
     });
 
-    $('#EliminarImg').click(function (ev) {
+    $('#EliminarImg').click(function (ev) {// eliminar imagen
         ev.preventDefault();
         var self = this;
 
@@ -176,7 +176,7 @@ $(".btn-primary").click(function (ev) {
         });
     });
 
-    $('#UpdateForm').submit(function (ev) {
+    $('#UpdateForm').submit(function (ev) {// actualizar tema
         ev.preventDefault();
         var self = this;
         $Curso = $("#TEMPcurso").val();
@@ -217,13 +217,13 @@ $(".btn-primary").click(function (ev) {
             }
         });
     });
-    $("#ButtonConfirm").click(function (ev) {
+    $("#ButtonConfirm").click(function (ev) { //eliminar tema
         $Cod_Tema = $(this).attr('data-id');
         $Curso = $(this).attr('data-curso');
         $.ajax({
-            url: base_url+'Temas/DeleteTema',
+            url: base_url + 'Temas/DeleteTema',
             type: 'POST',
-            data: { 'Cod_Tema': $Cod_Tema , 'Curso': $Curso},
+            data: { 'Cod_Tema': $Cod_Tema, 'Curso': $Curso },
             success: function (data) {
                 var json = JSON.parse(data);
                 window.location.replace(json.url);
@@ -237,3 +237,5 @@ $(".btn-primary").click(function (ev) {
         })
     });
 })(jQuery);
+
+//boton para ver los titulos y crearlos
