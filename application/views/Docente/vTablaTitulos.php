@@ -93,7 +93,7 @@
                                                 <i class="fas fa-eye"></i> <!-- aquí iría lo de agregar el contenido-->
                                             </a>
                                             <a class="scrollto" href="#EDITAR" style="color: white;">
-                                                <button type="button " class="btn btn-primary btn-edit btn-sm" role="button" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-posx="<?= $titulo['Coord_X'] ?>" data-posy="<?= $titulo['Coord_Y'] ?>" data-curso="<?= $this->uri->segment(3) ?>">
+                                                <button type="button " class="btn btn-primary btn-edit btn-sm" role="button" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-pos="<?= $titulo['Coordenadas'] ?>" data-curso="<?= $this->uri->segment(3) ?>">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                             </a>
