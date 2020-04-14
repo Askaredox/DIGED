@@ -6140,6 +6140,20 @@ a.close.disabled {
   text-align: center;
 }
 
+.carousel-content {
+  position: absolute;
+  left: 55%;
+  z-index: 10;
+  color: white;
+}
+.absolute-div {
+  position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 @-webkit-keyframes spinner-border {
   to {
     transform: rotate(360deg);

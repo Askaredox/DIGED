@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -71,3 +71,11 @@ $route['Administrar/Docentes'] = 'Admin/CTablaDocentes';
 $route['cTablaDocentess'] = 'none';
 
 //PARA LA PARTE DEL DOCENTE
+$route['HOME'] = 'Docente/Docente_home';
+
+$route['Temas/(:num)'] = 'Docente/Docente_Home/Temas/(:num)';
+
+$route['Temas/Crear/(:num)'] = 'Docente/Docente_Home/CrearTema/(:num)';
+
+//$route['Administrar/Temas/(:num)'] = 'Docente/CTemasCursos/Administrar/(:num)';
+//$route['Administrar/Temas'] = 'Docente/CTemasCursos/Administrar';

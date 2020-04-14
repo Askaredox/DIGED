@@ -56,11 +56,9 @@ class CLogin extends CI_Controller
                 $this->session->set_userdata($data);
                 $this->session->set_flashdata('msg','Bienvenido al sistema  '.$data['Nombre'].' ' .$data['Apellido']);
                 if($data['Tipo']==1){//Admin
-                   $this->output->set_output(json_encode(array('url'=>base_url('Administracion'))));
-                    
+                   $this->output->set_output(json_encode(array('url'=>base_url('Administracion'))));                    
                 }else{//docente
-                   // $this->output->set_output(json_encode(array('url'=>base_url('Docente'))));
-                   //echo "soy un docente";
+                    $this->output->set_output(json_encode(array('url'=>base_url('HOME'))));
                 }
                
 

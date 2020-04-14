@@ -9,8 +9,8 @@ class Api extends REST_Controller{
         $this->load->database();
     }
     /**
-     * http://localhost/DIGED/Api/cursos
-     * https://desarrollo.virtual.usac.edu.gt/DIGED/Api/cursos
+     * http://localhost/DEDEV/Api/cursos
+     * https://desarrollo.virtual.usac.edu.gt/DEDEV/Api/cursos
      */
     public function cursos_get()
 	{
@@ -19,7 +19,7 @@ class Api extends REST_Controller{
         $this->response($data, REST_Controller::HTTP_OK);
     }
     /**
-     * http://localhost/DIGED/Api/temas/4
+     * http://localhost/DEDEV/Api/temas/4
      * https://desarrollo.virtual.usac.edu.gt/DIGED/Api/temas/4
      */
     public function temas_get($id){

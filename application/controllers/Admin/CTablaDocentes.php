@@ -10,7 +10,7 @@ class cTablaDocentes extends CI_Controller
     }
     public function index()
     {
-        if ($this->session->userdata('is_logged')) {
+        if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo')==1)) {
 
             if (!$res = $this->Admin_Docente_model->getDocentes()) { // recuperando Docentes para armar la vista
                 $this->session->set_flashdata('msge', '¡Aún no hay Docentes registrados!');
