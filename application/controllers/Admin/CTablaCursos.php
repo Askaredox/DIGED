@@ -10,7 +10,7 @@ class cTablaCursos extends CI_Controller
     }
     public function index()
     {
-        if ($this->session->userdata('is_logged')) {
+        if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo')==1)) {
 
             if (!$res = $this->Admin_Cursos_model->getCursos()) { // recuperando cursos para armar la vista
                 $this->session->set_flashdata('msge', '¡Aún no hay cursos registrados!');
