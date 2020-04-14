@@ -48,7 +48,7 @@
 
             <!-- Register Section Form -->
             <div class="row">
-                <div class="col-lg-8 mx-auto">
+                <div class="col-lg-8 col-sm-12 mx-auto">
                     <div id=notificacion>
                         <!--MENSAJE DE BIENVENIDA TEMPORAL-->
                         <?php if ($dat = $this->session->flashdata('msg')) : ?>
@@ -75,94 +75,107 @@
                         } ?>
                     </div>
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <form name="RegisterTitle" id="RegisterTitle">
-                        <div class="form-group" id="GroupCod">
-                            <input type="text" class="form-control" name="Curso" id="Curso" placeholder="Codigo del Curso" value="<?= $this->uri->segment(3) ?>" hidden>
-                        </div>
-                        <div class="form-group" id="GroupName">
-                            <label for="Nombre">Nombre Titulo</label>
-                            <input type="text" class="form-control" name="Nombre" id="Nombre" placeholder="Nombre del Titulo">
-                            <div class="invalid-feedback">
+                    <div class="container-sm">
+                        <form class=" col-md-12 col-sm-8" name="RegisterTitle" id="RegisterTitle">
+                            <div class="form-group" id="GroupCod">
+                                <input type="text" class="form-control" name="Curso" id="Curso" placeholder="Codigo del Curso" value="<?= $this->uri->segment(3) ?>" hidden>
                             </div>
-                        </div>
-
-                        <div class="form-group" id="GroupImg">
-                            <!--iria la imagen para  hacer el mapeo-->
-                            <map name="mapeo" id="mapeo">
-                                <?php if (isset($data)) : ?>
-                                    <?php foreach ($data as $titulo) : $title = $titulo["Nombre"] ?>
-                                        <?php
-                                        $X = $titulo["Coordenadas"];
-                                        $tipo = $titulo['tipoEnlace']
-                                        ?>
-                                        <?php if ($tipo === '1') : ?>
-                                            <!--es figura circular-->
-                                            <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="circle" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
-                                        <?php elseif ($tipo === '2') : ?>
-                                            <!--es figura rectangular-->
-                                            <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="rect" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
-                                        <?php else : ?>
+                            <div class="form-group  col-md-12 col-sm-8" id="GroupName">
+                                <label for="Nombre">Nombre Titulo</label>
+                                <input type="text" class="form-control" name="Nombre" id="Nombre" placeholder="Nombre del Titulo">
+                                <div class="invalid-feedback">
+                                </div>
+                            </div>
+                            <div class="form-group  col-md-12 col-sm-8" id="GroupCirc">
+                                <label for="Nombre">Nombre Titulo</label>
+                                <input type="text" class="form-control" name="Nombre" id="Nombre" placeholder="Nombre del Titulo">
+                                <div class="invalid-feedback">
+                                </div>
+                            </div>
+                            <div class="form-group" id="GroupImg">
+                                <!--iria la imagen para  hacer el mapeo-->
+                                <map name="mapeo" id="mapeo">
+                                    <?php if (isset($data)) : ?>
+                                        <?php foreach ($data as $titulo) : $title = $titulo["Nombre"] ?>
+                                            <?php
+                                            $X = $titulo["Coordenadas"];
+                                            $tipo = $titulo['tipoEnlace']
+                                            ?>
+                                            <?php if ($tipo === '1') : ?>
+                                                <!--es figura circular-->
+                                                <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="circle" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
+                                            <?php elseif ($tipo === '2') : ?>
+                                                <!--es figura rectangular-->
+                                                <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="rect" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
+                                            <?php else : ?>
+                                                <!--Es poligono-->
+                                                <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="poly" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
+                                            <?php endif; ?>
                                             <!--Es poligono-->
-                                            <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="poly" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
-                                        <?php endif; ?>
-                                        <!--Es poligono-->
 
-                                    <?php endforeach ?>
-                                <?php endif; ?>
-                            </map>
-                            <?php if (isset($img)) : ?>
+                                        <?php endforeach ?>
+                                    <?php endif; ?>
+                                </map>
+                                <?php if (isset($img)) : ?>
 
 
-                                <div class="form-check">
-                                    <input type="checkbox" name="circ" id="circ" onclick="Circular()" />
-                                    <label class="form-check-label" for="circ">
-                                        Enlace Circular
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" name="Rect" id="Rect" onclick="Rectangular()" />
-                                    <label class="form-check-label" for="Rect">
-                                        Enlace Rectangular
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" name="Poly" id="Poly" onclick="Libre()" />
-                                    <label class="form-check-label" for="Poly">
-                                        Enlace Libre
-                                    </label>
-                                </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" name="circ" id="circ" onclick="Circular()" />
+                                        <label class="form-check-label" for="circ">
+                                            Enlace Circular
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" name="Rect" id="Rect" onclick="Rectangular()" />
+                                        <label class="form-check-label" for="Rect">
+                                            Enlace Rectangular
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" name="Poly" id="Poly" onclick="Libre()" />
+                                        <label class="form-check-label" for="Poly">
+                                            Enlace Libre
+                                        </label>
+                                    </div>
 
-                                <div class="collapse" id="FormCircular">
-                                    <div class="card card-body">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label>Centro</label>
-                                                <input class="form-control" id="centrocirc" name="centrocirc" type="text" readonly>
+                                    <div class="collapse form-group" id="FormCircular">
+                                        <div class="card card-body">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <label>Centro</label>
+                                                    <input class="form-control" id="centrocirc" name="centrocirc" type="text" readonly>
+                                                    <small id="fileHelp" class="form-text text-muted ">Selecciona el Centro del circulo</small>
+                                                </div>
+                                                <!--para el codigo del curso a editar-->
+                                                <div class="col-3">
+                                                    <label>Radio</label>
+                                                    <input class="form-control is-invalid" id="radiocirc" name="radiocirc" type="text">
+                                                    <small id="fileHelp" class="form-text text-muted ">Selecciona otro punto que indique hasta donde llegará el circulo</small>
+                                                </div>
+                                                <div class="col-3">
+                                                    <label>Generar</label>
+                                                    <button type="button" class="btn btn-success" id="GEnlaceCirc" onclick="GenerarCircleMap()">Generar Enlace</button>
+                                                </div>
                                             </div>
-                                            <div class="col-2"></div>
-                                            <!--para el codigo del curso a editar-->
-                                            <div class="col-3">
-                                                <label>Radio</label>
-                                                <input class="form-control is-invalid" id="radiocirc" name="radiocirc" type="text"> 
-                                                <small id="fileHelp" class="form-text text-muted ">Ingresa el tamaño del circulo</small>
-                                            </div>
-                                            <div class="col-3">
-                                            <label>Generar</label>
-                                                <button type="button" class="btn btn-success" id="GEnlaceCirc">Generar Enlace</button>
-                                            </div>
-
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <img src="<?= base_url($img) ?>" class="map grande" alt="" id="imagenTema" crossorigin="anonymous" usemap="#mapeo" width="600">
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-                                <img class="map grande" id="imagenTema" src="<?= base_url($img) ?>" crossorigin="anonymous" usemap="#mapeo" width="600">
-                            <?php endif; ?>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-xl" id="submit" name="submit" value="REGISTRAR" />
-                        </div>
-                    </form>
+                                <?php endif; ?>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary btn-xl" id="submit" name="submit" value="REGISTRAR" />
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
 
