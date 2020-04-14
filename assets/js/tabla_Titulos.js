@@ -30,10 +30,8 @@ $(".btn-edit").click(function (ev) {
     $("#TEMPtema").val($valor);// codigo del tema al que pertenece el titulo a editar
     $valor = $(this).attr('data-id');
     $("#TEMPTitulo").val($valor);// codigo del titulo a editar
-    $valor = $(this).attr('data-posx');
+    $valor = $(this).attr('data-pos');
     $("#X").val($valor);// posicion X del titulo a editar
-    $valor = $(this).attr('data-posy');
-    $("#Y").val($valor);// posicion Y del titulo a editar
 
     $('#collapseExample').collapse('show');
     $('#cancel').attr("data-curso", $(this).attr('data-curso'));
