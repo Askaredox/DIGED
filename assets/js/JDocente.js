@@ -150,6 +150,8 @@ function mostrarTitulo($titulo) {
     alert($titulo);
 };
 
+$cont = 0;
+
 function Circular() {
     const chk2 = document.getElementById('Rect');
     const chk3 = document.getElementById('Poly');
@@ -161,38 +163,53 @@ function Circular() {
     const imagenTema = document.getElementById('imagenTema');
 
     imagenTema.addEventListener('click', function (e) {
-        let ctx;
-        if (!this.canvas) {
-            this.canvas = document.createElement('canvas');
-            this.canvas.width = this.width;
-            this.canvas.height = this.height;
-            ctx = this.canvas.getContext('2d');
-            ctx.drawImage(this, 0, 0, this.width, this.height);
-        } else {
-            ctx = this.canvas.getContext('2d');
+
+        if ($cont < 1) {
+            let ctx;
+            $cont = $cont + 1;
+            console.log($cont);
+            if (!this.canvas) {
+                this.canvas = document.createElement('canvas');
+                this.canvas.width = this.width;
+                this.canvas.height = this.height;
+                ctx = this.canvas.getContext('2d');
+                ctx.drawImage(this, 0, 0, this.width, this.height);
+            } else {
+                ctx = this.canvas.getContext('2d');
+            }
+            const pixel = ctx.getImageData(e.offsetX, e.offsetY, 1, 1).data;
+
+
+            $x = e.offsetX;
+            $y = e.offsetY;
+            $title = $('#Nombre').val()
+            // $(".anterior").remove();
+
+            $("#mapeo").append('<area  class="title anterior" id="titulo" title="' + $title + '" class="title" alt="" href="#" shape="circle" coords="' + $x + ',' + $y + ',10" onclick="mostrarTitulo(\'' + $title + '\')" data-maphilight=\'{"alwaysOn":true}\'>');
+            $(".title").data('maphilight', { 'alwaysOn': true }).trigger('alwaysOn.maphilight');
+
+            if($cont===1){
+                $("#centrocirc").val($x + ',' + $y);
+            }
+            
+
+
+            console.log(e.offsetX);
+            console.log(e.offsetY);
+
         }
-        const pixel = ctx.getImageData(e.offsetX, e.offsetY, 1, 1).data;
-
-
-        $x = e.offsetX;
-        $y = e.offsetY;
-        $title = $('#Nombre').val();
-
-
-        $(".anterior").remove();
-
-        $("#mapeo").append('<area  class="title anterior" id="titulo" title="' + $title + '" class="title" alt="" href="#" shape="circle" coords="' + $x + ',' + $y + ',18" onclick="mostrarTitulo(\'' + $title + '\')" data-maphilight=\'{"alwaysOn":true}\'>');
-        $(".title").data('maphilight', { 'alwaysOn': true }).trigger('alwaysOn.maphilight');
-
-        //$valor= $("#centrocirc").val();
-        $("#centrocirc").val($x+','+$y);
-        
-
-        console.log(e.offsetX);
-        console.log(e.offsetY);
 
     });
 };
+
+function GenerarCircleMap() {
+    const chk2 = document.getElementById('circ');
+    const chk3 = document.getElementById('Poly');
+    chk2.disabled = false;
+    chk3.disabled = false;
+    
+};
+//generar enlace rectangular
 
 function Rectangular() {
     const chk2 = document.getElementById('circ');
