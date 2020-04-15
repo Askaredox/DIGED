@@ -13,3 +13,18 @@ function getThemesRules()
         ),
     );
 }
+
+function getTitlesRules()
+{
+    return array(
+        array(
+            'field' => 'Nombre',
+            'label' => 'Nombre',
+            'rules' => 'required|max_length[255]|trim',
+            'errors' => array(
+                'required' => 'El Nombre del Titulo es Requerido',
+                'max_legth' => 'El Nombre del Titulo es demasiado largo',
+            ),
+        ),
+    );
+}
