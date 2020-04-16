@@ -74,7 +74,21 @@ class Titulo extends CI_Controller
                 $this->session->set_flashdata('msge', 'ESTE TEMA AÚN NO TIENE TITULOS REGISTRADOS');
                 redirect(base_url('Titulo/Dashboard/' . $idCurso . '/' . $idTema));
             } else {
-                $this->load->view('Docente/vTablaTitulos', array('data' => $data)); //, array('id' => $idCurso)); //mandar el array a la vista
+
+                if (!$res = $this->Docente_Temas_model->getTemas(array('Cod_Tema' => $idTema, 'Curso' => $idCurso))) // esto es para obtener la imagen
+                {
+                    $this->session->set_flashdata('msge', 'Ha Ocurrido un error, intentelo de nuevo 1');
+                    $this->load->view('Docente/vTablaTitulos', array('data' => $data));
+                } else { // 
+                    foreach ($res as $row) {
+                        $imagen = $row['Imagen'];
+                    }
+                    if (strlen($imagen) > 0) { // si existe una imagen
+                        $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'img' => $imagen)); //, array('id' => $idCurso)); //mandar el array a la vista
+                    } else {
+                        $this->load->view('Docente/vTablaTitulos', array('data' => $data)); //, array('id' => $idCurso)); //mandar el array a la vista
+                    }
+                }
             }
         } else {
             show_404();
@@ -131,6 +145,54 @@ class Titulo extends CI_Controller
 
     public function EditarTitulo()
     {
+        $Id_Titulo = $this->input->post('Id_Titulo');
+        $Tema = $this->input->post('Tema');
+        $Curso = $this->input->post('Curso');
+
+        $coincidir = array(
+            'Id_Titulo' => $Id_Titulo,
+            'Tema' => $Tema,
+        );
+        $datos = array();
+
+        $Nombre = $this->input->post('Nombre');
+        $Coordenadas = $this->input->post('Coordenadas');
+        $tipoEnlace = $this->input->post('tipoEnlace');
+
+        if (strlen($Nombre) > 0) { // agregar nombre nuevo
+            $datos['Nombre'] = $Nombre;
+        }
+
+        if (strlen($Coordenadas) > 0) { // agregar posición nueva
+            $datos['Coordenadas'] = $Coordenadas;
+            $datos['tipoEnlace'] = $tipoEnlace;
+        }
+
+        if (strlen($Nombre) > 0 || strlen($Coordenadas) > 0) { // solamente si se editaron estas dos cosas se actualizará si no no se editó nada
+
+            if ($this->Docente_Titulos_model->ExistsTitulo($coincidir)) { // si existe vamos a editarlo
+
+                if (!$this->Docente_Titulos_model->ExistsTitulo(array('Nombre' => $Nombre, 'Tema' => $Tema))) { //verificar si ya existe un registro con el nuevo nombre
+                    if ($this->Docente_Titulos_model->UpdateTitulo($coincidir, $datos)) { //se actualizó correctamente
+                        $this->session->set_flashdata('msg', 'EL TITULO SE ACTUALIZÓ CORRECTAMENTE');
+                        echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
+                    } else { // no se actualizó correctamente
+                        $this->session->set_flashdata('msge', '¡ERROR! OCURRIÓ UN ERRO AL ACTUALIZAR EL TITULO INTENTE MÁS ADELANTE');
+                        echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
+                    }
+                }else{// si existe entonces manda un error
+                    $this->output
+                    ->set_status_header(400)
+                    ->set_output(json_encode(array('error' => '¡ERROR! EL TITULO YA EXISTE NO SE PUEDE ACTUALIZAR EL NOMBRE.')));
+                }
+            } else { // de lo contrarioi no existe y debe reportarse el error
+
+                $this->session->set_flashdata('msge', '¡ERROR! EL TITULO NO EXISTE NO SE PUEDE EDITAR');
+                echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
+            }
+        } else { // no se edito nada así que hay que redireccionar
+            echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
+        }
     }
 
     public function BorrarTitulo()

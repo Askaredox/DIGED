@@ -39,25 +39,29 @@
             <div class="container bg-primary" style="height: 110px;"></div>
             <div class="card mb-4">
                 <h1 class="display-4">TITULOS </h1>
-                <?php if ($dat = $this->session->flashdata('msg')) : ?>
-                    <div class="container-sm">
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong><?= $dat ?></strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+
+                <div id="notificacion">
+                    <?php if ($dat = $this->session->flashdata('msg')) : ?>
+                        <div class="container-sm">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong><?= $dat ?></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                <?php elseif ($dat = $this->session->flashdata('msge')) : ?>
-                    <div class="container-sm">
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong><?= $dat ?></strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                    <?php elseif ($dat = $this->session->flashdata('msge')) : ?>
+                        <div class="container-sm">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong><?= $dat ?></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+
             </div>
             <div class="card mb-4">
                 <!--empieza la tablilla-->
@@ -93,7 +97,7 @@
                                                 <i class="fas fa-eye"></i> <!-- aquí iría lo de agregar el contenido-->
                                             </a>
                                             <a class="scrollto" href="#EDITAR" style="color: white;">
-                                                <button type="button " class="btn btn-primary btn-edit btn-sm" role="button" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-pos="<?= $titulo['Coordenadas'] ?>" data-curso="<?= $this->uri->segment(3) ?>">
+                                                <button type="button " class="btn btn-primary btn-edit btn-sm" role="button" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-pos="<?= $titulo['Coordenadas'] ?>" data-curso="<?= $this->uri->segment(3)  ?>" data-tipo="<?= $titulo['tipoEnlace'] ?>">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                             </a>
@@ -113,10 +117,12 @@
 
         <!-- SECCIÓN EDITAR COMPLETA-->
         <section class="page-section" id="EDITAR">
-            <div class="collapse" id="collapseExample">
+            <div class="container pt-5">
+
+
+                <!-- Contact Section Heading -->
                 <header>
-                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Actualizar
-                        Titulo</h2>
+                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">EDITAR TITULO</h2>
 
                     <!-- Icon Divider -->
                     <div class="divider-custom">
@@ -127,74 +133,127 @@
                         <div class="divider-custom-line"></div>
                     </div>
                 </header>
+
                 <!-- Register Section Form -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-8 mx-auto">
-
-                            <form id="UpdateForm" novalidate="novalidate">
-                                <div class="form-group">
-                                    <!--CAMPOS TEMPORALES QUE TE PODRÍAN SERVIR-->
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12 mx-auto">
+                        <div id="notificacion2">
+                        </div>
+                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                        <div class="container-sm">
+                            <form class=" col-md-12 col-sm-8" name="UpdateForm" id="UpdateForm">
+                                <div class="form-group" id="GroupCod">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label>Codigo del Tema</label>
-                                            <input class="form-control" id="TEMPtema" name="TEMPtema" type="text" readonly>
+                                            <input type="text" class="form-control" name="Curso" id="Curso" placeholder="Codigo del Curso" hidden>
                                         </div>
-                                        <div class="col-4"></div>
-                                        <!--para el codigo del curso a editar-->
                                         <div class="col-4">
-                                            <label>Codigo del Titulo</label>
-                                            <input class="form-control" id="TEMPTitulo" name="TEMPtitulo" type="text" readonly> <!-- para el codigo del docete nuevo-->
+                                            <input type="text" class="form-control" name="Tema" id="Tema" placeholder="Codigo del Tema" hidden>
+                                        </div>
+                                        <div class="col-4">
+                                            <input type="text" class="form-control" name="Titulo" id="Titulo" placeholder="Codigo del Titulo" hidden>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group  col-md-12 col-sm-8" id="GroupName">
+                                    <label for="Nombre">Nombre Titulo</label>
+                                    <input type="text" class="form-control" name="Nombre" id="Nombre" placeholder="Nombre del Titulo">
+                                    <div class="invalid-feedback">
+                                    </div>
+                                </div>
+                                <div class="form-group  col-md-12 col-sm-8" id="GroupPos">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" name="pos" id="pos" placeholder="Posicion del Titulo" readonly>
+                                        </div>
+                                        <div class="col-5">
+                                            <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Tipo enlace" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="GroupImg">
+                                    <!--iria la imagen para  hacer el mapeo-->
+                                    <map name="mapeo" id="mapeo">
+                                        <?php if (isset($data)) : ?>
+                                            <?php foreach ($data as $titulo) : $title = $titulo["Nombre"] ?>
+                                                <?php
+                                                $X = $titulo["Coordenadas"];
+                                                $tipo = $titulo['tipoEnlace']
+                                                ?>
+                                                <?php if ($tipo === '1') : ?>
+                                                    <!--es figura circular-->
+                                                    <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="circle" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
+                                                <?php elseif ($tipo === '2') : ?>
+                                                    <!--es figura rectangular-->
+                                                    <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="rect" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
+                                                <?php else : ?>
+                                                    <!--Es poligono-->
+                                                    <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="poly" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
+                                                <?php endif; ?>
+                                                <!--Es poligono-->
+
+                                            <?php endforeach ?>
+                                        <?php endif; ?>
+                                    </map>
+                                    <?php if (isset($img)) : ?>
+                                        <div class="row">
+                                            <div class="form-check">
+                                                <input type="checkbox" name="circ" id="circ" onclick="Circular(this)" />
+                                                <label class="form-check-label" for="circ">
+                                                    Enlace Circular
+                                                </label>
+                                            </div>
+                                            <div class="col-1"></div>
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-primary btn-sm rounded-pill" id="BorrarButtonButton">Deshacer</button>'
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-check">
+                                                <input type="checkbox" name="Rect" id="Rect" onclick="Rectangular(this)" />
+                                                <label class="form-check-label" for="Rect">
+                                                    Enlace Rectangular
+                                                </label>
+                                            </div>
                                         </div>
 
-                                    </div>
-                                </div>
-                                <div class="form-group" id="GroupNombre">
-                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                        <label>Titulo</label>
-                                        <input class="form-control" id="Nombre" name="Nombre" type="text" placeholder="Nombre Titulo" value="<?= set_value('Nombre') ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group" id="Posicion">
-                                    <label>Posición:</label>
-                                    <div class="row">
-                                        <div class="col-3" id="PosX">
-                                            <input type="text" class="form-control" name="X" id="X" placeholder="Posicion X" readonly>
-                                            <small id="posHelpX" class="form-text text-muted">Posicion X</small>
-                                            <div class="invalid-feedback">
+                                        <div class="row">
+                                            <div class="form-check">
+                                                <input type="checkbox" name="Poly" id="Poly" onclick="Libre(this)" />
+                                                <label class="form-check-label" for="Poly">
+                                                    Enlace Libre
+                                                </label>
                                             </div>
                                         </div>
-                                        <div class="col-3">
-                                        </div>
-                                        <div class="col-3" id="PosY">
-                                            <input type="text" class="form-control" name="Y" id="Y" placeholder="Posicion Y" readonly>
-                                            <small id="posHelpX" class="form-text text-muted">Posicion Y</small>
-                                            <div class="invalid-feedback">
+                                        <div class="collapse form-group" id="FormCircular">
+                                            <div class="card card-body">
+                                                <button type="button" class="close" id="cerrar">
+                                                    <span>&times;</span>
+                                                </button>
+                                                <form>
+                                                    <div id="form2"></div>
+                                                </form>
+
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <img src="<?= base_url($img) ?>" class="map grande" alt="" id="imagenTema" crossorigin="anonymous" usemap="#mapeo" width="600">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    <?php endif; ?>
                                 </div>
-                                <div id="GroupImg">
-                                    <!--IRIA LA PREVISUALIZACIÓN DE LA IMAGEN-->
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" class="form-control-file" id="image" name='image'>
-                                    <small id="fileHelp" class="form-text text-muted">Cambia o Sube una nueva Imagen</small>
-                                    <div class="text-danger">
-                                    </div>
-                                    <button type="button" class="btn btn-secondary rounded-pill btn-xl" id="SubirImg">Subir Imagen</button>
-                                    <button type="button" class="btn btn-secondary rounded-pill btn-xl" id="EliminarImg" disabled>Eliminar Imagen</button>
-                                </div>
-                                <div id="GroupNotificacionSubida">
-                                </div>
-                                <br>
-                                <div id="success"></div>
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-success rounded-pill btn-xl" id="sendUpdate" value="Actualizar" />
                                     <button type="button" class="btn btn-danger rounded-pill btn-xl" id="cancel">Cancelar</button>
                                 </div>
                             </form>
                         </div>
+
                     </div>
                 </div>
 
@@ -247,12 +306,22 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type='text/javascript' src='<?= base_url('assets/js/jquery.maphilight.min.js') ?>'></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.map').maphilight({
+                alwaysOn: true
+            });
+            // uncomment this line for normal hover highlighting
+            // $('.map').maphilight();
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="<?= base_url('Admin_page/css/js/bootstrap.min.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('Admin_page/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('Admin_page/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/tabla_Titulos.js') ?>"></script>
+
 
 </body>
 
