@@ -62,9 +62,9 @@
     </div>
   </nav>
   <!-- Masthead -->
-  <section id="intro">
+  <section id="intro" >
     <header class="bg-secondary text-white text-center" style="padding-top: calc(6rem + 50px);
-    padding-bottom: 6rem;">
+    padding-bottom: 2rem;">
       <div id=notificacion>
         <!--MENSAJE DE BIENVENIDA TEMPORAL-->
         <?php if ($dat = $this->session->flashdata('msg')) : ?>
@@ -86,16 +86,19 @@
             </div>
           </div>
         <?php endif; ?>
+        <!--
         <?php var_dump($data);
         var_dump(count($data));  ?>
+        -->
       </div>
 
-
+      
       <!-- Masthead Avatar Image -->
-      <img class="mt-20 img-fluid" src="<?= base_url('assets/docente.png') ?>" alt="">
+      <img class="mt-2 img-fluid" src="<?= base_url('assets/docente.png') ?>" alt="">
 
+      
       <!-- Masthead Heading -->
-      <h3 class="masthead-heading text-uppercase mb-0">ADMINISTRACIÓN</h3>
+      <h3 class="mt-4 masthead-heading text-uppercase mb-0">ADMINISTRACIÓN</h3>
 
       <!-- Icon Divider -->
       <div class="divider-custom divider-light">
@@ -105,75 +108,31 @@
         </div>
         <div class="divider-custom-line"></div>
       </div>
-
       <!-- Masthead Subheading -->
-      <p class="masthead-subheading font-weight-light mb-0">SISTEMA ADMINISTRADOR DE CURSOS DEDEV</p>
-
-
+      <p class="masthead-subheading font-weight-light">SISTEMA ADMINISTRADOR DE CURSOS DEDEV</p>
     </header>
   </section>
 
 
+
+
+
   <!-- Cursos Section -->
-  <section class="page-section portfolio bg-secondary" id="CURSOS">
-    <div class="container-sm">
-
+  <section class="page-section portfolio bg-secondary" style="background-image: url('assets/Patron_Azul_.png'); background-repeat: repeat; " id="CURSOS">
+    <h2 class="text-white" style="text-align:center;"> CURSOS </h2>
+    <div class="container d-flex align-items-start">
+      
       <!-- CURSOS Grid Items -->
-      <div class="row item-center">
-        <!--Carousel Wrapper-->
-        <div id=aviso>
-          <!--AVISOS-->
-
-          <div id="multi-item-example" class="carousel slide justify-content-center bg-primary" data-ride="carousel">
-
-            <!--Slides-->
-            <div class="carousel-inner">
-              <!--First slide-->
-              <div class="carousel-item active">
-                <div style="float:left">
-                  <div class="card mb-2">
-                    <img class="card-img-top bg-primary" src="<?= base_url('assets/fondo_cursos.png') ?>">
-                    <div class="card-body">
-                      <?php if (!count($data) > 0) : ?>
-                        <h4 class="card-title">AUN NO TIENE CURSOS ASIGNADOS</h4>
-                      <?php else : ?>
-                        <h4 class="card-title">DESPLÁCESE PARA OBSERVAR LOS CURSOS ASIGNADOS EN LA PLATAFORMA</h4>
-                      <?php endif; ?>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <?php foreach ($data as $curso) : ?>
-                <div class="carousel-item">
-                  <div style="float:left">
-                    <div class="card mb-2">
-                      <img class="card-img-top bg-primary" src="<?= base_url('assets/fondo_cursos.png') ?>">
-                      <div class="card-body">
-                        <h4 class="card-title text-center"><?= strtoupper($curso['Nombre']) ?></h4>
-                        <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                      card's content.</p>-->
-                        <a type="button" class="btn btn-outline-danger btn-md btn-block rounded-pill"  href="<?= base_url('Temas/'. $curso['Cod_Curso']) ?>" data-id=<?= $curso['Cod_Curso'] ?>>VER TEMAS</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <?php endforeach ?>
-
+      <div class="card-deck mx-auto justify-content-center">
+        <?php foreach ($data as $curso) : ?>
+          <div class="card mb-4 text-center bg-light" style=" min-width: 18rem; max-width: 18rem; border-radius: 25px;">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><?= strtoupper($curso['Nombre']) ?></h5>
+              <a type="button" class="btn mt-auto btn-info btn-md btn-block rounded-pill"  href="<?= base_url('Temas/'. $curso['Cod_Curso']) ?>" data-id=<?= $curso['Cod_Curso'] ?>>VER TEMAS</a>
             </div>
-            <!--/.Slides-->
-            <a class="carousel-control-prev" href="#multi-item-example" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#multi-item-example" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-
           </div>
-          <!--/.Carousel Wrapper-->
-        </div>
-        <!-- /.row -->
+        <?php endforeach ?>
+
 
       </div>
   </section>

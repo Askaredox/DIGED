@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-//https://desarrollo.virtual.usac.edu.gt'http://localhost/DIGED/'
+//https://desarrollo.virtual.usac.edu.gt'http://localhost/DEDEV/'
 $config['base_url'] = 'http://localhost/DEDEV/';
 
 /*

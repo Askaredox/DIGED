@@ -28,10 +28,9 @@
                 <a href="<?= base_url('HOME#intro') ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid">
                 </a>
             </div>
-            <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
-                <a href="<?= base_url('HOME#intro') ?>" style="color: white;">HOME</a>
-                <i class="fas fa-home"></i>
-            </button>
+            <a href="<?= base_url('HOME#intro') ?>" class="btn btn-primary btn-lg bg-secondary" role="button">
+                HOME <i class="fas fa-home"></i>
+            </a>
     </nav>
 
     <!---->

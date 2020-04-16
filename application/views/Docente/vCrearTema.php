@@ -20,11 +20,10 @@
             <div class="logo float-left">
                 <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
             </div>
-
-            <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
-                <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" style="color: white;">Atrás</a>
-                <i class="fas fa-arrow-left"></i>
-            </button>
+            <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" class="btn btn-primary btn-lg bg-secondary" role="button">
+                Atrás <i class="fas fa-arrow-left"></i>
+            </a>
+            
     </nav>
     <!-- <div class="container-fluid bg-primary py-5">-->
     <section class="page-section" id="registrar">
