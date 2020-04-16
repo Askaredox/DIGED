@@ -71,14 +71,21 @@
                             </div>
                         <?php endif; ?>
                         <?php if (isset($data)) {
-                            var_dump($data);
+                            //var_dump($data);
                         } ?>
                     </div>
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <div class="container-sm">
                         <form class=" col-md-12 col-sm-8" name="RegisterTitle" id="RegisterTitle">
                             <div class="form-group" id="GroupCod">
-                                <input type="text" class="form-control" name="Curso" id="Curso" placeholder="Codigo del Curso" value="<?= $this->uri->segment(3) ?>" hidden>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <input type="text" class="form-control" name="Curso" id="Curso" placeholder="Codigo del Curso" value="<?= $this->uri->segment(3) ?>" hidden>
+                                    </div>
+                                    <div class="col-5">
+                                        <input type="text" class="form-control" name="Tema" id="Tema" placeholder="Codigo del Tema" value="<?= $this->uri->segment(4) ?>" hidden>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group  col-md-12 col-sm-8" id="GroupName">
                                 <label for="Nombre">Nombre Titulo</label>
@@ -86,10 +93,20 @@
                                 <div class="invalid-feedback">
                                 </div>
                             </div>
-                            <div class="form-group  col-md-12 col-sm-8" id="GroupCirc">
-                                <label for="Nombre">Nombre Titulo</label>
-                                <input type="text" class="form-control" name="Nombre" id="Nombre" placeholder="Nombre del Titulo">
-                                <div class="invalid-feedback">
+                            <div class="form-group  col-md-12 col-sm-8" id="GroupPos">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="pos" id="pos" placeholder="Posicion del Titulo" readonly>
+                                        <div class="invalid-feedback">
+                                            Debe crear el area para redirigir al contenido del título
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Tipo enlace" readonly>
+                                        <div class="invalid-feedback">
+                                            Debe crear el area para redirigir al contenido del título
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group" id="GroupImg">
@@ -117,46 +134,44 @@
                                     <?php endif; ?>
                                 </map>
                                 <?php if (isset($img)) : ?>
-
-
-                                    <div class="form-check">
-                                        <input type="checkbox" name="circ" id="circ" onclick="Circular()" />
-                                        <label class="form-check-label" for="circ">
-                                            Enlace Circular
-                                        </label>
+                                    <div class="row">
+                                        <div class="form-check">
+                                            <input type="checkbox" name="circ" id="circ" onclick="Circular(this)" />
+                                            <label class="form-check-label" for="circ">
+                                                Enlace Circular
+                                            </label>
+                                        </div>
+                                        <div class="col-1"></div>
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary btn-sm rounded-pill" id="BorrarButton">Deshacer</button>'
+                                        </div>
                                     </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" name="Rect" id="Rect" onclick="Rectangular()" />
-                                        <label class="form-check-label" for="Rect">
-                                            Enlace Rectangular
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" name="Poly" id="Poly" onclick="Libre()" />
-                                        <label class="form-check-label" for="Poly">
-                                            Enlace Libre
-                                        </label>
+                                    <div class="row">
+                                        <div class="form-check">
+                                            <input type="checkbox" name="Rect" id="Rect" onclick="Rectangular(this)" />
+                                            <label class="form-check-label" for="Rect">
+                                                Enlace Rectangular
+                                            </label>
+                                        </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="form-check">
+                                            <input type="checkbox" name="Poly" id="Poly" onclick="Libre(this)" />
+                                            <label class="form-check-label" for="Poly">
+                                                Enlace Libre
+                                            </label>
+                                        </div>
+                                    </div>
                                     <div class="collapse form-group" id="FormCircular">
                                         <div class="card card-body">
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <label>Centro</label>
-                                                    <input class="form-control" id="centrocirc" name="centrocirc" type="text" readonly>
-                                                    <small id="fileHelp" class="form-text text-muted ">Selecciona el Centro del circulo</small>
-                                                </div>
-                                                <!--para el codigo del curso a editar-->
-                                                <div class="col-3">
-                                                    <label>Radio</label>
-                                                    <input class="form-control is-invalid" id="radiocirc" name="radiocirc" type="text">
-                                                    <small id="fileHelp" class="form-text text-muted ">Selecciona otro punto que indique hasta donde llegará el circulo</small>
-                                                </div>
-                                                <div class="col-3">
-                                                    <label>Generar</label>
-                                                    <button type="button" class="btn btn-success" id="GEnlaceCirc" onclick="GenerarCircleMap()">Generar Enlace</button>
-                                                </div>
-                                            </div>
+                                            <button type="button" class="close" id="cerrar">
+                                                <span>&times;</span>
+                                            </button>
+                                            <form>
+                                                <div id="form2"></div>
+                                            </form>
+
                                         </div>
                                     </div>
                                     <div class="row">
