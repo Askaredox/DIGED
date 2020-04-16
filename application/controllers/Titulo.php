@@ -167,6 +167,7 @@ class Titulo extends CI_Controller
             $datos['Coordenadas'] = $Coordenadas;
             $datos['tipoEnlace'] = $tipoEnlace;
         }
+        //var_dump($datos);
 
         if (strlen($Nombre) > 0 || strlen($Coordenadas) > 0) { // solamente si se editaron estas dos cosas se actualizará si no no se editó nada
 
@@ -175,15 +176,16 @@ class Titulo extends CI_Controller
                 if (!$this->Docente_Titulos_model->ExistsTitulo(array('Nombre' => $Nombre, 'Tema' => $Tema))) { //verificar si ya existe un registro con el nuevo nombre
                     if ($this->Docente_Titulos_model->UpdateTitulo($coincidir, $datos)) { //se actualizó correctamente
                         $this->session->set_flashdata('msg', 'EL TITULO SE ACTUALIZÓ CORRECTAMENTE');
+                        //var_dump("esto");
                         echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
                     } else { // no se actualizó correctamente
                         $this->session->set_flashdata('msge', '¡ERROR! OCURRIÓ UN ERRO AL ACTUALIZAR EL TITULO INTENTE MÁS ADELANTE');
                         echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
                     }
-                }else{// si existe entonces manda un error
+                } else { // si existe entonces manda un error
                     $this->output
-                    ->set_status_header(400)
-                    ->set_output(json_encode(array('error' => '¡ERROR! EL TITULO YA EXISTE NO SE PUEDE ACTUALIZAR EL NOMBRE.')));
+                        ->set_status_header(400)
+                        ->set_output(json_encode(array('error' => '¡ERROR! EL TITULO YA EXISTE NO SE PUEDE ACTUALIZAR EL NOMBRE.')));
                 }
             } else { // de lo contrarioi no existe y debe reportarse el error
 
@@ -191,11 +193,31 @@ class Titulo extends CI_Controller
                 echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
             }
         } else { // no se edito nada así que hay que redireccionar
+            //var_dump("llegó");
+            $this->session->set_flashdata('msg', 'NO SE ACTUALIZO EL REGISTRO');
             echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
         }
     }
 
     public function BorrarTitulo()
     {
+        $Id_Titulo = $this->input->post('Id_Titulo');
+        $Tema = $this->input->post('Tema');
+        $Curso = $this->input->post('Curso');
+        $Nombre = $this->input->post('Nombre');
+
+        if ($this->Docente_Titulos_model->ExistsTitulo(array('Id_Titulo' => $Id_Titulo))) { //ver si existe el titulo
+            if ($this->Docente_Titulos_model->DeleteTitulo(array('Id_Titulo' => $Id_Titulo))) { // si se elimina bien
+
+                $this->session->set_flashdata('msg', 'EL TITULO SE ELIMINÓ CORRECTAMENTE');
+                echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
+            } else { // si no se pudo eliminar
+                $this->session->set_flashdata('msge', '¡ERROR! OCURRIÓ UN ERROR MIENTRAS SE ELIMINABA EL TITULO, INTENTELO DE NUEVO O ACTUALICE LA PÁGINA');
+                echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
+            }
+        } else { // no existe  hay que mostrar error
+            $this->session->set_flashdata('msge', '¡ERROR! EL TITULO NO EXISTE Y NO SE PUDO ELIMINAR');
+            echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
+        }
     }
 }

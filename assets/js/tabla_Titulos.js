@@ -19,7 +19,6 @@ $(".btn-eliminar").click(function (ev) {
 });
 
 $('#cancel').click(function () {
-    $('#collapseExample').collapse('hide');
     var myNewURL = base_url + "Titulo/Administrar/" + $(this).attr('data-curso') + '/' + $(this).attr('data-tema');//the new URL
     window.location.replace(myNewURL);
 });
@@ -63,6 +62,7 @@ $("#cerrar").click(function (ev) {
 
 $cont = 0;
 
+if ($("#imagenTema").length) {
 const imagenTema = document.getElementById('imagenTema');
 
 imagenTema.addEventListener('click', function (e) {
@@ -115,7 +115,7 @@ imagenTema.addEventListener('click', function (e) {
     console.log(e.offsetY);
 
 });
-
+}
 function Circular(checkbox) {
 
     $cont = 0;
@@ -403,6 +403,9 @@ $("#BorrarButtonButton").click(function (ev) {
                 $datos.tipoEnlace = '';
             }
 
+        } else {
+            $datos.Coordenadas = '';
+            $datos.tipoEnlace = '';
         }
 
         var x1 = document.getElementById("Nombre");
@@ -456,6 +459,37 @@ $("#BorrarButtonButton").click(function (ev) {
                 }
             }
         });
+    });
+    $("#ButtonConfirm").click(function (ev) {
+        ev.preventDefault();
+        var self = this;
+        $Id_Titulo = $(this).attr('data-id');
+        $Tema = $(this).attr('data-tema');
+        $Curso = $(this).attr('data-curso');
+        $Nombre = $("#TituloEliminar").val();
+
+        $datos = {
+            'Id_Titulo': $Id_Titulo,
+            'Tema': $Tema,
+            'Curso': $Curso,
+            'Nombre': $Nombre
+        };
+
+        $.ajax({
+            url: base_url + 'Titulo/BorrarTitulo',
+            type: 'POST',
+            data: $datos,
+            success: function (data) {
+                var json = JSON.parse(data);
+                window.location.replace(json.url);
+            },
+            statusCode: {
+                400: function (xhr) {
+                },
+                401: function (xhr) {
+                }
+            }
+        })
     });
 })(jQuery)
 

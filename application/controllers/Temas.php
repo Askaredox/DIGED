@@ -6,7 +6,7 @@ class Temas extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('Docente_Temas_model'));
+        $this->load->model(array('Docente_Temas_model','Docente_Titulos_model'));
         $this->load->helper(array());
     }
     public function index()
@@ -147,6 +147,8 @@ class Temas extends CI_Controller
                         unlink('./' . $imagenEliminar);
                     }
 
+
+                    $this->Docente_Titulos_model->UpdateTitulo(array('Tema'=> $Cod_Tema), array('Coordenadas'=>NULL, 'tipoEnlace'=>NULL));
                     echo json_encode(array('url' => '', 'msg' => 'La Imagen fue eliminada con éxito'));
                 } else { //no se pudo actualizar  a nivel de tabla
                     $error = array(
