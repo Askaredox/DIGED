@@ -54,7 +54,7 @@ class Temas extends CI_Controller
                     "allowed_types" => "jpeg|jpg|png|gif",
                     "min_width" => 400,
                     "min_height" => 400,
-                    "file_name" => $nombre_T
+                    "file_name" => $Cod_Tema
                     //"max_width" => 800,
                     //"max_height" => 800
                 ];
