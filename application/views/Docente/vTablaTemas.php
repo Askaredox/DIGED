@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="stylesheet" href="<?= base_url('Admin_page/DataTables/DataTables-1.10.20/css/dataTables.bootstrap4.min.css') ?>" />
     <script>
         var base_url = '<?php echo base_url(); ?>';
+
     </script>
     <title>TEMAS</title>
 </head>
@@ -27,10 +28,9 @@
                 <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid">
                 </a>
             </div>
-            <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
-                <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" style="color: white;">Atrás</a>
-                <i class="fas fa-arrow-left"></i>
-            </button>
+            <a href="<?= base_url('HOME#intro') ?>" class="btn btn-primary btn-lg bg-secondary" role="button">
+                HOME <i class="fas fa-home"></i>
+            </a>
     </nav>
     <!-- CAMBIANDO ESTO A VER SI SE VE TABLA DE CURSOS -->
     <div id="layoutSidenav_content">
@@ -38,7 +38,7 @@
         <div class="container-fluid">
             <div class="container bg-primary" style="height: 110px;"></div>
             <div class="card mb-4">
-                <h1 class="display-4">TEMAS </h1>
+                <h1 class="display-4" style="text-align:center;"><?= $curso ?> </h1>
                 <?php if ($dat = $this->session->flashdata('msg')) : ?>
                     <div class="container-sm">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -61,12 +61,19 @@
             </div>
             <div class="card mb-4">
                 <!--empieza la tablilla-->
-                <div class="card-header"><i class="fas fa-table mr-1"></i>
-                    Listado Temas
-                    <input type="text" id="TEMPCodCurso" name="TEMPCodCurso" value="<?= $this->uri->segment(3) ?>">
+                <div class="card-header container-fluid">
+                    <div class="row align-middle">
+                        <div class="col"> <h2>TEMAS</h2> </div>
+                        <div class="col"> 
+                            <a href="<?=base_url('Temas/Crear/' . $this->uri->segment(3)) ?>" class="btn bg-success float-right" role="button" style="color: white;">
+                                Agregar tema   <i class="fas fa-plus"></i>
+                            </a> 
+                        </div>
+                    </div>  
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
+                        
                         <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                             <!--DEFINIR CABECERAS, NUMERO DE COLUMNAS EN ACCION VAN LOS BOTONES DE EDITAR O BORRAR-->
                             <thead>
@@ -86,25 +93,33 @@
                             </tfoot>
                             <!--INSERCIÓN DE DATOS TODAS SON  DATO2, DATO3, BOTONES DE ACCIONES-->
                             <tbody>
-                                <?php foreach ($data as $tema) : ?>
-                                    <tr id="<?= "fila" . $tema['Cod_Tema'] ?>">
-                                        <td><?= strtoupper($tema['Nombre_T']); ?></td>
-                                        <td><?= strtoupper($tema['Imagen']); ?></td>
-                                        <td class="text-center">
-                                            <a type="button " class="btn btn-secondary btn-sm " id="VerTema" role="button" href="<?= base_url('Titulo/Dashboard/' . $tema['Curso'] . '/' . $tema['Cod_Tema']) ?>" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a class="scrollto" href="#EDITAR" style="color: white;">
-                                                <button type="button " class="btn btn-primary btn-sm" role="button" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
-                                                    <i class="fas fa-edit"></i>
+                                <?php if($data):?>
+                                    <?php foreach ($data as $tema) : ?>
+                                        <tr id="<?= "fila" . $tema['Cod_Tema'] ?>">
+                                            <td><?= strtoupper($tema['Nombre_T']); ?></td>
+                                            <td style="text-align:center;">
+                                                <?php if($tema['Imagen']):?>
+                                                    <img src="<?= base_url().$tema['Imagen']; ?>" height="80" width="80">
+                                                <?php else:?>
+                                                    <pre>NO IMAGE</pre>
+                                                <?php endif;?>
+                                            </td>
+                                            <td class="text-center">
+                                                <a type="button " class="btn btn-secondary btn-sm " id="VerTema" role="button" href="<?= base_url('Titulo/Dashboard/' . $tema['Curso'] . '/' . $tema['Cod_Tema']) ?>" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a class="scrollto" href="#EDITAR" style="color: white;">
+                                                    <button type="button " class="btn btn-primary btn-sm" role="button" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </a>
+                                                <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
+                                                    <i class="fas fa-trash-alt"></i>
                                                 </button>
-                                            </a>
-                                            <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                <?php endforeach ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -117,8 +132,7 @@
         <section class="page-section" id="EDITAR">
             <div class="collapse" id="collapseExample">
                 <header>
-                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Actualizar
-                        Tema</h2>
+                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Actualizar Tema</h2>
 
                     <!-- Icon Divider -->
                     <div class="divider-custom">

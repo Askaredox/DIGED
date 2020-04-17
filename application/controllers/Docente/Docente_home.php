@@ -55,7 +55,7 @@ class Docente_home extends CI_Controller
     {
         // $idCurso=0;
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
-            $this->load->view('Docente/vTemasCursos'); //, array('id' => 0)); //mandar el array a la vista
+            $this->load->view('Docente/vTablaTemas'); //, array('id' => 0)); //mandar el array a la vista
         } else {
             show_404();
         }
@@ -104,21 +104,24 @@ class Docente_home extends CI_Controller
                             "allowed_types" => "jpeg|jpg|png",
                             "min_width" => 400,
                             "min_height" => 400,
+                            "file_name" => $nombre_T
                             //"max_width" => 800,
                             //"max_height" => 800
                         ];
                         $this->load->library('upload', $config);
                         if (!$this->upload->do_upload('image')) { // no se pudo subir la imagen
                             //  $this->session->set_flashdata('msge', $this->upload->display_errors());
-                            //$error = $this->upload->display_errors();
+                            $error = $this->upload->display_errors();
+                            /*
                             $error = array(
                                 'errorI' => '<ul>
-                                        <li>Verifique el tipo de la imagen (jpeg, jpg)</li>
+                                        <li>Verifique el tipo de la imagen (jpeg, jpg, png)</li>
                                         <li>Verifique la altura mínima de la imagen debe ser 400</li>
                                         <li>Verifique el ancho mínimo de la imagen  debe ser 400</li>
                                        </ul>',
                                 'Nombre_T' => ''
                             );
+                            */
                             $this->Docente_Temas_model->DeleteTema($data);
                             $this->output
                                 ->set_status_header(400)

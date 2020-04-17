@@ -128,7 +128,7 @@
           <div class="card mb-4 text-center bg-light" style=" min-width: 18rem; max-width: 18rem; border-radius: 25px;">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title"><?= strtoupper($curso['Nombre']) ?></h5>
-              <a type="button" class="btn mt-auto btn-info btn-md btn-block rounded-pill"  href="<?= base_url('Temas/'. $curso['Cod_Curso']) ?>" data-id=<?= $curso['Cod_Curso'] ?>>VER TEMAS</a>
+              <a type="button" class="btn mt-auto btn-info btn-md btn-block rounded-pill"  href="<?= base_url('Temas/Administrar/'. $curso['Cod_Curso']) ?>" data-id=<?= $curso['Cod_Curso'] ?>>VER TEMAS</a>
             </div>
           </div>
         <?php endforeach ?>

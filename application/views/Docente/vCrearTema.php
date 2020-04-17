@@ -20,7 +20,7 @@
             <div class="logo float-left">
                 <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
             </div>
-            <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" class="btn btn-primary btn-lg bg-secondary" role="button">
+            <a href="<?= base_url('Temas/Administrar/' . $this->uri->segment(3)) ?>" class="btn btn-primary btn-lg bg-secondary" role="button">
                 Atrás <i class="fas fa-arrow-left"></i>
             </a>
             
@@ -71,19 +71,22 @@
                     </div>
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <form  name="RegisterTema" id="RegisterTema">
-                    <div class="form-group" id="GroupCod">
+                        <div class="form-group" id="GroupCod">
                             <input type="text" class="form-control" name="Curso" id="Curso" placeholder="Codigo del Curso" value="<?=$this->uri->segment(3)?>" hidden>
                         </div>
                         <div class="form-group" id="GroupName">
                             <label for="Nombre_T">Nombre Tema</label>
-                            <input type="text" class="form-control" name="Nombre_T" id="Nombre_T" placeholder="Nombre del Tema">
+                            <input type="text" class="form-control" name="Nombre_T" id="Nombre_T" placeholder="Nombre del Tema" required>
                             <div class="invalid-feedback">
                             </div>
                         </div>
                         <div class="form-group" id="GroupImg">
                             <label for="image">Imagen</label>
                             <input type="file" class="form-control-file" id="image" name='image'>
-                            <small id="fileHelp" class="form-text text-muted">No es obligatorio subir una imagen</small>
+                            <small id="fileHelp" class="form-text text-muted">&ensp;°&nbsp;El tipo de la imagen debe ser *.jpeg, *.jpg</small>
+                            <small id="fileHelp" class="form-text text-muted">&ensp;°&nbsp;La altura de la imagen debe ser 400px o mayor</small>
+                            <small id="fileHelp" class="form-text text-muted">&ensp;°&nbsp;La anchura de la imagen debe ser 400px o mayor</small>
+                            <small id="fileHelp" class="form-text text-muted">&ensp;°&nbsp;No es obligatorio subir una imagen</small>
                             <div class="text-danger">
                             </div>
                         </div>

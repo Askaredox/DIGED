@@ -47,4 +47,10 @@ class Docente_Temas_model extends CI_Model
         return $query;
        // var_dump($query);
     }
+    public function getCurso($data){
+        $sql = $this->db->query("SELECT Nombre FROM `Curso` WHERE `Cod_Curso` = " . $data);
+        $row= $sql->row();
+        if(isset($row))
+            return $row->Nombre;
+    }
 }
