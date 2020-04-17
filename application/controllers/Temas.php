@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+//a ver si sale
 class Temas extends CI_Controller
 {
-    public function __construct()
+    public function __construct() 
     {
         parent::__construct();
         $this->load->model(array('Docente_Temas_model','Docente_Titulos_model'));
