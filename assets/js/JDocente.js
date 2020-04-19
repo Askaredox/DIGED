@@ -62,6 +62,7 @@
                     $("#GroupName > input").removeClass('is-invalid');
                     $("#GroupImg > input").removeClass('is-invalid');
                     var json = JSON.parse(xhr.responseText);
+                    alert(xhr.responseText);
                     if (json.Nombre_T.length != 0) {
                         $("#GroupName > div").html(json.Nombre_T);
                         $("#GroupName > input").addClass('is-invalid');
@@ -90,8 +91,7 @@
             }
         });
     });
-    $("#submit").click(function (ev) {
-
+    $("#RegisterTitle").submit(function (ev) {
         ev.preventDefault();
         var self = this;
         $Nombre = $("#Nombre").val();

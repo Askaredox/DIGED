@@ -20,18 +20,26 @@ class Temas extends CI_Controller
 
     public function Administrar($idCurso = 0)
     {
+        $curso=$this->Docente_Temas_model->getCurso($idCurso);
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
             if (!$res = $this->Docente_Temas_model->getTemas(array('Curso' => $idCurso))) { // recuperando cursos para armar la vista
-                $this->session->set_flashdata('msge', '¡Este Curso no tiene Temas Creados aún!');
-                redirect(base_url('Temas/' . $idCurso));
+                //$this->session->set_flashdata('msge', '¡Este Curso no tiene Temas Creados aún!'); //tiene bug que se pasa al home cuando no se cierra
+                $this->load->view('Docente/vTablaTemas', array('data' => null, 'curso' => $curso));
             } else {
-                $this->load->view('Docente/vTablaTemas', array('data' => $res)); //mandar el array a la vista
+                $this->load->view('Docente/vTablaTemas', array('data' => $res, 'curso' => $curso)); //mandar el array a la vista
             }
         } else {
             show_404();
         }
     }
-
+    public function EditTema($idCurso, $idTema){
+        if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
+            $this->load->view('Docente/vEditTema'); //, array('id' => 0)); //mandar el array a la vista
+        } else {
+            show_404();
+        }
+    }
+    
     public function UpdateImage()
     {
         $nombre_T = $this->input->post('Nombre_T');

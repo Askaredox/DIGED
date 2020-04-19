@@ -76,6 +76,7 @@ $route['HOME'] = 'Docente/Docente_home';
 $route['Temas/(:num)'] = 'Docente/Docente_Home/Temas/(:num)';
 
 $route['Temas/Crear/(:num)'] = 'Docente/Docente_Home/CrearTema/(:num)';
+$route['Temas/EditTema/(:num1)/(:num2)'] = 'Docente/Docente_Home/EditTema/(:num)/(:num2)';
 
 //$route['Administrar/Temas/(:num)'] = 'Docente/CTemasCursos/Administrar/(:num)';
 //$route['Administrar/Temas'] = 'Docente/CTemasCursos/Administrar';

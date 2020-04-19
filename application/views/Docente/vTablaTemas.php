@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="stylesheet" href="<?= base_url('Admin_page/DataTables/DataTables-1.10.20/css/dataTables.bootstrap4.min.css') ?>" />
     <script>
         var base_url = '<?php echo base_url(); ?>';
+
     </script>
     <title>TEMAS</title>
 </head>
@@ -27,10 +28,9 @@
                 <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid">
                 </a>
             </div>
-            <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
-                <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" style="color: white;">Atrás</a>
-                <i class="fas fa-arrow-left"></i>
-            </button>
+            <a href="<?= base_url('HOME#intro') ?>" class="btn btn-primary btn-lg bg-secondary" role="button">
+                HOME <i class="fas fa-home"></i>
+            </a>
     </nav>
     <!-- CAMBIANDO ESTO A VER SI SE VE TABLA DE CURSOS -->
     <div id="layoutSidenav_content">
@@ -38,7 +38,7 @@
         <div class="container-fluid">
             <div class="container bg-primary" style="height: 110px;"></div>
             <div class="card mb-4">
-                <h1 class="display-4">TEMAS </h1>
+                <h1 class="display-4" style="text-align:center;"><?= $curso ?> </h1>
                 <?php if ($dat = $this->session->flashdata('msg')) : ?>
                     <div class="container-sm">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -61,12 +61,19 @@
             </div>
             <div class="card mb-4">
                 <!--empieza la tablilla-->
-                <div class="card-header"><i class="fas fa-table mr-1"></i>
-                    Listado Temas
-                    <input type="text" id="TEMPCodCurso" name="TEMPCodCurso" value="<?= $this->uri->segment(3) ?>">
+                <div class="card-header container-fluid">
+                    <div class="row align-middle">
+                        <div class="col"> <h2>TEMAS</h2> </div>
+                        <div class="col"> 
+                            <a href="<?=base_url('Temas/Crear/' . $this->uri->segment(3)) ?>" class="btn bg-success float-right" role="button" style="color: white;">
+                                Agregar tema   <i class="fas fa-plus"></i>
+                            </a> 
+                        </div>
+                    </div>  
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
+                        
                         <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                             <!--DEFINIR CABECERAS, NUMERO DE COLUMNAS EN ACCION VAN LOS BOTONES DE EDITAR O BORRAR-->
                             <thead>
@@ -86,25 +93,38 @@
                             </tfoot>
                             <!--INSERCIÓN DE DATOS TODAS SON  DATO2, DATO3, BOTONES DE ACCIONES-->
                             <tbody>
-                                <?php foreach ($data as $tema) : ?>
-                                    <tr id="<?= "fila" . $tema['Cod_Tema'] ?>">
-                                        <td><?= strtoupper($tema['Nombre_T']); ?></td>
-                                        <td><?= strtoupper($tema['Imagen']); ?></td>
-                                        <td class="text-center">
-                                            <a type="button " class="btn btn-secondary btn-sm " id="VerTema" role="button" href="<?= base_url('Titulo/Dashboard/' . $tema['Curso'] . '/' . $tema['Cod_Tema']) ?>" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a class="scrollto" href="#EDITAR" style="color: white;">
-                                                <button type="button " class="btn btn-primary btn-sm" role="button" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
+                                <?php if($data):?>
+                                    <?php foreach ($data as $tema) : ?>
+                                        <tr id="<?= "fila" . $tema['Cod_Tema'] ?>">
+                                            <td><?= strtoupper($tema['Nombre_T']); ?></td>
+                                            <td style="text-align:center;">
+                                                <?php if($tema['Imagen']):?>
+                                                    <img src="<?= base_url().$tema['Imagen']; ?>" height="80" width="80">
+                                                <?php else:?>
+                                                    <pre>NO IMAGE</pre>
+                                                <?php endif;?>
+                                            </td>
+                                            <td class="text-center">
+                                                <a type="button " class="btn btn-secondary btn-sm " id="VerTema" role="button" href="<?= base_url('Titulo/Dashboard/' . $tema['Curso'] . '/' . $tema['Cod_Tema']) ?>" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a type="button " class="btn btn-primary btn-sm " id="EditTema" role="button" href="<?= base_url('Temas/EditTema/' . $tema['Curso'] . '/' . $tema['Cod_Tema']) ?>" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
                                                     <i class="fas fa-edit"></i>
+                                                </a>
+                                                <!--
+                                                <a class="scrollto" href="#EDITAR" style="color: white;">
+                                                    <button type="button " class="btn btn-primary btn-sm" role="button" data-id="<? //$tema['Cod_Tema'] ?>" data-curso="<?// $tema['Curso'] ?>">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </a>
+                                                -->
+                                                <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
+                                                    <i class="fas fa-trash-alt"></i>
                                                 </button>
-                                            </a>
-                                            <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                <?php endforeach ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -113,82 +133,7 @@
         </div>
 
 
-        <!-- SECCIÓN EDITAR COMPLETA-->
-        <section class="page-section" id="EDITAR">
-            <div class="collapse" id="collapseExample">
-                <header>
-                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Actualizar
-                        Tema</h2>
 
-                    <!-- Icon Divider -->
-                    <div class="divider-custom">
-                        <div class="divider-custom-line"></div>
-                        <div class="divider-custom-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="divider-custom-line"></div>
-                    </div>
-                </header>
-                <!-- Register Section Form -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-8 mx-auto">
-
-                            <form id="UpdateForm" novalidate="novalidate">
-                                <div class="form-group">
-                                    <!--CAMPOS TEMPORALES QUE TE PODRÍAN SERVIR-->
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label>Codigo del Curso</label>
-                                            <input class="form-control" id="TEMPcurso" name="TEMPcurso" type="text" readonly>
-                                        </div>
-                                        <div class="col-4"></div>
-                                        <!--para el codigo del curso a editar-->
-                                        <div class="col-4">
-                                            <label>Codigo del Tema</label>
-                                            <input class="form-control" id="TEMPTema" name="TEMPTema" type="text" readonly> <!-- para el codigo del docete nuevo-->
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="form-group" id="GroupNombre">
-                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                        <label>Nombre Tema</label>
-                                        <input class="form-control" id="Nombre_T" name="Nombre_T" type="text" placeholder="Nombre Tema" value="<?= set_value('Nombre_T') ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group" id="GroupI">
-                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                        <label>Imagen</label>
-                                        <input class="form-control" id="Img" name="Img" type="text" placeholder="Imagen Tema" readonly>
-                                    </div>
-                                </div>
-                                <div id="GroupImg">
-                                    <!--IRIA LA PREVISUALIZACIÓN DE LA IMAGEN-->
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" class="form-control-file" id="image" name='image'>
-                                    <small id="fileHelp" class="form-text text-muted">Cambia o Sube una nueva Imagen</small>
-                                    <div class="text-danger">
-                                    </div>
-                                    <button type="button" class="btn btn-secondary rounded-pill btn-xl" id="SubirImg">Subir Imagen</button>
-                                    <button type="button" class="btn btn-secondary rounded-pill btn-xl" id="EliminarImg" disabled>Eliminar Imagen</button>
-                                </div>
-                                <div id="GroupNotificacionSubida">
-                                </div>
-                                <br>
-                                <div id="success"></div>
-                                <div class="form-group">
-                                    <input type="submit" class="btn btn-success rounded-pill btn-xl" id="sendUpdate" value="Actualizar" />
-                                    <button type="button" class="btn btn-danger rounded-pill btn-xl" id="cancel">Cancelar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
 
         <!-- Modal ELIMINAR CURSO PENDIENTE-->
         <div class="modal fade" id="EliminarModal" tabindex="-1" role="dialog" aria-labelledby="ELIMINAR" aria-hidden="true">

@@ -18,11 +18,37 @@ class Api_model extends CI_Model
         return FALSE;
     }
     public function getTemas($datos){
-        $sql="SELECT Cod_Tema, Nombre_T AS tema FROM `TEMA` T WHERE curso = ?;";
+        $sql="SELECT Cod_Tema, Nombre_T AS tema FROM `TEMA` WHERE curso = ?;";
         $query = $this->db->query($sql, [ $datos ]);
 
         if ($query->num_rows() > 0) 
             return $query->result_array();
         return FALSE;
+    }
+    public function getTemaImg($datos){
+        $sql="SELECT Nombre_T, Imagen FROM `TEMA` WHERE Cod_Tema = ?;";
+        $query = $this->db->query($sql, [ $datos ]);
+        $row= $query->row();
+        if(isset($row))
+            return $row;
+        else 
+            return FALSE;
+    }
+    public function getTituloCords($datos){
+        $sql="SELECT Id_Titulo, Nombre, Coordenadas, tipoEnlace FROM `TITULO` WHERE Tema = ?;";
+        $query = $this->db->query($sql, [ $datos ]);
+
+        if ($query->num_rows() > 0) 
+            return $query->result_array();
+        return FALSE;
+    }
+    public function getContenido($datos){
+        $sql="SELECT Contenido FROM `TITULO` WHERE Id_Titulo = ?;";
+        $query = $this->db->query($sql, [ $datos ]);
+        $row= $query->row();
+        if(isset($row))
+            return $row;
+        else 
+            return FALSE;
     }
 }
