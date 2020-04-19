@@ -11,7 +11,6 @@ class CTest extends CI_Controller
     }
     public function Process(){
         $datos=$_POST["d"];
-        
-            echo json_encode(array('success' => $datos));
+        echo json_encode(array('success' => $datos));
     }
 }

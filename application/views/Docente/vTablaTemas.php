@@ -108,11 +108,16 @@
                                                 <a type="button " class="btn btn-secondary btn-sm " id="VerTema" role="button" href="<?= base_url('Titulo/Dashboard/' . $tema['Curso'] . '/' . $tema['Cod_Tema']) ?>" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
+                                                <a type="button " class="btn btn-primary btn-sm " id="EditTema" role="button" href="<?= base_url('Temas/EditTema/' . $tema['Curso'] . '/' . $tema['Cod_Tema']) ?>" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <!--
                                                 <a class="scrollto" href="#EDITAR" style="color: white;">
-                                                    <button type="button " class="btn btn-primary btn-sm" role="button" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
+                                                    <button type="button " class="btn btn-primary btn-sm" role="button" data-id="<? //$tema['Cod_Tema'] ?>" data-curso="<?// $tema['Curso'] ?>">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                 </a>
+                                                -->
                                                 <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
@@ -128,81 +133,7 @@
         </div>
 
 
-        <!-- SECCIÓN EDITAR COMPLETA-->
-        <section class="page-section" id="EDITAR">
-            <div class="collapse" id="collapseExample">
-                <header>
-                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Actualizar Tema</h2>
 
-                    <!-- Icon Divider -->
-                    <div class="divider-custom">
-                        <div class="divider-custom-line"></div>
-                        <div class="divider-custom-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="divider-custom-line"></div>
-                    </div>
-                </header>
-                <!-- Register Section Form -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-8 mx-auto">
-
-                            <form id="UpdateForm" novalidate="novalidate">
-                                <div class="form-group">
-                                    <!--CAMPOS TEMPORALES QUE TE PODRÍAN SERVIR-->
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label>Codigo del Curso</label>
-                                            <input class="form-control" id="TEMPcurso" name="TEMPcurso" type="text" readonly>
-                                        </div>
-                                        <div class="col-4"></div>
-                                        <!--para el codigo del curso a editar-->
-                                        <div class="col-4">
-                                            <label>Codigo del Tema</label>
-                                            <input class="form-control" id="TEMPTema" name="TEMPTema" type="text" readonly> <!-- para el codigo del docete nuevo-->
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="form-group" id="GroupNombre">
-                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                        <label>Nombre Tema</label>
-                                        <input class="form-control" id="Nombre_T" name="Nombre_T" type="text" placeholder="Nombre Tema" value="<?= set_value('Nombre_T') ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group" id="GroupI">
-                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                        <label>Imagen</label>
-                                        <input class="form-control" id="Img" name="Img" type="text" placeholder="Imagen Tema" readonly>
-                                    </div>
-                                </div>
-                                <div id="GroupImg">
-                                    <!--IRIA LA PREVISUALIZACIÓN DE LA IMAGEN-->
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" class="form-control-file" id="image" name='image'>
-                                    <small id="fileHelp" class="form-text text-muted">Cambia o Sube una nueva Imagen</small>
-                                    <div class="text-danger">
-                                    </div>
-                                    <button type="button" class="btn btn-secondary rounded-pill btn-xl" id="SubirImg">Subir Imagen</button>
-                                    <button type="button" class="btn btn-secondary rounded-pill btn-xl" id="EliminarImg" disabled>Eliminar Imagen</button>
-                                </div>
-                                <div id="GroupNotificacionSubida">
-                                </div>
-                                <br>
-                                <div id="success"></div>
-                                <div class="form-group">
-                                    <input type="submit" class="btn btn-success rounded-pill btn-xl" id="sendUpdate" value="Actualizar" />
-                                    <button type="button" class="btn btn-danger rounded-pill btn-xl" id="cancel">Cancelar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
 
         <!-- Modal ELIMINAR CURSO PENDIENTE-->
         <div class="modal fade" id="EliminarModal" tabindex="-1" role="dialog" aria-labelledby="ELIMINAR" aria-hidden="true">

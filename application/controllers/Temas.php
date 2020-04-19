@@ -32,7 +32,14 @@ class Temas extends CI_Controller
             show_404();
         }
     }
-
+    public function EditTema($idCurso, $idTema){
+        if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
+            $this->load->view('Docente/vEditTema'); //, array('id' => 0)); //mandar el array a la vista
+        } else {
+            show_404();
+        }
+    }
+    
     public function UpdateImage()
     {
         $nombre_T = $this->input->post('Nombre_T');

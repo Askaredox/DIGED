@@ -24,7 +24,12 @@ class Docente_home extends CI_Controller
             show_404();
         }
     }
-
+    public function getTema(){
+        $idTema=$this->input->post("idTema");
+        $idCurso=$this->input->post("idCurso");
+        $res = $this->Docente_Temas_model->getTema($idTema,$idCurso);
+        echo json_encode($res);
+    }
     public function changePassword()
     {
         $this->form_validation->set_error_delimiters('', '');
@@ -60,6 +65,7 @@ class Docente_home extends CI_Controller
             show_404();
         }
     }
+
 // TODO ESTO ES PARA LA VISTA DE CREAR TEMAS
     public function CrearTema($idCurso)
     {
@@ -69,6 +75,7 @@ class Docente_home extends CI_Controller
             show_404();
         }
     }
+    
 
     public function SubirImagen()
     {
