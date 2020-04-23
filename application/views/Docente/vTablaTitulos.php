@@ -38,7 +38,7 @@
         <div class="container-fluid">
             <div class="container bg-primary" style="height: 110px;"></div>
             <div class="card mb-4">
-                <h1 class="display-4">TITULOS </h1>
+                <h1 class="display-4" style="text-align:center;"><?= $tema ?> </h1>
 
                 <div id="notificacion">
                     <?php if ($dat = $this->session->flashdata('msg')) : ?>
@@ -65,10 +65,15 @@
             </div>
             <div class="card mb-4">
                 <!--empieza la tablilla-->
-                <div class="card-header"><i class="fas fa-table mr-1"></i>
-                    Listado Titulos
-                    <input type="text" id="TEMPCodCurso" name="TEMPCodCurso" value="<?= $this->uri->segment(3) ?>">
-                    <input type="text" id="TEMPCodTema" name="TEMPCodTema" value="<?= $this->uri->segment(4) ?>">
+                <div class="card-header container-fluid">
+                    <div class="row align-middle">
+                        <div class="col"> <h2>TITULOS</h2> </div>
+                        <div class="col"> 
+                            <a href="<?=base_url('Titulo/Crear/' . $this->uri->segment(3)."/".$this->uri->segment(4)) ?>" class="btn bg-success float-right" role="button" style="color: white;">
+                                Agregar titulo   <i class="fas fa-plus"></i>
+                            </a> 
+                        </div>
+                    </div>  
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -89,24 +94,31 @@
                             </tfoot>
                             <!--INSERCIÓN DE DATOS TODAS SON  DATO2, DATO3, BOTONES DE ACCIONES-->
                             <tbody>
-                                <?php foreach ($data as $titulo) : ?>
-                                    <tr id="<?= "fila" . $titulo['Id_Titulo'] ?>">
-                                        <td><?= strtoupper($titulo['Nombre']); ?></td>
-                                        <td class="text-center">
-                                            <a type="button " class="btn btn-secondary btn-sm " id="VerTitulo" role="button" href="#" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>">
-                                                <i class="fas fa-eye"></i> <!-- aquí iría lo de agregar el contenido-->
-                                            </a>
-                                            <a class="scrollto" href="#EDITAR" style="color: white;">
-                                                <button type="button " class="btn btn-primary btn-edit btn-sm" role="button" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-pos="<?= $titulo['Coordenadas'] ?>" data-curso="<?= $this->uri->segment(3)  ?>" data-tipo="<?= $titulo['tipoEnlace'] ?>">
-                                                    <i class="fas fa-edit"></i>
+                                <?php if($data):?>
+                                    <?php foreach ($data as $titulo) : ?>
+                                        <tr id="<?= "fila" . $titulo['Id_Titulo'] ?>">
+                                            <td><?= strtoupper($titulo['Nombre']); ?></td>
+                                            <td class="text-center">
+                                                <a type="button " class="btn btn-secondary btn-sm " id="VerTitulo" role="button" href="#" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>">
+                                                    <i class="fas fa-eye"></i> <!-- aquí iría lo de agregar el contenido-->
+                                                </a>
+                                                <a class="scrollto" href="#EDITAR" style="color: white;">
+                                                    <button type="button " class="btn btn-primary btn-edit btn-sm" role="button" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-pos="<?= $titulo['Coordenadas'] ?>" data-curso="<?= $this->uri->segment(3)  ?>" data-tipo="<?= $titulo['tipoEnlace'] ?>">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <script>
+                                                        //var data = <?php// echo str_replace('"','\\"',str_replace('>','&gt;',str_replace('<','&lt;',$titulo['Contenido'])))?>;
+                                                        var datos = <?php if($titulo['Contenido']) echo str_replace('"','\\"',str_replace('>','&gt;',str_replace('<','&lt;',$titulo['Contenido']))); else echo "\"\"" ?>;
+                                                    </script>
+                                                    
+                                                </a>
+                                                <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-curso="<?= $this->uri->segment(3) ?>">
+                                                    <i class="fas fa-trash-alt"></i>
                                                 </button>
-                                            </a>
-                                            <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-curso="<?= $this->uri->segment(3) ?>">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                <?php endforeach ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -248,6 +260,8 @@
                                     <?php endif; ?>
                                 </div>
                                 <div class="form-group">
+                                    <h2 style="text-align:center;">CONTENIDO</h2>
+                                    <textarea id="summernote" name="editordata" style="z-index:0; position:relative"></textarea>
                                     <input type="submit" class="btn btn-success rounded-pill btn-xl" id="sendUpdate" value="Actualizar" />
                                     <button type="button" class="btn btn-danger rounded-pill btn-xl" id="cancel">Cancelar</button>
                                 </div>
@@ -304,6 +318,12 @@
 
 
     <!-- Optional JavaScript -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js" defer></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type='text/javascript' src='<?= base_url('assets/js/jquery.maphilight.min.js') ?>'></script>
@@ -311,6 +331,12 @@
         $(document).ready(function() {
             $('.map').maphilight({
                 alwaysOn: true
+            });
+            $('#summernote').summernote({
+                height: 300,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: true                  // set focus to editable area after initializing summe
             });
             // uncomment this line for normal hover highlighting
             // $('.map').maphilight();
@@ -321,8 +347,6 @@
     <script type="text/javascript" src="<?= base_url('Admin_page/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('Admin_page/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/tabla_Titulos.js') ?>"></script>
-
-
 </body>
 
 </html>

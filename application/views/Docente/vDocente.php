@@ -23,12 +23,12 @@
 
 <body id="page-top">
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg bg-primary text-uppercase  text-sm fixed-top" id="mainNav">
+  <nav class="navbar navbar-expand-lg bg-primary text-uppercase text-sm static-top" id="mainNav">
     <div class="container">
-      <div class="logo float-left">
         <!--LOGO-->
-        <a href="<?= base_url('HOME#intro') ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
-      </div>
+      <a class="scrollto navbar_brand" href="<?= base_url('HOME#intro') ?>">
+        <img src="<?= base_url('Admin_page/img/dedev (3).png') ?>">
+      </a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-secondary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -63,8 +63,7 @@
   </nav>
   <!-- Masthead -->
   <section id="intro" >
-    <header class="bg-secondary text-white text-center" style="padding-top: calc(6rem + 50px);
-    padding-bottom: 2rem;">
+    <header class="bg-secondary text-white text-center" style="padding-top: 20px; padding-bottom: 1rem;">
       <div id=notificacion>
         <!--MENSAJE DE BIENVENIDA TEMPORAL-->
         <?php if ($dat = $this->session->flashdata('msg')) : ?>
@@ -98,7 +97,7 @@
 
       
       <!-- Masthead Heading -->
-      <h3 class="mt-4 masthead-heading text-uppercase mb-0">ADMINISTRACIÓN</h3>
+      <h3 class="mt-4 masthead-heading text-uppercase">ADMINISTRACIÓN</h3>
 
       <!-- Icon Divider -->
       <div class="divider-custom divider-light">
