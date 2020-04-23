@@ -1,7 +1,9 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function () {
     $('#dataTable').DataTable();
+    
 });
+
 //para obtenere el valor de las filas seleccionadas de la tabla
 $('#dataTable tr').on('click', function () {
     var datoU = $(this).find('td:nth-child(1)').html();
@@ -36,6 +38,8 @@ $(".btn-edit").click(function (ev) {
 
     $valor = $(this).attr('data-tipo');
     $("#tipo").attr('placeholder', $valor);// posicion X del titulo a editar
+    //$valor = $(this).attr('data-conte')
+    $('#summernote').summernote('editor.pasteHTML', $datos);
 
 
     $('#cancel').attr("data-curso", $(this).attr('data-curso'));
@@ -382,9 +386,11 @@ $("#BorrarButtonButton").click(function (ev) {
         $Curso = $("#Curso").val();
         $Tema = $("#Tema").val();
         $Titulo = $("#Titulo").val();
+        $Contenido= $('#summernote').summernote('code')
 
         $datos = {
             'Id_Titulo': $Titulo,
+            'Contenido': $Contenido,
             'Tema': $Tema,
             'Curso': $Curso
         }

@@ -52,12 +52,14 @@ class Docente_Temas_model extends CI_Model
         $row= $sql->row();
         if(isset($row))
             return $row->Nombre;
+        else 
+            return false;
     }
     public function getTema($T, $C){
         $sql = $this->db->query("SELECT Nombre_T, Imagen FROM `TEMA` WHERE Cod_Tema = ".$T." AND curso = ".$C);
         $row= $sql->row();
         if(isset($row))
-            return $row;
+            return $row->Nombre_T;
         else 
             return false;
     }

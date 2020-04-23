@@ -91,12 +91,13 @@
             }
         });
     });
-    $("#RegisterTitle").submit(function (ev) {
+    $("#submit").click(function (ev) {
         ev.preventDefault();
         var self = this;
         $Nombre = $("#Nombre").val();
         $Curso = $("#Curso").val();
         $Tema = $("#Tema").val();
+        $Contenido= $('#summernote').summernote('code')
         if ($("#imagenTema").length) {
 
             if ($("#pos").val().length > 0) {
@@ -110,6 +111,7 @@
                 $Tipo = $('#tipo').attr('placeholder');
                 $datos = {
                     'Nombre': $Nombre,
+                    'Contenido': $Contenido,
                     'Coordenadas': $Coordenadas,
                     'tipoEnlace': $Tipo,
                     'Tema': $Tema,
@@ -179,6 +181,7 @@
                 $("#tipo").addClass("is-invalid");
                 $datos = {
                     'Nombre': $Nombre,
+                    'Contenido': $Contenido,
                     'Coordenadas': '',
                     'tipoEnlace': '',
                     'Tema': $Tema,
@@ -189,6 +192,7 @@
         } else {
             $datos = {
                 'Nombre': $Nombre,
+                'Contenido': $Contenido,
                 'Tema': $Tema,//nombre tema
                 'Curso': $Curso,//nombre Curso
                 'Coordenadas': '',

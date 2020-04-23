@@ -42,6 +42,11 @@ class Api extends REST_Controller{
         $data1=$this->Api_model->getTemaImg($id);
         $data2=$this->Api_model->getTituloCords($id);
 
+        if(!$data1){
+            $this->response(NULL, REST_Controller::HTTP_NOT_FOUND);
+            return;
+        }
+
         $data=[
             "Tema"=>$data1->Nombre_T,
             "Imagen"=>$this->img_base64($data1->Imagen),

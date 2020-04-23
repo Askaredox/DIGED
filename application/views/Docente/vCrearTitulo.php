@@ -7,11 +7,17 @@
 <!-- Bootstrap CSS -->
 <link href="<?= base_url('Admin_page/css/freelancer.min.css') ?>" rel="stylesheet">
 <link rel='stylesheet' href="<?= base_url('Admin_page/css/css/bootstrap.min.css') ?>">
+
+
+
 <script>
     var base_url = '<?php echo base_url(); ?>';
 </script>
 
 <title>Formulario Titulo</title>
+  <!-- include libraries(jQuery, bootstrap) -->
+
+
 </head>
 
 <body id="page-top">
@@ -186,6 +192,8 @@
                                 <?php endif; ?>
                             </div>
                             <div class="form-group">
+                                <h2 style="text-align:center;">CONTENIDO</h2>
+                                <textarea id="summernote" name="editordata" style="z-index:0; position:relative"></textarea>
                                 <input type="submit" class="btn btn-primary btn-xl" id="submit" name="submit" value="REGISTRAR" />
                             </div>
                         </form>
@@ -196,9 +204,17 @@
 
         </div>
     </section>
-
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<!-- include summernote css/js -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js" defer></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -209,6 +225,12 @@
         $(document).ready(function() {
             $('.map').maphilight({
                 alwaysOn: true
+            });
+            $('#summernote').summernote({
+                height: 300,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: true                  // set focus to editable area after initializing summe
             });
             // uncomment this line for normal hover highlighting
             // $('.map').maphilight();
