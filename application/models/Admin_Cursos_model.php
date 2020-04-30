@@ -10,7 +10,7 @@ class Admin_Cursos_model extends CI_Model
 
     public function getCursos()
     {
-        $query = $this->db->query('SELECT Cod_Curso,C.Nombre as Curso, CONCAT(u.Nombre,\' \',u.Apellido) as Docente, Id_Usuario FROM `curso` C '
+        $query = $this->db->query('SELECT Cod_Curso,C.Nombre as Curso, CONCAT(u.Nombre,\' \',u.Apellido) as Docente, Id_Usuario FROM `CURSO` C '
             . ' INNER JOIN `USUARIO` u '
             . ' ON  C.Docente= u.Id_Usuario');
 
