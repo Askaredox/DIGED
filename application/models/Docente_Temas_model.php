@@ -43,7 +43,7 @@ class Docente_Temas_model extends CI_Model
 
     public function DeleteTema($data)
     {
-        $query=$this -> db -> delete ( 'TEMA',$data);  
+        $query=$this->db->delete ( 'TEMA',$data);  
         return $query;
        // var_dump($query);
     }
