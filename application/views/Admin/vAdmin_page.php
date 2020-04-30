@@ -23,11 +23,13 @@
 
 <body id="page-top">
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg bg-primary text-uppercase  text-sm fixed-top" id="mainNav">
+  <nav class="navbar navbar-expand-lg bg-primary text-uppercase text-sm fixed-top" id="mainNav">
     <div class="container">
-      <div class="logo float-left">
+      <div class="logo float-left" >
         <!--LOGO-->
-        <a href="<?= base_url('Administracion#intro') ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
+        <a href="<?= base_url('Administracion#intro') ?>" class="scrollto">
+          <img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid">
+        </a>
       </div>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-secondary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
@@ -96,7 +98,7 @@
       <img class="mt-20" src="<?= base_url('Admin_page/img/admin.png') ?>" alt="" style="width: 15rem;">
 
       <!-- Masthead Heading -->
-      <h3 class="masthead-heading text-uppercase mb-0">ADMINISTRACIÓN</h3>
+      <h3 class="masthead-heading text-uppercase mb-0">Administración</h3>
 
       <!-- Icon Divider -->
       <div class="divider-custom divider-light">
