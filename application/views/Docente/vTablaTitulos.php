@@ -24,11 +24,11 @@
     <nav class="navbar navbar-expand-lg text-uppercase  bg-primary fixed-top" id="mainNav">
         <div class="container">
             <div class="logo float-left">
-                <a href="<?= base_url('Titulo/Dashboard/' . $this->uri->segment(3) . '/' . $this->uri->segment(4)) ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid">
+                <a href="<?= base_url('Temas/Administrar/' . $this->uri->segment(3)) ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid">
                 </a>
             </div>
             <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
-                <a href="<?= base_url('Titulo/Dashboard/' . $this->uri->segment(3) . '/' . $this->uri->segment(4)) ?>" style="color: white;"><i class="fas fa-arrow-left"></i></a>
+                <a href="<?= base_url('Temas/Administrar/' . $this->uri->segment(3)) ?>" style="color: white;"><i class="fas fa-arrow-left"></i></a>
 
             </button>
     </nav>
@@ -106,10 +106,7 @@
                                                     <button type="button " class="btn btn-primary btn-edit btn-sm" role="button" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-pos="<?= $titulo['Coordenadas'] ?>" data-curso="<?= $this->uri->segment(3)  ?>" data-tipo="<?= $titulo['tipoEnlace'] ?>">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
-                                                    <script>
-                                                        //var data = <?php// echo str_replace('"','\\"',str_replace('>','&gt;',str_replace('<','&lt;',$titulo['Contenido'])))?>;
-                                                        var datos = <?php if($titulo['Contenido']) echo str_replace('"','\\"',str_replace('>','&gt;',str_replace('<','&lt;',$titulo['Contenido']))); else echo "\"\"" ?>;
-                                                    </script>
+                                                    
                                                     
                                                 </a>
                                                 <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-curso="<?= $this->uri->segment(3) ?>">
