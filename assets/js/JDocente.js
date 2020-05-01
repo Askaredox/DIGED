@@ -33,65 +33,10 @@
             }
         });
     });
-    $("#RegisterTema").submit(function (ev) {
-        ev.preventDefault();
-        var self = this;
-        var formData = new FormData($("#RegisterTema")[0]);
-        $("#GroupImg > div").html("");
-        $.ajax({
-            // var data = 
 
-            url: base_url + 'Docente/Docente_home/SubirImagen',
-            type: 'POST',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                $("#GroupName > input").removeClass('is-invalid');
-                $("#GroupImg > input").removeClass('is-invalid');
-                $("#GroupName > input").addClass('is-valid');
-                $("#GroupImg > input").addClass('is-valid');
-                var json = JSON.parse(data);
-                window.location.replace(json.url);
-                // console.log(json);
-            },
-            statusCode: {
-                400: function (xhr) {
 
-                    $("#GroupName > input").removeClass('is-invalid');
-                    $("#GroupImg > input").removeClass('is-invalid');
-                    var json = JSON.parse(xhr.responseText);
-                    alert(xhr.responseText);
-                    if (json.Nombre_T.length != 0) {
-                        $("#GroupName > div").html(json.Nombre_T);
-                        $("#GroupName > input").addClass('is-invalid');
-                    } else {
-                        $("#GroupName > input").addClass('is-valid');
-                    }
-
-                    if (json.errorI.length != 0) {
-                        $("#GroupImg > div").html(json.errorI);
-                        $("#GroupImg > input").addClass('is-invalid');
-                    } else {
-                        $("#GroupImg > div").html("");
-                    }
-
-                },
-                500: function (xhr) {
-                    $("#notificacion").html('<div class="container-sm">' +
-                        '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
-                        '<strong>¡ERROR! HUBO UN ERROR AL CREAR EL TEMA</strong>' +
-                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                        '<span aria-hidden="true">&times;</span>' +
-                        '</button>' +
-                        '</div>' +
-                        '</div>');
-                }
-            }
-        });
-    });
-    $("#submit").click(function (ev) {
+    $("#RegisterTitle").submit(function (ev) {
+        console.log("entraste a craecion de titulo")
         ev.preventDefault();
         var self = this;
         $Nombre = $("#Nombre").val();
@@ -278,57 +223,58 @@ $("#cerrar").click(function (ev) {
 $cont = 0;
 
 const imagenTema = document.getElementById('imagenTema');
-
-imagenTema.addEventListener('click', function (e) {
-    let ctx;
-    $cont = $cont + 1;
-    console.log($cont);
-    if (!this.canvas) {
-        this.canvas = document.createElement('canvas');
-        this.canvas.width = this.width;
-        this.canvas.height = this.height;
-        ctx = this.canvas.getContext('2d');
-        ctx.drawImage(this, 0, 0, this.width, this.height);
-    } else {
-        ctx = this.canvas.getContext('2d');
-    }
-    const pixel = ctx.getImageData(e.offsetX, e.offsetY, 1, 1).data;
-
-
-    $x = e.offsetX;
-    $y = e.offsetY;
-    $title = $('#Nombre').val()
-    // $(".anterior").remove();
-    $(".prueba").remove();
-
-    if (($('#circ').prop('checked') && $cont < 2) || ($('#Rect').prop('checked') && $cont < 3) || ($('#Poly').prop('checked') && $("#GEnlaceLibre").attr('data-estado') === "true")) {
-        $("#mapeo").append('<area class="title anterior" id="titulo" title="' + $title + '" class="title" alt="" href="#" shape="circle" coords="' + $x + ',' + $y + ',10" onclick="mostrarTitulo(\'' + $title + '\')" data-maphilight=\'{"alwaysOn":true}\'>');
-        $(".title").data('maphilight', { 'alwaysOn': true }).trigger('alwaysOn.maphilight');
-    }
-
-
-    if ($cont === 1 && $('#Rect').prop('checked')) {
-        $("#EsqSuper").val($x + ',' + $y);
-    } else if ($cont === 2 && $('#Rect').prop('checked')) {
-        $("#EsqInf").val($x + ',' + $y);
-    }
-
-    if ($cont === 1 && $('#circ').prop('checked')) {
-        $("#centrocirc").val($x + ',' + $y);
-    }
-
-    if ($("#GEnlaceLibre").attr('data-estado') === "true" && $('#Poly').prop('checked')) {
-        if ($cont === 1) {
-            $("#Esquinas").val($x + ',' + $y);
+if(imagenTema){
+    imagenTema.addEventListener('click', function (e) {
+        let ctx;
+        $cont = $cont + 1;
+        console.log($cont);
+        if (!this.canvas) {
+            this.canvas = document.createElement('canvas');
+            this.canvas.width = this.width;
+            this.canvas.height = this.height;
+            ctx = this.canvas.getContext('2d');
+            ctx.drawImage(this, 0, 0, this.width, this.height);
         } else {
-            $val = $("#Esquinas").val();
-            $("#Esquinas").val($val + ',' + $x + ',' + $y);
+            ctx = this.canvas.getContext('2d');
         }
-    }
-    console.log(e.offsetX);
-    console.log(e.offsetY);
+        const pixel = ctx.getImageData(e.offsetX, e.offsetY, 1, 1).data;
 
-});
+
+        $x = e.offsetX;
+        $y = e.offsetY;
+        $title = $('#Nombre').val()
+        // $(".anterior").remove();
+        $(".prueba").remove();
+
+        if (($('#circ').prop('checked') && $cont < 2) || ($('#Rect').prop('checked') && $cont < 3) || ($('#Poly').prop('checked') && $("#GEnlaceLibre").attr('data-estado') === "true")) {
+            $("#mapeo").append('<area class="title anterior" id="titulo" title="' + $title + '" class="title" alt="" href="#" shape="circle" coords="' + $x + ',' + $y + ',10" onclick="mostrarTitulo(\'' + $title + '\')" data-maphilight=\'{"alwaysOn":true}\'>');
+            $(".title").data('maphilight', { 'alwaysOn': true }).trigger('alwaysOn.maphilight');
+        }
+
+
+        if ($cont === 1 && $('#Rect').prop('checked')) {
+            $("#EsqSuper").val($x + ',' + $y);
+        } else if ($cont === 2 && $('#Rect').prop('checked')) {
+            $("#EsqInf").val($x + ',' + $y);
+        }
+
+        if ($cont === 1 && $('#circ').prop('checked')) {
+            $("#centrocirc").val($x + ',' + $y);
+        }
+
+        if ($("#GEnlaceLibre").attr('data-estado') === "true" && $('#Poly').prop('checked')) {
+            if ($cont === 1) {
+                $("#Esquinas").val($x + ',' + $y);
+            } else {
+                $val = $("#Esquinas").val();
+                $("#Esquinas").val($val + ',' + $x + ',' + $y);
+            }
+        }
+        console.log(e.offsetX);
+        console.log(e.offsetY);
+
+    });
+}
 
 function Circular(checkbox) {
 

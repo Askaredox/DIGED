@@ -243,7 +243,7 @@
   <!--<script src="<//?=base_url('Admin_page/js/jqBootstrapValidation.js')?>"></script>-->
   <!-- Custom scripts for this template -->
   <script src="<?= base_url('Admin_page/js/freelancer.min.js') ?>"></script>
-  <script src=<?= base_url('assets/js/JDocente.js') ?>></script>
+  <script>document.write("<script type='text/javascript' src='<?= base_url('assets/js/JDocente.js') ?>?v=" + Date.now() + "'><\/script>");</script>
 </body>
 
 </html>

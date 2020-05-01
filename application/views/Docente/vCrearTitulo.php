@@ -25,11 +25,11 @@
     <nav class="navbar navbar-expand-lg bg-primary text-uppercase fixed-top" id="mainNav">
         <div class="container">
             <div class="logo float-left">
-                <a href="<?= base_url('Titulo/Dashboard/' . $this->uri->segment(3) . '/' . $this->uri->segment(4)) ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
+                <a href="<?= base_url('Titulo/Administrar/' . $this->uri->segment(3).'/'. $this->uri->segment(4))  ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
             </div>
 
             <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
-                <a href="<?= base_url('Titulo/Dashboard/' . $this->uri->segment(3) . '/' . $this->uri->segment(4)) ?>" style="color: white;"><i class="fas fa-arrow-left"></i></a>
+                <a href="<?= base_url('Titulo/Administrar/' . $this->uri->segment(3).'/'. $this->uri->segment(4)) ?>" style="color: white;"><i class="fas fa-arrow-left"></i></a>
 
             </button>
     </nav>
