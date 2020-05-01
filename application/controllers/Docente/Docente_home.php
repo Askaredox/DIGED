@@ -111,7 +111,7 @@ class Docente_home extends CI_Controller
                             "allowed_types" => "jpeg|jpg|png",
                             "min_width" => 400,
                             "min_height" => 400,
-                            "file_name" => $nombre_T
+                            "file_name" => $Curso."_".$nombre_T
                             //"max_width" => 800,
                             //"max_height" => 800
                         ];

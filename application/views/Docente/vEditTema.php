@@ -50,15 +50,18 @@
                     <div class="col-sm-12 mx-auto">
 
                         <form id="UpdateForm" novalidate="novalidate">
-                            
+                            <div class="form-group" id="GroupCod">
+                                <input type="text" class="form-control" name="Curso" id="Curso" placeholder="Codigo del Curso" value="<?=$this->uri->segment(3)?>" hidden>
+                                <input type="text" class="form-control" name="Tema" id="Tema" placeholder="Codigo del Tema" value="<?=$this->uri->segment(4)?>" hidden>
+                            </div>
                             <div class="form-group" id="GroupNombre">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <div class="row align-items-end">
-                                        <div class="col-sm-2">
-                                            <img style="border-style: outset;" id="Img_V" height="100" width="100">
+                                        <div class="col-sm-2" >
+                                            <img  id="Img_V" style="border-style: outset;" height="auto" width="100">
                                         </div>
                                         <div class="col-sm-10">
-                                            <input class="form-control-plaintext border border-primary rounded" id="Nombre_T" name="Nombre_T" type="text" placeholder="Nombre Tema" value="<?= set_value('Nombre_T') ?>">
+                                            <input class="form-control-plaintext border border-primary rounded" style="margin-left:30px" id="Nombre_T" name="Nombre_T" type="text" placeholder="Nombre Tema" value="<?= set_value('Nombre_T') ?>">
                                         </div>
                                     </div>
                                     
@@ -93,7 +96,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="<?= base_url('Admin_page/css/js/bootstrap.min.js') ?>"></script>
-    <script src=<?= base_url('assets/js/JEditTema.js') ?>></script>
+    <script>document.write("<script type='text/javascript' src='<?= base_url('assets/js/JEditTema.js') ?>?v=" + Date.now() + "'><\/script>");</script>
 
 </body>
 

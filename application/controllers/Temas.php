@@ -43,15 +43,14 @@ class Temas extends CI_Controller
     public function UpdateImage()
     {
         $nombre_T = $this->input->post('Nombre_T');
-        $Cod_Tema = $this->input->post('TEMPTema');
-        $Curso = $this->input->post('TEMPcurso');
+        $Cod_Tema = $this->input->post('Tema');
+        $Curso = $this->input->post('Curso');
 
         $coincidir = array(
-            'Nombre_T' => $nombre_T,
-            'Curso ' => $Curso,
+            'Curso' => $Curso,
             'Cod_Tema' => $Cod_Tema
         );
-        // var_dump($coincidir);
+        //var_dump($coincidir);
 
 
         if ($this->Docente_Temas_model->ExistsTema($coincidir)) { //existe entonces se puede actualizar imagen
@@ -62,7 +61,10 @@ class Temas extends CI_Controller
                     "allowed_types" => "jpeg|jpg|png|gif",
                     "min_width" => 400,
                     "min_height" => 400,
-                    "file_name" => $Cod_Tema
+ 
+                    "file_name" => $Curso."_".$nombre_T
+ 
+ 
                     //"max_width" => 800,
                     //"max_height" => 800
                 ];
@@ -91,6 +93,7 @@ class Temas extends CI_Controller
                             $imagenEliminar = $row['Imagen'];
                         }
                         $datos['Imagen'] =  'uploads/ImgTemas/' . $this->upload->data('file_name'); // nueva imagen cargada
+                        $datos['Nombre_T'] =  $nombre_T; // nueva imagen cargada
                         if ($this->Docente_Temas_model->UpdateTema($coincidir, $datos)) {
                             if (strlen($imagenEliminar) > 0) {
                                 unlink('./' . $imagenEliminar);
@@ -120,7 +123,7 @@ class Temas extends CI_Controller
             }
         } else { //no existe debe dar error    
             $this->session->set_flashdata('msge', '¡ERROR! EL TEMA NO EXISTE');
-            echo json_encode(array('url' => base_url('Temas/Administrar/' . $Curso), 'msg' => '', 'ruta' => ''));
+            echo json_encode(array('url' => base_url('Temas/Administrar/' . $Curso), 'msg' => $coincidir, 'ruta' => ''));
         }
     }
 
@@ -177,7 +180,7 @@ class Temas extends CI_Controller
     public function UpdateTema()
     {
         $coincidir = array(
-            'Cod_Tema' => $this->input->post('Cod_Tema'),
+            'Cod_Tema' => $this->input->post('Tema'),
             'Curso' => $this->input->post('Curso')
         );
 
@@ -206,7 +209,7 @@ class Temas extends CI_Controller
             }
         } else { // no existe mandar error
             $this->session->set_flashdata('msge', '¡ERROR! EL TEMA NO EXISTE');
-            echo json_encode(array('url' => base_url('Temas/Administrar/' . $coincidir['Curso'])));
+            echo json_encode(array('url' => base_url('Temas/Administrar/' . $coincidir['Curso']), 'msg'=>$coincidir));
         }
     }
 
