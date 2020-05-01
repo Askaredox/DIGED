@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+//a ver si sale
 class Temas extends CI_Controller
 {
-    public function __construct()
+    public function __construct() 
     {
         parent::__construct();
         $this->load->model(array('Docente_Temas_model','Docente_Titulos_model'));
@@ -61,7 +61,10 @@ class Temas extends CI_Controller
                     "allowed_types" => "jpeg|jpg|png|gif",
                     "min_width" => 400,
                     "min_height" => 400,
+ 
                     "file_name" => $Curso."_".$nombre_T
+ 
+ 
                     //"max_width" => 800,
                     //"max_height" => 800
                 ];
