@@ -87,7 +87,7 @@ class Titulo extends CI_Controller
                     if (strlen($imagen) > 0) { // si existe una imagen
                         $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'img' => $imagen, 'tema'=>$tema)); //, array('id' => $idCurso)); //mandar el array a la vista
                     } else {
-                        $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'tema'=>$tema)); //, array('id' => $idCurso)); //mandar el array a la vista
+                        $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'tema'=>$tema->Nombre_T)); //, array('id' => $idCurso)); //mandar el array a la vista
                     }
                 }
             }

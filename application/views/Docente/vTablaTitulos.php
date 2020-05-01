@@ -36,7 +36,6 @@
     <div id="layoutSidenav_content">
 
         <div class="container-fluid">
-            <div class="container bg-primary" style="height: 110px;"></div>
             <div class="card mb-4">
                 <h1 class="display-4" style="text-align:center;"><?= $tema ?> </h1>
 
