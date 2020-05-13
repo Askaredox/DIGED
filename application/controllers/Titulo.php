@@ -32,6 +32,8 @@ class Titulo extends CI_Controller
             } else { // 
                 foreach ($res as $row) {
                     $imagen = $row['Imagen'];
+                    $wOrigin = $row['Ancho_img'];
+                    $hOrigin = $row['Altura_img'];
                 }
                 if (strlen($imagen) > 0) { // si existe una imagen
                     if (!$data = $this->Docente_Titulos_model->getTitulos(array('Tema' => $idTema))) { // buscar los titulos
@@ -52,7 +54,7 @@ class Titulo extends CI_Controller
                                 $titulos[] = $tmp;
                             }
                         }
-                        $this->load->view('Docente/vCrearTitulo', array('img' => $imagen, 'data' => $titulos));
+                        $this->load->view('Docente/vCrearTitulo', array('img' => $imagen, 'ancho' => $wOrigin, 'alto' => $hOrigin, 'data' => $titulos));
                     }
                 } else { // si no existe solo carga la vista
                     $this->load->view('Docente/vCrearTitulo'); //, array('id' => $idCurso)); //mandar el array a la vista
@@ -65,36 +67,37 @@ class Titulo extends CI_Controller
 
     public function Administrar($idCurso, $idTema)
     {
-        $tema=$this->Docente_Temas_model->getTema($idTema,$idCurso);
+        $tema = $this->Docente_Temas_model->getTema($idTema, $idCurso);
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
 
             $data = $this->Docente_Titulos_model->getTitulos(array('Tema' => $idTema));
             //var_dump($data);
             if (!$data) { //entpnces no hay titulos registrados aún
                 $this->session->set_flashdata('msge', 'ESTE TEMA AÚN NO TIENE TITULOS REGISTRADOS');
-                $this->load->view('Docente/vTablaTitulos', array('data' => null, 'tema'=>$tema->Nombre_T));
+                $this->load->view('Docente/vTablaTitulos', array('data' => null, 'tema' => $tema->Nombre_T));
                 //redirect(base_url('Titulo/Dashboard/' . $idCurso . '/' . $idTema));
             } else {
 
                 if (!$res = $this->Docente_Temas_model->getTemas(array('Cod_Tema' => $idTema, 'Curso' => $idCurso))) // esto es para obtener la imagen
                 {
                     $this->session->set_flashdata('msge', 'Ha Ocurrido un error, intentelo de nuevo 1');
-                    $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'tema'=>$tema->Nombre_T));
+                    $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'tema' => $tema->Nombre_T));
                 } else { // 
                     foreach ($res as $row) {
                         $imagen = $row['Imagen'];
+                        $wOrigin = $row['Ancho_img'];
+                        $hOrigin = $row['Altura_img'];
                     }
                     if (strlen($imagen) > 0) { // si existe una imagen
-                        $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'img' => $imagen, 'tema'=>$tema->Nombre_T)); //, array('id' => $idCurso)); //mandar el array a la vista
+                        $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'img' => $imagen,'ancho' => $wOrigin,'altura' => $hOrigin, 'tema' => $tema->Nombre_T)); //, array('id' => $idCurso)); //mandar el array a la vista
                     } else {
-                        $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'tema'=>$tema->Nombre_T)); //, array('id' => $idCurso)); //mandar el array a la vista
+                        $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'tema' => $tema->Nombre_T)); //, array('id' => $idCurso)); //mandar el array a la vista
                     }
                 }
             }
         } else {
             show_404();
         }
-        
     }
     public function CrearTitulo()
     {

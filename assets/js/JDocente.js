@@ -223,16 +223,19 @@ $("#cerrar").click(function (ev) {
 $cont = 0;
 
 const imagenTema = document.getElementById('imagenTema');
-var imagenOriginal = new Image();
+const imagenOriginal = new Image();
 imagenOriginal.onload = imagenCargada;
 imagenOriginal.src = imagenTema.src;
 $altoOriginal = 0;
 $anchoOriginal = 0;
 
+
 function imagenCargada() {
     $altoOriginal = imagenOriginal.height
     $anchoOriginal = imagenOriginal.width
 }
+
+
 
 if (imagenTema) {
     imagenTema.addEventListener('click', function (e) {
