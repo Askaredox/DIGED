@@ -35,7 +35,7 @@
     });
 
 
-    $("#RegisterTitle").submit(function (ev) {
+    $("#submit").click(function (ev) {
         console.log("entraste a craecion de titulo")
         ev.preventDefault();
         var self = this;
@@ -223,7 +223,18 @@ $("#cerrar").click(function (ev) {
 $cont = 0;
 
 const imagenTema = document.getElementById('imagenTema');
-if(imagenTema){
+var imagenOriginal = new Image();
+imagenOriginal.onload = imagenCargada;
+imagenOriginal.src = imagenTema.src;
+$altoOriginal = 0;
+$anchoOriginal = 0;
+
+function imagenCargada() {
+    $altoOriginal = imagenOriginal.height
+    $anchoOriginal = imagenOriginal.width
+}
+
+if (imagenTema) {
     imagenTema.addEventListener('click', function (e) {
         let ctx;
         $cont = $cont + 1;
@@ -338,13 +349,30 @@ function GenerarCircleMap() {
 
             $valor = x1.value;
 
+            //hacer la proporcion
+            $cadena1 = x2.value //VALOR DEL CENTRO DEL PUNTO
+            $radio = Math.round(($valor * $anchoOriginal) / imagenTema.width)
+            $dividida1 = $cadena1.split(',')
+            $valorOriginal = "";
+
+            for (var i = 0; i < $dividida1.length; i++) {
+                if (i == 0) {// ESTA ES X
+                    $xx1 = Math.round(($dividida1[i] * $anchoOriginal) / imagenTema.width)
+
+                } else {// ESTA SERIA Y
+                    $y1 = Math.round(($dividida1[i] * $altoOriginal) / imagenTema.height)
+                }
+
+            }
+            $valorOriginal = $xx1 + ',' + $y1 + ',' + $radio
+
             $(".anterior").remove();
             $(".definitivo").remove();
 
             $("#mapeo").append('<area class="title definitivo" id="titulo" title="" class="title" alt="" href="#" shape="circle" coords="' + $("#centrocirc").val() + ',' + $valor + '" onclick="mostrarTitulo(\'' + $title + '\')" data-maphilight=\'{"alwaysOn":true}\'>');
             $(".title").data('maphilight', { 'alwaysOn': true }).trigger('alwaysOn.maphilight');
 
-            $("#pos").val($("#centrocirc").val() + ',' + $valor);
+            $("#pos").val($valorOriginal);
             document.getElementById('tipo').placeholder = '1';
             document.getElementById('tipo').value = 'circular';
             $cont = 0;
@@ -427,6 +455,28 @@ function GenerarRectMap() {
 
             $valor = x1.value;
             $valor2 = x2.value;
+
+            //hacer la proporcion
+            $cadena1 = $valor
+            $cadena2 = $valor2
+            $dividida1 = $cadena1.split(',')
+            $dividida2 = $cadena2.split(',')
+            $valorOriginal = "";
+
+            for (var i = 0; i < $dividida1.length; i++) {
+                if (i == 0) {// todas estas las x
+                    $xx1 = Math.round(($dividida1[i] * $anchoOriginal) / imagenTema.width)
+                    $xx2 = Math.round(($dividida2[i] * $anchoOriginal) / imagenTema.width)
+
+                } else {// todas estas las y
+                    $y1 = Math.round(($dividida1[i] * $altoOriginal) / imagenTema.height)
+                    $y2 = Math.round(($dividida2[i] * $altoOriginal) / imagenTema.height)
+                }
+
+            }
+            $valorOriginal = $xx1 + ',' + $y1 + ',' + $xx2 + ',' + $y2
+
+
             $val = $valor + ',' + $valor2;
 
             $(".anterior").remove();
@@ -435,7 +485,7 @@ function GenerarRectMap() {
             $("#mapeo").append('<area class="title definitivo" id="titulo" title="" class="title" alt="" href="#" shape="rect" coords="' + $val + '" onclick="mostrarTitulo(\'' + $title + '\')" data-maphilight=\'{"alwaysOn":true}\'>');
             $(".title").data('maphilight', { 'alwaysOn': true }).trigger('alwaysOn.maphilight');
 
-            $("#pos").val($val);
+            $("#pos").val($valorOriginal);
             document.getElementById('tipo').placeholder = '2';
             document.getElementById('tipo').value = 'rectangular';
             $cont = 0;
