@@ -41,14 +41,15 @@ Sistema de ayuda al estudiante para estudiar cursos en línea por medio de una a
 | ------------------- | -------------------------------------------------------- | ---------------- |
 | Barra de navegación | Cerrado automático                                       | ``[#####     ]`` |
 | Editar Usuario      | Colocar nombre                                           | ``[##        ]`` |
-| Editar Usuario      | Para cambiar contraseña pedir la antigua                 | ``[######    ]`` |
+|**Editar Usuario     | Para cambiar contraseña pedir la antigua**                 | ``[######    ]`` |
 | Base de Datos       | Para login solo debe mandar verdadero o falso            | ``[########  ]`` |
-| Administrar Cursos  | Dar acción al botón no al link                           | ``[########  ]`` |
-| Actualizar Curso    | Lugar aparte o pop-up, no usar códigos                   | ``[##        ]`` |
-| Crear Docente       | Checkbox tenerlo de lado derecho como un icono de un ojo | ``[#         ]`` |
-| Crear Docente       | Dar acción al botón no al link                           | ``[########  ]`` |
-| Administrar Docente | Colocar contraseña tapada y colocar botón para destapar  | ``[#####     ]`` |
-| Administrar Docente | Dar acción al botón no al link                           | ``[########  ]`` |
+|**Administrar Cursos | Dar acción al botón no al link**                           | ``[########  ]`` |
+|**Actualizar Curso    | Lugar aparte o pop-up,** no usar códigos                  | ``[##        ]`` |
+|**Crear Docente      | Checkbox tenerlo de lado derecho como un icono de un ojo** | ``[#         ]`` |
+|**Crear Docente      | Dar acción al botón no al link**                           | ``[########  ]`` |
+|**Administrar Docente| Colocar contraseña tapada y colocar botón para destapar**  | ``[#####     ]`` |
+|**Administrar Docente| Dar acción al botón no al link**                           | ``[########  ]`` |
+|**Actualizar Docente  | Lugar aparte o pop-up**, no usar códigos                  | ``[##        ]`` |
 | TODO                | Cuando no hay usuario loggeado regresar al login         | ``[#####     ]`` |
 | **Lugar**           | **Correcciones**                                         | ``[          ]`` |
 

@@ -20,7 +20,7 @@ class cTablaCursos extends CI_Controller
                 // var_dump(json_encode($res));
             }
         } else {
-            show_404();
+            redirect('');
         }
     }
 

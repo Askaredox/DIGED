@@ -17,7 +17,7 @@ class Titulo extends CI_Controller
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
             $this->load->view('Docente/vTitulosDashboard'); //, array('id' => $idCurso)); //mandar el array a la vista
         } else {
-            show_404();
+            redirect('');
         }
     }
 
@@ -61,7 +61,7 @@ class Titulo extends CI_Controller
                 }
             }
         } else {
-            show_404();
+            redirect('');
         }
     }
 
@@ -89,14 +89,14 @@ class Titulo extends CI_Controller
                         $hOrigin = $row['Altura_img'];
                     }
                     if (strlen($imagen) > 0) { // si existe una imagen
-                        $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'img' => $imagen,'ancho' => $wOrigin,'altura' => $hOrigin, 'tema' => $tema->Nombre_T)); //, array('id' => $idCurso)); //mandar el array a la vista
+                        $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'img' => $imagen, 'ancho' => $wOrigin, 'altura' => $hOrigin, 'tema' => $tema->Nombre_T)); //, array('id' => $idCurso)); //mandar el array a la vista
                     } else {
                         $this->load->view('Docente/vTablaTitulos', array('data' => $data, 'tema' => $tema->Nombre_T)); //, array('id' => $idCurso)); //mandar el array a la vista
                     }
                 }
             }
         } else {
-            show_404();
+            redirect('');
         }
     }
     public function CrearTitulo()

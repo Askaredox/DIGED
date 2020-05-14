@@ -14,7 +14,7 @@ class Temas extends CI_Controller
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
             $this->load->view('Docente/vTablaTemas'); //, array('id' => $idCurso)); //mandar el array a la vista
         } else {
-            show_404();
+            redirect('');
         }
     }
 
@@ -29,7 +29,7 @@ class Temas extends CI_Controller
                 $this->load->view('Docente/vTablaTemas', array('data' => $res, 'curso' => $curso)); //mandar el array a la vista
             }
         } else {
-            show_404();
+            redirect('');
         }
     }
     public function EditTema($idCurso, $idTema){

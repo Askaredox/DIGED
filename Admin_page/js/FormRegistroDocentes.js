@@ -1,9 +1,11 @@
 function MostrarContrasenia() {
   var x = document.getElementById("password");
   if (x.type === "password") {
+    $(".fa-eye").attr('class','fa fa-eye-slash');
     x.type = "text";
   } else {
     x.type = "password";
+    $(".fa-eye-slash").attr('class','fas fa-eye');
   }
 }
 

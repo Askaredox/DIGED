@@ -209,6 +209,11 @@
           <div class="col-lg-10 mx-auto">
             <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
             <form id="UpdatePassword">
+            <div class="form-group" id="PwActual">
+                <label>CONTRASEÑA ACTUAL</label>
+                <input type="text" class="form-control" name="ActualP" id="ActualP" placeholder="contraseña actual">
+                <div class="invalid-feedback"></div>
+              </div>
               <div class="form-group" id="Pw1">
                 <label for="validationCustom01">NUEVA CONTRASEÑA</label>
                 <input type="text" class="form-control" name="Pass1" id="Pass1" placeholder="contraseña">
