@@ -11,7 +11,7 @@
   <title>DEDEV-ADMINISTRADOR</title>
 
   <!-- Custom fonts for this theme -->
-  <link href="<?=base_url('Admin_page/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
+  <link href="<?= base_url('Admin_page/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
@@ -25,7 +25,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-primary text-uppercase text-sm fixed-top" id="mainNav">
     <div class="container">
-      <div class="logo float-left" >
+      <div class="logo float-left">
         <!--LOGO-->
         <a href="<?= base_url('Administracion#intro') ?>" class="scrollto">
           <img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid">
@@ -193,7 +193,7 @@
 
         <!-- Portfolio Item 3  crear docente-->
         <div class="col-sm-12 col-md-6 col-lg-6">
-          <a href="<?=base_url('Registrar/Docentes')?>">
+          <a href="<?= base_url('Registrar/Docentes') ?>">
             <div class="portfolio-item mx-auto bg-secondary">
               <h5 class="display-7 text-center">REGISTRAR DOCENTE</h5>
               <div class="portfolio-item-caption d-flex align-items-center bg-primary  justify-content-center h-100 w-100" id="caption3">
@@ -212,7 +212,7 @@
         </div>
         <!-- Portfolio Item 4  modificar o borrar docentes-->
         <div class="col-sm-12 col-md-6 col-lg-6">
-          <a href="<?=base_url('Administrar/Docentes')?>">
+          <a href="<?= base_url('Administrar/Docentes') ?>">
             <div class="portfolio-item mx-auto bg-secondary">
               <h5 class="display-7 text-center">ADMINISTRAR DOCENTES</h5>
               <div class="portfolio-item-caption d-flex align-items-center bg-primary  justify-content-center h-100 w-100">
@@ -304,6 +304,12 @@
           <div class="col-lg-10 mx-auto">
             <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
             <form id="UpdatePassword">
+
+              <div class="form-group" id="PwActual">
+                <label>CONTRASEÑA ACTUAL</label>
+                <input type="text" class="form-control" name="ActualP" id="ActualP" placeholder="contraseña actual">
+                <div class="invalid-feedback"></div>
+              </div>
               <div class="form-group" id="Pw1">
                 <label for="validationCustom01">NUEVA CONTRASEÑA</label>
                 <input type="text" class="form-control" name="Pass1" id="Pass1" placeholder="contraseña">
@@ -315,6 +321,7 @@
                 <input type="text" class="form-control" name="Pass2" id="Pass2" placeholder="nueva contraseña">
                 <div class="invalid-feedback"></div>
               </div>
+
               <br>
               <div class="form-group ">
                 <input type="submit" class="btn btn-secondary rounded-pill btn-xl bg-secondary" value="Cambiar Contraseña" />
@@ -414,7 +421,7 @@
                   </p>
                 </h4>
                 <div class="row justify-content-center">
-                  <a class="btn btn-primary rounded-pill" href="<?=base_url('Administrar/Cursos')?>">
+                  <a class="btn btn-primary rounded-pill" href="<?= base_url('Administrar/Cursos') ?>">
                     IR A SECCIÓN
                   </a>
                 </div>

@@ -251,7 +251,9 @@ textarea {
   font-size: inherit;
   line-height: inherit;
 }
-
+.sinborde {
+  border: 0;
+}
 button,
 input {
   overflow: visible;

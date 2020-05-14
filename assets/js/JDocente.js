@@ -9,8 +9,10 @@
             success: function (data) {
                 $("#Pw1 > input").removeClass('is-invalid');
                 $("#Pw2 > input").removeClass('is-invalid');
+                $("#PwActual > input").removeClass('is-invalid');
                 $("#Pw1 > input").addClass('is-valid');
                 $("#Pw2 > input").addClass('is-valid');
+                $("#PwActual > input").addClass('is-valid');
                 var json = JSON.parse(data);
                 window.location.replace(json.url);
                 //console.log(data);
@@ -20,6 +22,7 @@
 
                     $("#Pw1 > input").removeClass('is-invalid');
                     $("#Pw2 > input").removeClass('is-invalid');
+                    $("#PwActual > input").removeClass('is-invalid');
                     var json = JSON.parse(xhr.responseText);
                     if (json.P1.length != 0) {
                         $("#Pw1 > div").html(json.P1);
@@ -29,6 +32,25 @@
                         $("#Pw2 > div").html(json.P2);
                         $("#Pw2 > input").addClass('is-invalid');
                     }
+
+                    if (json.A.length != 0) {
+                        $("#PwActual > div").html(json.A);
+                        $("#PwActual > input").addClass('is-invalid');
+                    }
+                },
+                401: function (xhr) {
+                    //PwActual
+                    $("#Pw1 > input").removeClass('is-invalid');
+                    $("#Pw2 > input").removeClass('is-invalid');
+                    $("#Pw1 > input").addClass('is-valid');
+                    $("#Pw2 > input").addClass('is-valid');
+                    $("#PwActual > input").removeClass('is-invalid');
+                    var json = JSON.parse(xhr.responseText);
+                    if (json.A.length != 0) {
+                        $("#PwActual > div").html(json.A);
+                        $("#PwActual > input").addClass('is-invalid');
+                    }
+
                 }
             }
         });
@@ -42,7 +64,7 @@
         $Nombre = $("#Nombre").val();
         $Curso = $("#Curso").val();
         $Tema = $("#Tema").val();
-        $Contenido= $('#summernote').summernote('code')
+        $Contenido = $('#summernote').summernote('code')
         if ($("#imagenTema").length) {
 
             if ($("#pos").val().length > 0) {
@@ -223,16 +245,19 @@ $("#cerrar").click(function (ev) {
 $cont = 0;
 
 const imagenTema = document.getElementById('imagenTema');
-var imagenOriginal = new Image();
+const imagenOriginal = new Image();
 imagenOriginal.onload = imagenCargada;
 imagenOriginal.src = imagenTema.src;
 $altoOriginal = 0;
 $anchoOriginal = 0;
 
+
 function imagenCargada() {
     $altoOriginal = imagenOriginal.height
     $anchoOriginal = imagenOriginal.width
 }
+
+
 
 if (imagenTema) {
     imagenTema.addEventListener('click', function (e) {

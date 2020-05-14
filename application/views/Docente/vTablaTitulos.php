@@ -66,13 +66,15 @@
                 <!--empieza la tablilla-->
                 <div class="card-header container-fluid">
                     <div class="row align-middle">
-                        <div class="col"> <h2>TITULOS</h2> </div>
-                        <div class="col"> 
-                            <a href="<?=base_url('Titulo/Crear/' . $this->uri->segment(3)."/".$this->uri->segment(4)) ?>" class="btn bg-success float-right" role="button" style="color: white;">
-                                Agregar titulo   <i class="fas fa-plus"></i>
-                            </a> 
+                        <div class="col">
+                            <h2>TITULOS</h2>
                         </div>
-                    </div>  
+                        <div class="col">
+                            <a href="<?= base_url('Titulo/Crear/' . $this->uri->segment(3) . "/" . $this->uri->segment(4)) ?>" class="btn bg-success float-right" role="button" style="color: white;">
+                                Agregar titulo <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -93,7 +95,7 @@
                             </tfoot>
                             <!--INSERCIÓN DE DATOS TODAS SON  DATO2, DATO3, BOTONES DE ACCIONES-->
                             <tbody>
-                                <?php if($data):?>
+                                <?php if ($data) : ?>
                                     <?php foreach ($data as $titulo) : ?>
                                         <tr id="<?= "fila" . $titulo['Id_Titulo'] ?>">
                                             <td><?= strtoupper($titulo['Nombre']); ?></td>
@@ -105,8 +107,8 @@
                                                     <button type="button " class="btn btn-primary btn-edit btn-sm" role="button" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-pos="<?= $titulo['Coordenadas'] ?>" data-curso="<?= $this->uri->segment(3)  ?>" data-tipo="<?= $titulo['tipoEnlace'] ?>">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
-                                                    
-                                                    
+
+
                                                 </a>
                                                 <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-curso="<?= $this->uri->segment(3) ?>">
                                                     <i class="fas fa-trash-alt"></i>
@@ -181,28 +183,7 @@
                                 </div>
                                 <div class="form-group" id="GroupImg">
                                     <!--iria la imagen para  hacer el mapeo-->
-                                    <map name="mapeo" id="mapeo">
-                                        <?php if (isset($data)) : ?>
-                                            <?php foreach ($data as $titulo) : $title = $titulo["Nombre"] ?>
-                                                <?php
-                                                $X = $titulo["Coordenadas"];
-                                                $tipo = $titulo['tipoEnlace']
-                                                ?>
-                                                <?php if ($tipo === '1') : ?>
-                                                    <!--es figura circular-->
-                                                    <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="circle" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
-                                                <?php elseif ($tipo === '2') : ?>
-                                                    <!--es figura rectangular-->
-                                                    <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="rect" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
-                                                <?php else : ?>
-                                                    <!--Es poligono-->
-                                                    <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="poly" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
-                                                <?php endif; ?>
-                                                <!--Es poligono-->
 
-                                            <?php endforeach ?>
-                                        <?php endif; ?>
-                                    </map>
                                     <?php if (isset($img)) : ?>
                                         <div class="row">
                                             <div class="form-check">
@@ -251,6 +232,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <map name="mapeo" id="mapeo">
+                                        </map>
 
 
                                     <?php endif; ?>
@@ -310,7 +293,45 @@
             </div>
         </footer>
     </div>
+    <?php if (isset($data)) : ?>
+        <?php foreach ($data as $titulo) : $title = $titulo["Nombre"] ?>
+            <?php
+            $X = $titulo["Coordenadas"];
+            $tipo = $titulo['tipoEnlace'];
 
+            ?>
+            <script type="text/javascript">
+                $alturaOrigin = "<?php echo $altura ?>"; //estos sacarlos de la base
+                $anchoOrigin = "<?php echo $ancho ?>"; //estos sacarlos de la base
+
+                $type = "<?php echo $tipo ?>";
+                $Coordenada = "<?php echo $X ?>";
+               
+                if ($type == 1) {
+                    $dividida1 = $Coordenada.split(',')
+
+                    $x1 = Math.round(($dividida1[0] * document.getElementById('imagenTema').width) / $anchoOrigin)
+
+                    $y1 = Math.round(($dividida1[1] * document.getElementById('imagenTema').height) / $alturaOrigin)
+
+                    $radio = Math.round(($dividida1[2] * document.getElementById('imagenTema').width) / $anchoOrigin)
+
+                    $enlace = $x1 + "," + $y1 + "," + $radio
+                    document.getElementById('mapeo').innerHTML += "<area id=\"titulo\" class=\"title\" alt=\"\" href=\"#\" shape=\"circle\" coords=\"" + $enlace + "\" onclick=\"mostrarTitulo('<?php echo $title; ?>')\" data-maphilight=\'{\"alwaysOn\":true}\'>"
+                } else {
+                    //alert("rectangular" + $Coordenada);
+                    $dividida2 = $Coordenada.split(',')
+                    $x1 = Math.round(($dividida2[0] * document.getElementById('imagenTema').width) / $anchoOrigin)
+                    $y1 = Math.round(($dividida2[1] * document.getElementById('imagenTema').height) / $alturaOrigin)
+                    $x2 = Math.round(($dividida2[2] * document.getElementById('imagenTema').width) / $anchoOrigin)
+                    $y2 = Math.round(($dividida2[3] * document.getElementById('imagenTema').height) / $alturaOrigin)
+
+                    $enlace = $x1 + "," + $y1 + "," + $x2 + "," + $y2
+                    document.getElementById('mapeo').innerHTML += "<area id=\"titulo\"  class=\"title\" alt=\"\" href=\"#\" shape=\"rect\" coords=\"" + $enlace + "\" onclick=\"mostrarTitulo('<?php echo $title; ?>')\" data-maphilight=\'{\"alwaysOn\":true}\'>"
+                }
+            </script>
+        <?php endforeach ?>
+    <?php endif; ?>
 
 
     <!-- Optional JavaScript -->
@@ -329,10 +350,10 @@
                 alwaysOn: true
             });
             $('#summernote').summernote({
-                height: 300,                 // set editor height
-                minHeight: null,             // set minimum height of editor
-                maxHeight: null,             // set maximum height of editor
-                focus: true                  // set focus to editable area after initializing summe
+                height: 300, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: true // set focus to editable area after initializing summe
             });
             // uncomment this line for normal hover highlighting
             // $('.map').maphilight();

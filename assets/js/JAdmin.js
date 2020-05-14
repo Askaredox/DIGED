@@ -5,12 +5,14 @@
         $.ajax({
             url: 'Admin/Admin_home/changePassword',
             type: 'POST',
-            data: $(this).serialize(),
+            data: $("#UpdatePassword").serialize(),
             success: function (data) {
                 $("#Pw1 > input").removeClass('is-invalid');
                 $("#Pw2 > input").removeClass('is-invalid');
+                $("#PwActual > input").removeClass('is-invalid');
                 $("#Pw1 > input").addClass('is-valid');
                 $("#Pw2 > input").addClass('is-valid');
+                $("#PwActual > input").addClass('is-valid');
                 var json = JSON.parse(data);
                 window.location.replace(json.url);
                 //console.log(data);
@@ -20,6 +22,7 @@
 
                     $("#Pw1 > input").removeClass('is-invalid');
                     $("#Pw2 > input").removeClass('is-invalid');
+                    $("#PwActual > input").removeClass('is-invalid');
                     var json = JSON.parse(xhr.responseText);
                     if (json.P1.length != 0) {
                         $("#Pw1 > div").html(json.P1);
@@ -29,6 +32,25 @@
                         $("#Pw2 > div").html(json.P2);
                         $("#Pw2 > input").addClass('is-invalid');
                     }
+
+                    if (json.A.length != 0) {
+                        $("#PwActual > div").html(json.A);
+                        $("#PwActual > input").addClass('is-invalid');
+                    }
+                },
+                401: function (xhr) {
+                    //PwActual
+                    $("#Pw1 > input").removeClass('is-invalid');
+                    $("#Pw2 > input").removeClass('is-invalid');
+                    $("#Pw1 > input").addClass('is-valid');
+                    $("#Pw2 > input").addClass('is-valid');
+                    $("#PwActual > input").removeClass('is-invalid');
+                    var json = JSON.parse(xhr.responseText);
+                    if (json.A.length != 0) {
+                        $("#PwActual > div").html(json.A);
+                        $("#PwActual > input").addClass('is-invalid');
+                    }
+
                 }
             }
         });
@@ -87,12 +109,12 @@
                     }
                 },
                 500: function (xhr) {
-                   // 
-                   var json = JSON.parse(xhr.responseText);
+                    // 
+                    var json = JSON.parse(xhr.responseText);
                     $(self).prepend('<div class="container-sm"><div class="alert alert-danger alert-dismissible fade show" role="alert">'
-                    +'<strong>'+json.msge+'</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close">'
-                    +'<span aria-hidden="true">&times;</span></button></div></div>');
-                   // window.location.replace('Administracion');
+                        + '<strong>' + json.msge + '</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                        + '<span aria-hidden="true">&times;</span></button></div></div>');
+                    // window.location.replace('Administracion');
                 }
             }
         });

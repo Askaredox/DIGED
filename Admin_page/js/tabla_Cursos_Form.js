@@ -36,7 +36,8 @@ $('#dataTable tr').on('click', function () {
                 $.each(json, function (i, item) {
                     $("#selectorProfesor").append('<option value="' + item.Id_Usuario + '">' + item.Nombre + ' ' + item.Apellido + '</option>');
                 });
-                $('#collapseExample').collapse('show');
+                //$('#collapseExample').collapse('show');
+                $('#EditarModal').modal();
             },
             statusCode: {
                 400: function (xhr) {

@@ -23,10 +23,10 @@
             <div class="logo float-left">
                 <a href="<?= base_url('Administracion') ?>"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
             </div>
-            <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
-                <a href="<?= base_url('Administracion') ?>" style="color: white;">HOME</a>
+            <a role="button" class="btn btn-primary  btn-lg bg-secondary" href="<?= base_url('Administracion') ?>" style="color: white;">HOME
                 <i class="fas fa-home"></i>
-            </button>
+            </a>
+
     </nav>
     <!-- CAMBIANDO ESTO A VER SI SE VE TABLA DE DOCENTES -->
     <div id="layoutSidenav_content">
@@ -91,13 +91,17 @@
                                     <th class="text-center" scope="row"><?= $docente['Id_Usuario'] ?></th>
                                     <td><?= strtoupper($docente['Nombre']); ?></td>
                                     <td><?= strtoupper($docente['Apellido']); ?></td>
-                                    <td><?= $docente['Contraseña'] ?></td>
-                                    <td class="text-center">
-                                        <a class="scrollto" href="#EDITAR" style="color: white;">
-                                            <button type="button " class="btn btn-primary btn-sm" role="button" data-id="<?= $docente['Id_Usuario'] ?>">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+                                    <td style=" white-space: nowrap; width: 1px;">
+                                        <input class="contraseniaOculta" type="password" style="border: 0;  background-color:#FFFFFF;" id="p" name="p" value="<?= $docente['Contraseña'] ?>" disabled size="12">
+                                        <a type="button " class="btn btn-outline-primary btn-sm " id="VerContrasenia">
+                                            <i class="fas fa-eye"></i>
                                         </a>
+
+                                    </td>
+                                    <td class="text-center" style=" white-space: nowrap; width: 1px;">
+                                        <button type="button " class="btn btn-primary btn-sm" data-toggle="modal" data-id="<?= $docente['Id_Usuario'] ?>">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
                                         <button type="button " class="btn btn-danger btn-sm btn-eliminar" data-toggle="modal" data-id="<?= $docente['Id_Usuario'] ?>" role="button">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
@@ -113,82 +117,81 @@
 
 
     <!-- Modal ACTUALIZAR FORM-->
-    <section class="page-section" id="EDITAR">
-        <div class="collapse" id="collapseExample">
-            <header>
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Actualizar
-                    Docente</h2>
 
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="divider-custom-line"></div>
+    <!--editar en MODAL-->
+    <div class="modal fade" id="EDITAR" tabindex="-1" role="dialog" aria-labelledby="EDITAR" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EDITARtitle">ACTUALIZAR DATOS DOCENTE</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </header>
-            <!-- Register Section Form -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8 mx-auto">
-                        <form name="UpdateDocenteForm" id="UpdateDocenteForm" novalidate="novalidate" autocomplete="nope">
-                            <div class="form-group">
-                                <label>Codigo Docente</label>
-                                <input class="form-control" name="cod" id="cod" type="text" readonly>
-                            </div>
-                            <div class="form-group">
-
-                                <label>Nombre</label>
-                                <input class="form-control" name="name" id="name" type="text" autocomplete="nope" value="">
-                            </div>
-                            <div class="form-group">
-
-                                <label>Apellido</label>
-                                <input class="form-control" name="lastname" id="lastname" type="text" placeholder="Apellido" autocomplete="nop" value="">
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <input type="checkbox" name="show1" id="show1" onclick="MostrarContrasenia()" />
+                <div class="modal-body">
+                    <!-- Register Section Form -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-8 mx-auto">
+                                <form name="UpdateDocenteForm" id="UpdateDocenteForm" novalidate="novalidate" autocomplete="nope">
+                                    <div class="form-group">
+                                        <label>Codigo Docente</label>
+                                        <input class="form-control" name="cod" id="cod" type="text" readonly>
                                     </div>
-                                </div>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" autocomplete="nope" value="">
-                                <button class="btn btn-success" type="button" id="confirm">
-                                    <i class="fas fa-check-double"></i>
-                                </button>
-                                <a href="#" title="" data-toggle="popover" data-placement="top" data-content="¡CAMPO NO VÁLIDO!" id="pop3"></a>
-                            </div>
-                            <div class="collapse" id="ConfirmarContraseña">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <input type="checkbox" name="show" id="show" onclick="MostrarContrasenia2()" />
+                                    <div class="form-group">
+
+                                        <label>Nombre</label>
+                                        <input class="form-control" name="name" id="name" type="text" autocomplete="nope" value="">
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label>Apellido</label>
+                                        <input class="form-control" name="lastname" id="lastname" type="text" placeholder="Apellido" autocomplete="nop" value="">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <input type="checkbox" name="show1" id="show1" onclick="MostrarContrasenia()" />
+                                            </div>
+                                        </div>
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" autocomplete="nope" value="">
+                                        <button class="btn btn-success" type="button" id="confirm">
+                                            <i class="fas fa-check-double"></i>
+                                        </button>
+                                        <a href="#" title="" data-toggle="popover" data-placement="top" data-content="¡CAMPO NO VÁLIDO!" id="pop3"></a>
+                                    </div>
+                                    <div class="collapse" id="ConfirmarContraseña">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <input type="checkbox" name="show" id="show" onclick="MostrarContrasenia2()" />
+                                                </div>
+                                            </div>
+                                            <input type="password" class="form-control" id="password2" placeholder="Confirmar Contraseña" name="password2" value="" autocomplete="nop">
+                                            <button class="btn btn-success" type="button" id="verificar">
+                                                <i class="fas fa-check-double"></i>
+                                            </button>
+                                            <a href="#" title="Verficación" data-toggle="popover" data-placement="top" data-content="Contraseñas Iguales" id="pop1"></a>
+                                            <a href="#" title="Verficación" data-toggle="popover" data-placement="top" data-content="Contraseñas NO Iguales" id="pop2"></a>
+                                            <a href="#" title="Verficación" data-toggle="popover" data-placement="top" data-content="Debe llenar el campo de confirmación" id="pop4"></a>
+
                                         </div>
                                     </div>
-                                    <input type="password" class="form-control" id="password2" placeholder="Confirmar Contraseña" name="password2" value="" autocomplete="nop">
-                                    <button class="btn btn-success" type="button" id="verificar">
-                                        <i class="fas fa-check-double"></i>
-                                    </button>
-                                    <a href="#" title="Verficación" data-toggle="popover" data-placement="top" data-content="Contraseñas Iguales" id="pop1"></a>
-                                    <a href="#" title="Verficación" data-toggle="popover" data-placement="top" data-content="Contraseñas NO Iguales" id="pop2"></a>
-                                    <a href="#" title="Verficación" data-toggle="popover" data-placement="top" data-content="Debe llenar el campo de confirmación" id="pop4"></a>
-
-                                </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-success rounded-pill btn-xl" id="sendUpdate" value="Actualizar" />
+                                    </div>
+                                </form>
                             </div>
-                            <br>
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-success rounded-pill btn-xl" id="sendUpdate" value="Actualizar" />
-                                <button type="button" class="btn btn-danger rounded-pill btn-xl" id="cancelar">Cancelar</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger rounded-pill btn-xl" data-dismiss="modal">Cancelar</button>
+                </div>
             </div>
-
         </div>
-    </section>
-
+    </div>
     <!-- Modal ELIMINAR-->
     <div class="modal fade" id="ELIMINAR" tabindex="-1" role="dialog" aria-labelledby="ELIMINAR" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -200,7 +203,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                <div class="form-group row">
+                    <div class="form-group row">
                         <label for="CodUser" class="col-sm-2 col-form-label">Codigo Usuario</label>
                         <div class="col-sm-10">
                             <input type="text" readonly class="form-control-plaintext" id="CodUser">

@@ -22,11 +22,9 @@
             <div class="logo float-left">
                 <a href="<?= base_url('Administracion') ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
             </div>
-
-            <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
-                <a href="<?= base_url('Administracion') ?>" style="color: white;">HOME</a>
+            <a role="button" class="btn btn-primary  btn-lg bg-secondary" href="<?= base_url('Administracion') ?>" style="color: white;">HOME
                 <i class="fas fa-home"></i>
-            </button>
+            </a>
     </nav>
     <!-- <div class="container-fluid bg-primary py-5">-->
     <section class="page-section" id="registrar">
@@ -94,15 +92,19 @@
                         </div>
                         <label for="password">Contraseña</label>
                         <div class="input-group mb-3" id="PassGroup">
+                            
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required >
+                            
                             <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <input type="checkbox" name="show" id="show" onclick="MostrarContrasenia()" />
-                                </div>
+                                <a type="button " class="btn btn-outline-primary btn-sm " id="VerContrasenia" onclick="MostrarContrasenia()">
+                                    <i class="fas fa-eye"></i>
+                                </a>
                             </div>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
+                            <div class="input-group-prepend">
+                            <button class="btn btn-primary " type="button" onclick="GenerarCotraseña()">Generar</button>
+                            </div>
                             <div class="invalid-feedback" id="invalido">
                             </div>
-                            <button class="btn btn-primary " type="button" onclick="GenerarCotraseña()">Generar</button>
                         </div>
                         <br>
                         <div id="success"></div>

@@ -19,7 +19,7 @@ class cTablaDocentes extends CI_Controller
                 $this->load->view('Admin/vTablaDocentes', array('data' => $res)); //mandar el array a la vista
             }
         } else {
-            show_404();
+            redirect('');
         }
     }
 
