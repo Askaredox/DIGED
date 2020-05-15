@@ -49,8 +49,8 @@ Sistema de ayuda al estudiante para estudiar cursos en línea por medio de una a
 |**Crear Docente      | Dar acción al botón no al link**                           | ``[########  ]`` |
 |**Administrar Docente| Colocar contraseña tapada y colocar botón para destapar**  | ``[#####     ]`` |
 |**Administrar Docente| Dar acción al botón no al link**                           | ``[########  ]`` |
-|**Actualizar Docente  | Lugar aparte o pop-up**, no usar códigos                  | ``[##        ]`` |
-| TODO                | Cuando no hay usuario loggeado regresar al login         | ``[#####     ]`` |
+|**Actualizar Docente | Lugar aparte o pop-up**, no usar códigos                   | ``[##        ]`` |
+|**TODO               | Cuando no hay usuario loggeado regresar al login**         | ``[#####     ]`` |
 | **Lugar**           | **Correcciones**                                         | ``[          ]`` |
 
 ### Docente
@@ -58,12 +58,12 @@ Sistema de ayuda al estudiante para estudiar cursos en línea por medio de una a
 | Lugar                       | Correcciones                                               | Importancia      |
 | --------------------------- | ---------------------------------------------------------- | ---------------- |
 | Barra de navegación         | Cerrado automático                                         | ``[#####     ]`` |
-| ~~Crear tema~~              | ~~Error fatal~~                                            | `[          ]`   |
-| Editar tema                 | No se muestra imagen                                       | `[########  ]`   |
-| Editar tema                 | Colocar nombre viejo                                       | `[######    ]`   |
-| Editar tema                 | Colocar alerta que se agrego tema nuevo y sacar            | `[#######   ]`   |
-| Editar tema                 | No actualiza nada                                          | `[######### ]`   |
-| Eliminar tema               | Colocar tema que se va a eliminar                          | `[#####     ]`   |
+|**Crear tema~~               | ~~Error fatal~~**                                           | `[          ]`   |
+|**Editar tema                | No se muestra imagen**                                      | `[########  ]`   |
+|**Editar tema                | Colocar nombre viejo**                                     | `[######    ]`   |
+|**Editar tema                | Colocar alerta que se agrego tema nuevo y sacar**            | `[#######   ]`   |
+|**Editar tema                | No actualiza nada**                                        | `[######### ]`   |
+|**Eliminar tema              | Colocar tema que se va a eliminar**                          | `[#####     ]`   |
 | Administrar titulo/ver tema | Error cuando se entra                                      | `[######### ]`   |
 | Crear titulo                | cuando se haya registrado sacar a administrar              | `[#####     ]`   |
 | ~~Crear titulo~~            | ~~Redireccionar bien el atrás~~                            | `[          ]`   |

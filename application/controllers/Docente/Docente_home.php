@@ -28,8 +28,12 @@ class Docente_home extends CI_Controller
     {
         $idTema = $this->input->post("idTema");
         $idCurso = $this->input->post("idCurso");
-        $res = $this->Docente_Temas_model->getTema($idTema, $idCurso);
-        echo json_encode($res);
+        if ($res = $this->Docente_Temas_model->getTema($idTema, $idCurso)) {
+            echo json_encode($res);
+        } else {
+            $this->session->set_flashdata('msge', '¡EL TEMA NO EXISTE!');
+            echo json_encode(array('url' => base_url('Temas/Administrar/' . $idCurso)));
+        }
     }
     public function changePassword()
     {
@@ -143,17 +147,13 @@ class Docente_home extends CI_Controller
                         $this->load->library('upload', $config);
                         if (!$this->upload->do_upload('image')) { // no se pudo subir la imagen
                             //  $this->session->set_flashdata('msge', $this->upload->display_errors());
-                            $error = $this->upload->display_errors();
-                            /*
+                            //$error = $this->upload->display_errors();
+
                             $error = array(
-                                'errorI' => '<ul>
-                                        <li>Verifique el tipo de la imagen (jpeg, jpg, png)</li>
-                                        <li>Verifique la altura mínima de la imagen debe ser 400</li>
-                                        <li>Verifique el ancho mínimo de la imagen  debe ser 400</li>
-                                       </ul>',
+                                'errorI' => 'text-danger',
                                 'Nombre_T' => ''
                             );
-                            */
+
                             $this->Docente_Temas_model->DeleteTema($data);
                             $this->output
                                 ->set_status_header(400)
