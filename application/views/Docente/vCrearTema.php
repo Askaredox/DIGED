@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group" id="GroupName">
                             <label for="Nombre_T">Nombre Tema</label>
-                            <input type="text" class="form-control" name="Nombre_T" id="Nombre_T" placeholder="Nombre del Tema" required>
+                            <input type="text" class="form-control" name="Nombre_T" id="Nombre_T" placeholder="Nombre del Tema" >
                             <div class="invalid-feedback">
                             </div>
                         </div>
@@ -87,8 +87,6 @@
                             <small id="fileHelp" class="form-text text-muted">&ensp;°&nbsp;La altura de la imagen debe ser 400px o mayor</small>
                             <small id="fileHelp" class="form-text text-muted">&ensp;°&nbsp;La anchura de la imagen debe ser 400px o mayor</small>
                             <small id="fileHelp" class="form-text text-muted">&ensp;°&nbsp;No es obligatorio subir una imagen</small>
-                            <div class="text-danger">
-                            </div>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-xl" id="submit" name="submit" value="REGISTRAR" />
