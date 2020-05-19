@@ -58,10 +58,10 @@ Sistema de ayuda al estudiante para estudiar cursos en línea por medio de una a
 | --------------------------- | ---------------------------------------------------------- | ---------------- |
 | Barra de navegación         | Cerrado automático                                         | ``[#####     ]`` |
 | ~~Crear tema~~              | ~~Error fatal~~                                            | `[          ]`   |
-| Editar tema                 | No se muestra imagen                                       | `[########  ]`   |
-| Editar tema                 | Colocar nombre viejo                                       | `[######    ]`   |
+| ~~Editar tema~~             | ~~No se muestra imagen~~                                   | `[          ]`   |
+| ~~Editar tema~~             | ~~Colocar nombre viejo~~                                   | `[          ]`   |
 | Editar tema                 | Colocar alerta que se agrego tema nuevo y sacar            | `[#######   ]`   |
-| Editar tema                 | No actualiza nada                                          | `[######### ]`   |
+| ~~Editar tema~~             | ~~No actualiza nada~~                                      | `[          ]`   |
 | Eliminar tema               | Colocar tema que se va a eliminar                          | `[#####     ]`   |
 | Administrar titulo/ver tema | Error cuando se entra                                      | `[######### ]`   |
 | Crear titulo                | cuando se haya registrado sacar a administrar              | `[#####     ]`   |
