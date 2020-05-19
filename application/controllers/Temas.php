@@ -56,6 +56,8 @@ class Temas extends CI_Controller
 
         if ($this->Docente_Temas_model->ExistsTema($coincidir)) { //existe entonces se puede actualizar imagen
             $json = $_FILES['image'];
+
+
             if (strlen($json['name']) > 0) {
                 $config = [
                     "upload_path" => "./uploads/ImgTemas/",
@@ -90,6 +92,12 @@ class Temas extends CI_Controller
                             $imagenEliminar = $row['Imagen'];
                         }
                         $datos['Imagen'] =  'uploads/ImgTemas/' . $this->upload->data('file_name'); // nueva imagen cargada
+
+                        //0 -> width 568
+                        //1 -> height 481
+                        $datos['Altura_img'] = getimagesize($datos['Imagen'])[1];
+                        $datos['Ancho_img'] = getimagesize($datos['Imagen'])[0];
+
                         // nueva imagen cargada
                         if ($this->Docente_Temas_model->UpdateTema($coincidir, $datos)) { //ACTUALIZAR RUTA IMAGEN
                             $datos['Nombre_T'] =  $nombre_T;
@@ -99,6 +107,9 @@ class Temas extends CI_Controller
 
                             $row = $this->Docente_Temas_model->getTema($coincidir['Cod_Tema'], $coincidir['Curso']);
                             if ($row->Nombre_T == $datos['Nombre_T']) { // son iguales no hay cambios que efectuar
+                                if (strlen($imagenEliminar) > 0) {
+                                    unlink('./' . $imagenEliminar);
+                                }
                                 $this->session->set_flashdata('msg', '¡EL TEMA SE ACTUALIZÓ CON ÉXITO EL TEMA ' . $datos['Nombre_T'] . ' !');
                                 echo json_encode(array('url' => base_url('Temas/Administrar/' . $coincidir['Curso'])));
                             } else { // no son iguales si se esta tratando de actualizar el tema
@@ -113,13 +124,13 @@ class Temas extends CI_Controller
                                 } else { /// no existe se procede a actualizar
 
                                     if ($this->Docente_Temas_model->UpdateTema($coincidir, $datos)) { //se pudo actualizar
-                                        
+
                                         if (strlen($imagenEliminar) > 0) {
                                             unlink('./' . $imagenEliminar);
                                         }
+
                                         $this->session->set_flashdata('msg', '¡EL TEMA SE ACTUALIZÓ CON ÉXITO EL TEMA ' . $comp['Nombre_T'] . ' !');
                                         echo json_encode(array('url' => base_url('Temas/Administrar/' . $coincidir['Curso'])));
-
                                     } else {
                                         $datos2['Imagen'] = $imagenEliminar;
                                         $this->Docente_Temas_model->UpdateTema($coincidir, $datos2);

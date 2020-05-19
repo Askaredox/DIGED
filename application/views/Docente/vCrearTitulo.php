@@ -54,6 +54,7 @@
 
             <!-- Register Section Form -->
             <div class="row">
+
                 <div class="col-lg-8 col-sm-12 mx-auto">
                     <div id=notificacion>
                         <!--MENSAJE DE BIENVENIDA TEMPORAL-->
@@ -76,14 +77,10 @@
                                 </div>
                             </div>
                         <?php endif; ?>
-                        <?php if (isset($data)) {
-                            //var_dump($data);
-
-                        } ?>
                     </div>
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <div class="container-sm">
-                        <form class=" col-md-12 col-sm-8" name="RegisterTitle" id="RegisterTitle">
+                    <div class="container-fluid">
+                        <form class=" col-md-12 col-sm-12" name="RegisterTitle" id="RegisterTitle">
                             <div class="form-group" id="GroupCod">
                                 <div class="row">
                                     <div class="col-5">
@@ -100,26 +97,27 @@
                                 <div class="invalid-feedback">
                                 </div>
                             </div>
-                            <div class="form-group  col-md-12 col-sm-8" id="GroupPos">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <input type="text" class="form-control" name="pos" id="pos" placeholder="Posicion del Titulo" readonly>
-                                        <div class="invalid-feedback">
-                                            Debe crear el area para redirigir al contenido del título
-                                        </div>
-                                    </div>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Tipo enlace" readonly>
-                                        <div class="invalid-feedback">
-                                            Debe crear el area para redirigir al contenido del título
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="form-group" id="GroupImg">
                                 <!--iria la imagen para  hacer el mapeo-->
 
                                 <?php if (isset($img)) : ?>
+                                    <div class="form-group  col-md-12 col-sm-8" id="GroupPos">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="text" class="form-control" name="pos" id="pos" placeholder="Posicion del Titulo" readonly>
+                                                <div class="invalid-feedback">
+                                                    Debe crear el area para redirigir al contenido del título
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Tipo enlace" readonly>
+                                                <div class="invalid-feedback">
+                                                    Debe crear el area para redirigir al contenido del título
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="form-check">
                                             <input type="checkbox" name="circ" id="circ" onclick="Circular(this)" />
@@ -140,15 +138,6 @@
                                             </label>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="form-check">
-                                            <input type="checkbox" name="Poly" id="Poly" onclick="Libre(this)" />
-                                            <label class="form-check-label" for="Poly">
-                                                Enlace Libre
-                                            </label>
-                                        </div>
-                                    </div>
                                     <div class="collapse form-group" id="FormCircular">
                                         <div class="card card-body">
                                             <button type="button" class="close" id="cerrar">
@@ -157,13 +146,12 @@
                                             <form>
                                                 <div id="form2"></div>
                                             </form>
-
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <img src="<?= base_url($img) ?>" class="map grande" alt="" id="imagenTema" crossorigin="anonymous" usemap="#mapeo" width="600">
+                                                <img src="<?= base_url($img) ?>" class="img-fluid map  grande" alt="" id="imagenTema" crossorigin="anonymous" usemap="#mapeo" width="600">
                                             </div>
                                         </div>
                                     </div>
@@ -172,9 +160,14 @@
                                 <?php endif; ?>
                             </div>
                             <div class="form-group">
-                                <h2 style="text-align:center;">CONTENIDO</h2>
-                                <textarea id="summernote" name="editordata" style="z-index:0; position:relative"></textarea>
-                                <input type="submit" class="btn btn-primary btn-xl" id="submit" name="submit" value="REGISTRAR" />
+                                <div class="row">
+                                    <div class="container">
+                                        <h2 style="text-align:center;">CONTENIDO</h2>
+                                        <textarea id="summernote" name="editordata" style="z-index:0; position:relative"></textarea>
+                                        <input type="submit" class="btn btn-primary btn-xl" id="submit" name="submit" value="REGISTRAR" />
+                                    </div>
+
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -193,19 +186,19 @@
             ?>
             <script type="text/javascript">
                 $alturaOrigin = "<?php echo $alto ?>"; //estos sacarlos de la base
-                $anchoOrigin ="<?php echo $ancho ?>"; //estos sacarlos de la base
+                $anchoOrigin = "<?php echo $ancho ?>"; //estos sacarlos de la base
 
                 $type = "<?php echo $tipo ?>";
                 $Coordenada = "<?php echo $X ?>";
 
                 if ($type == 1) {
                     $dividida1 = $Coordenada.split(',')
-                    
-                            $x1 = Math.round(($dividida1[0] * document.getElementById('imagenTema').width) / $anchoOrigin)
-                        
-                            $y1 = Math.round(($dividida1[1] * document.getElementById('imagenTema').height) / $alturaOrigin)
-                        
-                            $radio = Math.round(($dividida1[2] * document.getElementById('imagenTema').width) / $anchoOrigin)
+
+                    $x1 = Math.round(($dividida1[0] * document.getElementById('imagenTema').width) / $anchoOrigin)
+
+                    $y1 = Math.round(($dividida1[1] * document.getElementById('imagenTema').height) / $alturaOrigin)
+
+                    $radio = Math.round(($dividida1[2] * document.getElementById('imagenTema').width) / $anchoOrigin)
 
                     $enlace = $x1 + "," + $y1 + "," + $radio
                     document.getElementById('mapeo').innerHTML += "<area id=\"titulo\" class=\"title\" alt=\"\" href=\"#\" shape=\"circle\" coords=\"" + $enlace + "\" onclick=\"mostrarTitulo('<?php echo $title; ?>')\" data-maphilight=\'{\"alwaysOn\":true}\'>"
@@ -218,7 +211,7 @@
                     $y2 = Math.round(($dividida2[3] * document.getElementById('imagenTema').height) / $alturaOrigin)
 
                     $enlace = $x1 + "," + $y1 + "," + $x2 + "," + $y2
-                    document.getElementById('mapeo').innerHTML += "<area id=\"titulo\"  class=\"title\" alt=\"\" href=\"#\" shape=\"rect\" coords=\""+$enlace+"\" onclick=\"mostrarTitulo('<?php echo $title; ?>')\" data-maphilight=\'{\"alwaysOn\":true}\'>"
+                    document.getElementById('mapeo').innerHTML += "<area id=\"titulo\"  class=\"title\" alt=\"\" href=\"#\" shape=\"rect\" coords=\"" + $enlace + "\" onclick=\"mostrarTitulo('<?php echo $title; ?>')\" data-maphilight=\'{\"alwaysOn\":true}\'>"
                 }
             </script>
         <?php endforeach ?>
@@ -228,9 +221,7 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
     <!-- include summernote css/js -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js" defer></script>

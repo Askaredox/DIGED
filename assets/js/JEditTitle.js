@@ -1,72 +1,29 @@
 $(document).ready(function (ev) {
-    $('html, body').animate({ scrollTop: 0 }, 'slow');
+
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
+    $posAnt = $("#pos").val();
+    $tipoAnt = $('#tipo').attr('placeholder');
+    $tipoA = $('#tipo').val();
+
 });
+
+
 (function ($) {
-    $("#UpdatePassword").submit(function (ev) {
-        ev.preventDefault();
-        var self = this;
-        $.ajax({
-            url: 'Docente/Docente_home/changePassword',
-            type: 'POST',
-            data: $(this).serialize(),
-            success: function (data) {
-                $("#Pw1 > input").removeClass('is-invalid');
-                $("#Pw2 > input").removeClass('is-invalid');
-                $("#PwActual > input").removeClass('is-invalid');
-                $("#Pw1 > input").addClass('is-valid');
-                $("#Pw2 > input").addClass('is-valid');
-                $("#PwActual > input").addClass('is-valid');
-                var json = JSON.parse(data);
-                window.location.replace(json.url);
-                //console.log(data);
-            },
-            statusCode: {
-                400: function (xhr) {
-
-                    $("#Pw1 > input").removeClass('is-invalid');
-                    $("#Pw2 > input").removeClass('is-invalid');
-                    $("#PwActual > input").removeClass('is-invalid');
-                    var json = JSON.parse(xhr.responseText);
-                    if (json.P1.length != 0) {
-                        $("#Pw1 > div").html(json.P1);
-                        $("#Pw1 > input").addClass('is-invalid');
-                    }
-                    if (json.P2.length != 0) {
-                        $("#Pw2 > div").html(json.P2);
-                        $("#Pw2 > input").addClass('is-invalid');
-                    }
-
-                    if (json.A.length != 0) {
-                        $("#PwActual > div").html(json.A);
-                        $("#PwActual > input").addClass('is-invalid');
-                    }
-                },
-                401: function (xhr) {
-                    //PwActual
-                    $("#Pw1 > input").removeClass('is-invalid');
-                    $("#Pw2 > input").removeClass('is-invalid');
-                    $("#Pw1 > input").addClass('is-valid');
-                    $("#Pw2 > input").addClass('is-valid');
-                    $("#PwActual > input").removeClass('is-invalid');
-                    var json = JSON.parse(xhr.responseText);
-                    if (json.A.length != 0) {
-                        $("#PwActual > div").html(json.A);
-                        $("#PwActual > input").addClass('is-invalid');
-                    }
-
-                }
-            }
-        });
-    });
-
-
     $("#submit").click(function (ev) {
-        console.log("entraste a craecion de titulo")
+        console.log("entraste a edición de titulo")
         ev.preventDefault();
         var self = this;
-        $Nombre = $("#Nombre").val();
+
+        var nom = document.getElementById("Nombre");
+        if (nom.value.length == 0 || /^\s+$/.test(nom.value)) {
+            $Nombre = $("#Nombre").attr('placeholder');
+        } else {
+            $Nombre = $("#Nombre").val();
+        }
+
         $Curso = $("#Curso").val();
         $Tema = $("#Tema").val();
+        $Titulo = $("#Cod_Titulo").val();
         $Contenido = $('#summernote').summernote('code')
         if ($("#imagenTema").length) {
 
@@ -85,11 +42,12 @@ $(document).ready(function (ev) {
                     'Coordenadas': $Coordenadas,
                     'tipoEnlace': $Tipo,
                     'Tema': $Tema,
-                    'Curso': $Curso
+                    'Curso': $Curso,
+                    'Id_Titulo': $Titulo
                 }
                 $.ajax({
 
-                    url: base_url + 'Titulo/CrearTitulo',
+                    url: base_url + 'Titulo/EditarTitulo',
                     type: 'POST',
                     data: $datos,
                     success: function (data) {
@@ -104,7 +62,7 @@ $(document).ready(function (ev) {
                     statusCode: {
                         400: function (xhr) {
 
-                            $('html, body').animate({ scrollTop: 0 }, 'slow');
+                            /*$('html, body').animate({ scrollTop: 0 }, 'slow');
                             $("#GroupName > input").removeClass('is-invalid');
                             var json = JSON.parse(xhr.responseText);
                             if (json.Nombre.length != 0) {
@@ -112,7 +70,7 @@ $(document).ready(function (ev) {
                                 $("#GroupName > input").addClass('is-invalid');
                             } else {
                                 $("#GroupName > input").addClass('is-valid');
-                            }
+                            }*/
                         },
                         401: function (xhr) {
                             var json = JSON.parse(xhr.responseText);
@@ -131,19 +89,19 @@ $(document).ready(function (ev) {
 
                         },
                         500: function (xhr) {
-                            // var json = JSON.parse(xhr.responseText);
+                            var json = JSON.parse(xhr.responseText);
 
                             $('html, body').animate({ scrollTop: 0 }, 'slow');
-
-                            $("#notificacion").html('<div class="container-sm">' +
-                                '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
-                                '<strong>¡ERROR! OCURRIÓ UN ERROR AL CREAR EL TITULO REVISE EL NOMBRE Y LOS DATOS ENVIADOS</strong>' +
-                                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                                '<span aria-hidden="true">&times;</span>' +
-                                '</button>' +
-                                '</div>' +
-                                '</div>');
-
+                            if (json.error.length != 0) {
+                                $("#notificacion").html('<div class="container-sm">' +
+                                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+                                    '<strong>¡ERROR! OCURRIÓ UN ERROR AL EDITAR EL TITULO REVISE EL NOMBRE Y LOS DATOS ENVIADOS</strong>' +
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                                    '<span aria-hidden="true">&times;</span>' +
+                                    '</button>' +
+                                    '</div>' +
+                                    '</div>');
+                            }
 
                         }
                     }
@@ -160,7 +118,8 @@ $(document).ready(function (ev) {
                     'Coordenadas': '',
                     'tipoEnlace': '',
                     'Tema': $Tema,
-                    'Curso': $Curso
+                    'Curso': $Curso,
+                    'Id_Titulo': $Titulo
                 }
             }
 
@@ -172,10 +131,11 @@ $(document).ready(function (ev) {
                 'Curso': $Curso,//nombre Curso
                 'Coordenadas': '',
                 'tipoEnlace': '',
+                'Id_Titulo': $Titulo
             }
             $.ajax({
 
-                url: base_url + 'Titulo/CrearTitulo',
+                url: base_url + 'Titulo/EditarTitulo',
                 type: 'POST',
                 data: $datos,
                 success: function (data) {
@@ -190,15 +150,15 @@ $(document).ready(function (ev) {
                     400: function (xhr) {
 
 
-                        $("#GroupName > input").removeClass('is-invalid');
-                        var json = JSON.parse(xhr.responseText);
-                        if (json.Nombre.length != 0) {
-                            $("#GroupName > div").html(json.Nombre);
-                            $("#GroupName > input").addClass('is-invalid');
-                        } else {
-                            $("#GroupName > input").addClass('is-valid');
-                        }
-                        $('html, body').animate({ scrollTop: 0 }, 'slow');
+                        /*  $("#GroupName > input").removeClass('is-invalid');
+                          var json = JSON.parse(xhr.responseText);
+                          if (json.Nombre.length != 0) {
+                              $("#GroupName > div").html(json.Nombre);
+                              $("#GroupName > input").addClass('is-invalid');
+                          } else {
+                              $("#GroupName > input").addClass('is-valid');
+                          }
+                          $('html, body').animate({ scrollTop: 0 }, 'slow');*/
                     },
                     401: function (xhr) {
                         var json = JSON.parse(xhr.responseText);
@@ -217,19 +177,18 @@ $(document).ready(function (ev) {
 
                     },
                     500: function (xhr) {
-                        // var json = JSON.parse(xhr.responseText);
+                        //var json = JSON.parse(xhr.responseText);
 
                         $('html, body').animate({ scrollTop: 0 }, 'slow');
-                        //if (json.error.length != 0) {
                         $("#notificacion").html('<div class="container-sm">' +
                             '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
-                            '<strong>¡ERROR! OCURRIÓ UN ERROR AL CREAR EL TITULO REVISE EL NOMBRE Y LOS DATOS ENVIADOS</strong>' +
+                            '<strong>¡ERROR! OCURRIÓ UN ERROR AL EDITAR EL TITULO REVISE EL NOMBRE Y LOS DATOS ENVIADOS</strong>' +
                             '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                             '<span aria-hidden="true">&times;</span>' +
                             '</button>' +
                             '</div>' +
                             '</div>');
-                        ///}
+
 
                     }
                 }
@@ -521,9 +480,9 @@ $("#BorrarButton").click(function (ev) {
 
     $("#mapeo").append('<area class="prueba" id="titulo" title="" alt="" href="" shape="circle" coords="0,0,1"  data-maphilight=\'{"alwaysOn":true}\'>');
     $(".prueba").data('maphilight', { 'alwaysOn': true }).trigger('alwaysOn.maphilight');
-    $("#pos").val("");
-    document.getElementById('tipo').placeholder = 'Tipo enlace';
-    document.getElementById('tipo').value = '';
+    $("#pos").val($posAnt);
+    document.getElementById('tipo').placeholder = $tipoAnt;
+    document.getElementById('tipo').value = $tipoA;
     $cont = 0;
 
 });

@@ -6,7 +6,7 @@ class cTablaCursos extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('Admin_Cursos_model', 'Admin_model'));
+        $this->load->model(array('Admin_Cursos_model', 'Admin_model','Docente_Temas_model'));
     }
     public function index()
     {
@@ -60,6 +60,22 @@ class cTablaCursos extends CI_Controller
         );
 
         if ($this->Admin_Cursos_model->existsCurso($data)) { // existe
+
+            //ELIMINAR LAS IMAGENES EN EL SERVIDOR DE LOS TEMAS DE ESE CURSO---------
+            $data2 = array(
+                "Curso" => $data['Cod_Curso']
+            );
+            $res2 =$this->Docente_Temas_model->getTemas($data2);
+
+            foreach($res2 as $row){
+                $imagenEliminar = $row['Imagen'];
+
+                if (strlen($imagenEliminar) > 0) {
+                    unlink('./' . $imagenEliminar);
+                }
+            }
+            //-----------------------------------------------------------------------------
+
             if ($this->Admin_Cursos_model->DeleteCurso($data)) { // si se elimino correctamente
                 $this->session->set_flashdata('msg', 'Se eliminó con éxito el Curso');
                 $this->output->set_output(json_encode(array('url' => base_url('Administrar/Cursos'))));

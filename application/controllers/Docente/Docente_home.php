@@ -161,6 +161,8 @@ class Docente_home extends CI_Controller
                         } else {
                             // echo json_encode($this->upload->data('file_name'));
                             $datos['Imagen'] =  'uploads/ImgTemas/' . $this->upload->data('file_name');
+                            $datos['Altura_img'] = getimagesize($datos['Imagen'])[1];
+                            $datos['Ancho_img'] = getimagesize($datos['Imagen'])[0];
 
                             if ($this->Docente_Temas_model->UpdateTema($data, $datos)) {
                                 $this->session->set_flashdata('msg', 'EL TEMA FUE CREADO CON ÉXITO');

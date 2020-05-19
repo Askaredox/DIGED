@@ -36,11 +36,12 @@
     <div id="layoutSidenav_content">
 
         <div class="container-fluid">
-            <div class="card mb-4">
+            <div class="card mt-5">*</div>
+            <div class="card mt-5">
                 <h1 class="display-4" style="text-align:center;"><?= $tema ?> </h1>
 
                 <div id="notificacion">
-                    <?php if ($dat = $this->session->flashdata('msg')) : ?>
+                    <?php if ($dat = $this->session->flashdata('msg')) :  unset($_SESSION['msg']) ?>
                         <div class="container-sm">
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <strong><?= $dat ?></strong>
@@ -49,7 +50,7 @@
                                 </button>
                             </div>
                         </div>
-                    <?php elseif ($dat = $this->session->flashdata('msge')) : ?>
+                    <?php elseif ($dat = $this->session->flashdata('msge')) : unset($_SESSION['msge']) ?>
                         <div class="container-sm">
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <strong><?= $dat ?></strong>
@@ -59,6 +60,7 @@
                             </div>
                         </div>
                     <?php endif; ?>
+                    <?php   ?>
                 </div>
 
             </div>
@@ -103,12 +105,8 @@
                                                 <a type="button " class="btn btn-secondary btn-sm " id="VerTitulo" role="button" href="#" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>">
                                                     <i class="fas fa-eye"></i> <!-- aquí iría lo de agregar el contenido-->
                                                 </a>
-                                                <a class="scrollto" href="#EDITAR" style="color: white;">
-                                                    <button type="button " class="btn btn-primary btn-edit btn-sm" role="button" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-pos="<?= $titulo['Coordenadas'] ?>" data-curso="<?= $this->uri->segment(3)  ?>" data-tipo="<?= $titulo['tipoEnlace'] ?>">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-
-
+                                                <a href="<?= base_url('Titulo/Editar/' . $this->uri->segment(3) . '/' . $titulo['Tema'] . '/' . $titulo['Id_Titulo']) ?>" data-id="<?= $titulo['Id_Titulo'] ?>" class="btn btn-primary btn-sm  active" role="button" aria-pressed="true">
+                                                    <i class="fas fa-edit"></i>
                                                 </a>
                                                 <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-curso="<?= $this->uri->segment(3) ?>">
                                                     <i class="fas fa-trash-alt"></i>
@@ -123,135 +121,6 @@
                 </div>
             </div>
         </div>
-
-
-        <!-- SECCIÓN EDITAR COMPLETA-->
-        <section class="page-section" id="EDITAR">
-            <div class="container pt-5">
-
-
-                <!-- Contact Section Heading -->
-                <header>
-                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">EDITAR TITULO</h2>
-
-                    <!-- Icon Divider -->
-                    <div class="divider-custom">
-                        <div class="divider-custom-line"></div>
-                        <div class="divider-custom-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="divider-custom-line"></div>
-                    </div>
-                </header>
-
-                <!-- Register Section Form -->
-                <div class="row">
-                    <div class="col-lg-8 col-sm-12 mx-auto">
-                        <div id="notificacion2">
-                        </div>
-                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                        <div class="container-sm">
-                            <form class=" col-md-12 col-sm-8" name="UpdateForm" id="UpdateForm">
-                                <div class="form-group" id="GroupCod">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <input type="text" class="form-control" name="Curso" id="Curso" placeholder="Codigo del Curso" hidden>
-                                        </div>
-                                        <div class="col-4">
-                                            <input type="text" class="form-control" name="Tema" id="Tema" placeholder="Codigo del Tema" hidden>
-                                        </div>
-                                        <div class="col-4">
-                                            <input type="text" class="form-control" name="Titulo" id="Titulo" placeholder="Codigo del Titulo" hidden>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-12 col-sm-8" id="GroupName">
-                                    <label for="Nombre">Nombre Titulo</label>
-                                    <input type="text" class="form-control" name="Nombre" id="Nombre" placeholder="Nombre del Titulo">
-                                    <div class="invalid-feedback">
-                                    </div>
-                                </div>
-                                <div class="form-group  col-md-12 col-sm-8" id="GroupPos">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" name="pos" id="pos" placeholder="Posicion del Titulo" readonly>
-                                        </div>
-                                        <div class="col-5">
-                                            <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Tipo enlace" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="GroupImg">
-                                    <!--iria la imagen para  hacer el mapeo-->
-
-                                    <?php if (isset($img)) : ?>
-                                        <div class="row">
-                                            <div class="form-check">
-                                                <input type="checkbox" name="circ" id="circ" onclick="Circular(this)" />
-                                                <label class="form-check-label" for="circ">
-                                                    Enlace Circular
-                                                </label>
-                                            </div>
-                                            <div class="col-1"></div>
-                                            <div class="form-group">
-                                                <button type="button" class="btn btn-primary btn-sm rounded-pill" id="BorrarButtonButton">Deshacer</button>'
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-check">
-                                                <input type="checkbox" name="Rect" id="Rect" onclick="Rectangular(this)" />
-                                                <label class="form-check-label" for="Rect">
-                                                    Enlace Rectangular
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="form-check">
-                                                <input type="checkbox" name="Poly" id="Poly" onclick="Libre(this)" />
-                                                <label class="form-check-label" for="Poly">
-                                                    Enlace Libre
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="collapse form-group" id="FormCircular">
-                                            <div class="card card-body">
-                                                <button type="button" class="close" id="cerrar">
-                                                    <span>&times;</span>
-                                                </button>
-                                                <form>
-                                                    <div id="form2"></div>
-                                                </form>
-
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <img src="<?= base_url($img) ?>" class="map grande" alt="" id="imagenTema" crossorigin="anonymous" usemap="#mapeo" width="600">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <map name="mapeo" id="mapeo">
-                                        </map>
-
-
-                                    <?php endif; ?>
-                                </div>
-                                <div class="form-group">
-                                    <h2 style="text-align:center;">CONTENIDO</h2>
-                                    <textarea id="summernote" name="editordata" style="z-index:0; position:relative"></textarea>
-                                    <input type="submit" class="btn btn-success rounded-pill btn-xl" id="sendUpdate" value="Actualizar" />
-                                    <button type="button" class="btn btn-danger rounded-pill btn-xl" id="cancel">Cancelar</button>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </section>
 
         <!-- Modal ELIMINAR CURSO PENDIENTE-->
         <div class="modal fade" id="EliminarModal" tabindex="-1" role="dialog" aria-labelledby="ELIMINAR" aria-hidden="true">
@@ -306,7 +175,7 @@
 
                 $type = "<?php echo $tipo ?>";
                 $Coordenada = "<?php echo $X ?>";
-               
+
                 if ($type == 1) {
                     $dividida1 = $Coordenada.split(',')
 
@@ -335,9 +204,8 @@
 
 
     <!-- Optional JavaScript -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js" defer></script>

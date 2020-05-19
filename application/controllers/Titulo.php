@@ -74,6 +74,7 @@ class Titulo extends CI_Controller
             //var_dump($data);
             if (!$data) { //entpnces no hay titulos registrados aún
                 $this->session->set_flashdata('msge', 'ESTE TEMA AÚN NO TIENE TITULOS REGISTRADOS');
+
                 $this->load->view('Docente/vTablaTitulos', array('data' => null, 'tema' => $tema->Nombre_T));
                 //redirect(base_url('Titulo/Dashboard/' . $idCurso . '/' . $idTema));
             } else {
@@ -135,6 +136,7 @@ class Titulo extends CI_Controller
                 );
             }
             if ($this->Docente_Titulos_model->ExistsTitulo(array('Nombre' => $datos['Nombre'], 'Tema' => $datos['Tema']))) { // si existe tiraria error
+
                 $this->output
                     ->set_status_header(401)
                     ->set_output(json_encode(array('error' => '¡ERROR! EL TITULO YA EXISTE.')));
@@ -149,6 +151,76 @@ class Titulo extends CI_Controller
                 }
             }
         }
+    }
+    public function Editar($idCurso, $idTema, $idTitulo)
+    {
+        $find = array(
+            'Id_Titulo' => $idTitulo
+        );
+        if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
+
+            if (!$title = $this->Docente_Titulos_model->getTitulos($find)) { // no encontró el titulo hay que direccionar
+                $this->session->set_flashdata('msge', '¡ERROR!Ha Ocurrido un error, intentelo de nuevo, no se encuentra el titulo a editar');
+                redirect(base_url('Titulo/Administrar/' . $idCurso . '/' . $idTema));
+            } else { // si se encuentra el titulo entonces enviar los datos del titulo
+                foreach ($title as $roww) {
+                    $Nombre_Actual = $roww['Nombre'];
+                    $position = $roww['Coordenadas'];
+                    $type = $roww['tipoEnlace'];
+                    // $contenido = str_replace("\"", '\"', $roww['Contenido']); 
+                    $contenido = $roww['Contenido'];
+                }
+
+                if (!$res = $this->Docente_Temas_model->getTemas(array('Cod_Tema' => $idTema, 'Curso' => $idCurso))) // esto es para obtener la imagen
+                {
+                    $this->session->set_flashdata('msge', 'Ha Ocurrido un error, intentelo de nuevo ');
+                    redirect(base_url('Temas/Administrar/' . $idCurso));
+                } else { //
+                    foreach ($res as $row) {
+                        $imagen = $row['Imagen'];
+                        $wOrigin = $row['Ancho_img'];
+                        $hOrigin = $row['Altura_img'];
+                    }
+                    if (strlen($imagen) > 0) { // si existe una imagen
+                        if (!$data = $this->Docente_Titulos_model->getTitulos(array('Tema' => $idTema))) { // buscar los titulos
+                            // $this->session->set_flashdata('msge', 'Ha Ocurrido un error, intentelo de nuevo 2');
+                            //redirect(base_url('Titulo/Dashboard/' . $idCurso . '/' . $idTema));
+                            $this->load->view('Docente/vEditTitulo', array('img' => $imagen, 'Nombre_Actual' => $Nombre_Actual, 'position' => $position, 'type' => $type, 'contenido' => $contenido)); //, array('id' => $idCurso)); //mandar el array a la vista
+                        } else { // si si encuentra titulos enviarlos
+                            $titulos = array();
+                            foreach ($data as $row) {
+                                $X = $row['Coordenadas'];
+
+                                if (strlen($X) > 0) { // si tienen coordenadas meter en el arreglo
+                                    $tmp = array(
+                                        'Nombre' => $row['Nombre'],
+                                        'Coordenadas' => $row['Coordenadas'],
+                                        'tipoEnlace' => $row['tipoEnlace']
+                                    );
+                                    $titulos[] = $tmp;
+                                }
+                            }
+
+
+                            //echo "La cadena resultante es: " . $resultado;
+                            // var_dump($resultado);
+                            $this->load->view('Docente/vEditTitulo', array('img' => $imagen, 'ancho' => $wOrigin, 'alto' => $hOrigin, 'data' => $titulos, 'Nombre_Actual' => $Nombre_Actual, 'position' => $position, 'type' => $type, 'contenido' => $contenido));
+                        }
+                    } else { // si no existe solo carga la vista
+                        $this->load->view('Docente/vEditTitulo', array('Nombre_Actual' => $Nombre_Actual, 'contenido' => $contenido)); //mandar el array a la vista
+                    }
+                }
+            }
+        } else {
+            redirect('');
+        }
+
+
+        /* if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
+            $this->load->view('Docente/vEditTitulo'); //, array('id' => 0)); //mandar el array a la vista
+        } else {
+            redirect('');
+        }*/
     }
 
     public function EditarTitulo()
@@ -178,37 +250,47 @@ class Titulo extends CI_Controller
             $datos['tipoEnlace'] = $tipoEnlace;
         }
         //var_dump($datos);
+        if ($this->Docente_Titulos_model->ExistsTitulo($coincidir)) { // si existe vamos a editarlo
 
-        if (strlen($Nombre) > 0 || strlen($Coordenadas) > 0) { // solamente si se editaron estas dos cosas se actualizará si no no se editó nada
+            $r = $this->Docente_Titulos_model->getTitulos($coincidir);
+            foreach ($r as $row) {
+                $nameActual = $row['Nombre'];
+            }
+            //comparar si esta editando el nombre 
 
-            if ($this->Docente_Titulos_model->ExistsTitulo($coincidir)) { // si existe vamos a editarlo
-
-                if (!$this->Docente_Titulos_model->ExistsTitulo(array('Nombre' => $Nombre, 'Tema' => $Tema))) { //verificar si ya existe un registro con el nuevo nombre
+           // var_dump($nameActual."-".$Nombre);
+            if ($nameActual == $Nombre) { //
+                if ($this->Docente_Titulos_model->UpdateTitulo($coincidir, $datos)) { //se actualizó correctamente
+                    $this->session->set_flashdata('msg', 'EL TITULO SE ACTUALIZÓ CORRECTAMENTE');
+                    //var_dump("esto");
+                    echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
+                } else { // no se actualizó correctamente
+                    $this->session->set_flashdata('msge', '¡ERROR! OCURRIÓ UN ERROR AL ACTUALIZAR EL TITULO INTENTE MÁS ADELANTE');
+                    echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
+                }
+            } else {
+                if ($this->Docente_Titulos_model->ExistsTitulo(array('Nombre' => $Nombre, 'Tema' => $Tema))) { //verificar si ya existe un registro con el nuevo nombre
+                    // si existe entonces manda un error
+                    $this->output
+                        ->set_status_header(401)
+                        ->set_output(json_encode(array('error' => '¡ERROR! EL TITULO YA EXISTE NO SE PUEDE ACTUALIZAR EL NOMBRE.')));
+                } else {
                     if ($this->Docente_Titulos_model->UpdateTitulo($coincidir, $datos)) { //se actualizó correctamente
                         $this->session->set_flashdata('msg', 'EL TITULO SE ACTUALIZÓ CORRECTAMENTE');
                         //var_dump("esto");
                         echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
                     } else { // no se actualizó correctamente
-                        $this->session->set_flashdata('msge', '¡ERROR! OCURRIÓ UN ERRO AL ACTUALIZAR EL TITULO INTENTE MÁS ADELANTE');
+                        $this->session->set_flashdata('msge', '¡ERROR! OCURRIÓ UN ERROR AL ACTUALIZAR EL TITULO INTENTE MÁS ADELANTE');
                         echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
                     }
-                } else { // si existe entonces manda un error
-                    $this->output
-                        ->set_status_header(400)
-                        ->set_output(json_encode(array('error' => '¡ERROR! EL TITULO YA EXISTE NO SE PUEDE ACTUALIZAR EL NOMBRE.')));
                 }
-            } else { // de lo contrarioi no existe y debe reportarse el error
-
-                $this->session->set_flashdata('msge', '¡ERROR! EL TITULO NO EXISTE NO SE PUEDE EDITAR');
-                echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
             }
-        } else { // no se edito nada así que hay que redireccionar
-            //var_dump("llegó");
-            $this->session->set_flashdata('msg', 'NO SE ACTUALIZO EL REGISTRO');
+        } else { // de lo contrarioi no existe y debe reportarse el error
+
+            $this->session->set_flashdata('msge', '¡ERROR! EL TITULO NO EXISTE NO SE PUEDE EDITAR');
             echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
         }
     }
-
     public function BorrarTitulo()
     {
         $Id_Titulo = $this->input->post('Id_Titulo');
