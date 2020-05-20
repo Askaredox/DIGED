@@ -62,9 +62,12 @@
                             <div class="container-sm">
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     <strong><?= $dat ?></strong>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+
+                                    <a href="#" class="btn btn-primary btn-sm rounded-pill active" role="button" aria-pressed="true">
+                                        Aceptar
+                                    </a>
+
+
                                 </div>
                             </div>
                         <?php elseif ($dat = $this->session->flashdata('msge')) : ?>

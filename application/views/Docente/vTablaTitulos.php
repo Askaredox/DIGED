@@ -86,6 +86,7 @@
                                 <tr class="text-center text-uppercase">
                                     <th>Titulo</th>
                                     <th>Accion</th>
+                                    <th>Comprobacion</th>
                                 </tr>
                             </thead>
                             <!--DEFINICIION DE PIES DE TABLA -->
@@ -93,24 +94,27 @@
                                 <tr class="text-center text-uppercase">
                                     <th>Titulo</th>
                                     <th>Accion</th>
+                                    <th>Comprobacion</th>
                                 </tr>
                             </tfoot>
                             <!--INSERCIÓN DE DATOS TODAS SON  DATO2, DATO3, BOTONES DE ACCIONES-->
                             <tbody>
                                 <?php if ($data) : ?>
                                     <?php foreach ($data as $titulo) : ?>
-                                        <tr id="<?= "fila" . $titulo['Id_Titulo'] ?>">
+                                        <tr class="justify-content-center" id="<?= "fila" . $titulo['Id_Titulo'] ?>">
                                             <td><?= strtoupper($titulo['Nombre']); ?></td>
                                             <td class="text-center">
-                                                <a type="button " class="btn btn-secondary btn-sm " id="VerTitulo" role="button" href="#" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>">
-                                                    <i class="fas fa-eye"></i> <!-- aquí iría lo de agregar el contenido-->
-                                                </a>
                                                 <a href="<?= base_url('Titulo/Editar/' . $this->uri->segment(3) . '/' . $titulo['Tema'] . '/' . $titulo['Id_Titulo']) ?>" data-id="<?= $titulo['Id_Titulo'] ?>" class="btn btn-primary btn-sm  active" role="button" aria-pressed="true">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $titulo['Id_Titulo'] ?>" data-tema="<?= $titulo['Tema'] ?>" data-curso="<?= $this->uri->segment(3) ?>">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
+                                            </td>
+                                            <td style=" white-space: nowrap; width: 1px;">
+                                                <a href="#" class="btn btn-primary btn-sm  active" role="button" aria-pressed="true">
+                                                    <i class="fas fa-file-alt"></i> Editar
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
