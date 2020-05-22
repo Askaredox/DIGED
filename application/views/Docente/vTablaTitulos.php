@@ -166,45 +166,7 @@
             </div>
         </footer>
     </div>
-    <?php if (isset($data)) : ?>
-        <?php foreach ($data as $titulo) : $title = $titulo["Nombre"] ?>
-            <?php
-            $X = $titulo["Coordenadas"];
-            $tipo = $titulo['tipoEnlace'];
 
-            ?>
-            <script type="text/javascript">
-                $alturaOrigin = "<?php echo $altura ?>"; //estos sacarlos de la base
-                $anchoOrigin = "<?php echo $ancho ?>"; //estos sacarlos de la base
-
-                $type = "<?php echo $tipo ?>";
-                $Coordenada = "<?php echo $X ?>";
-
-                if ($type == 1) {
-                    $dividida1 = $Coordenada.split(',')
-
-                    $x1 = Math.round(($dividida1[0] * document.getElementById('imagenTema').width) / $anchoOrigin)
-
-                    $y1 = Math.round(($dividida1[1] * document.getElementById('imagenTema').height) / $alturaOrigin)
-
-                    $radio = Math.round(($dividida1[2] * document.getElementById('imagenTema').width) / $anchoOrigin)
-
-                    $enlace = $x1 + "," + $y1 + "," + $radio
-                    document.getElementById('mapeo').innerHTML += "<area id=\"titulo\" class=\"title\" alt=\"\" href=\"#\" shape=\"circle\" coords=\"" + $enlace + "\" onclick=\"mostrarTitulo('<?php echo $title; ?>')\" data-maphilight=\'{\"alwaysOn\":true}\'>"
-                } else {
-                    //alert("rectangular" + $Coordenada);
-                    $dividida2 = $Coordenada.split(',')
-                    $x1 = Math.round(($dividida2[0] * document.getElementById('imagenTema').width) / $anchoOrigin)
-                    $y1 = Math.round(($dividida2[1] * document.getElementById('imagenTema').height) / $alturaOrigin)
-                    $x2 = Math.round(($dividida2[2] * document.getElementById('imagenTema').width) / $anchoOrigin)
-                    $y2 = Math.round(($dividida2[3] * document.getElementById('imagenTema').height) / $alturaOrigin)
-
-                    $enlace = $x1 + "," + $y1 + "," + $x2 + "," + $y2
-                    document.getElementById('mapeo').innerHTML += "<area id=\"titulo\"  class=\"title\" alt=\"\" href=\"#\" shape=\"rect\" coords=\"" + $enlace + "\" onclick=\"mostrarTitulo('<?php echo $title; ?>')\" data-maphilight=\'{\"alwaysOn\":true}\'>"
-                }
-            </script>
-        <?php endforeach ?>
-    <?php endif; ?>
 
 
     <!-- Optional JavaScript -->

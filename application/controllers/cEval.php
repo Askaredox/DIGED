@@ -69,8 +69,6 @@ class CEval extends CI_Controller
                             )
 
                         );
-
-
                         break;
                     case 2: // larga
 
