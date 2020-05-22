@@ -11,10 +11,10 @@ class Admin_home extends CI_Controller
     }
     public function index()
     {
-        if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo')==1)) { // si hay alguien loggeado muestra eso
+        if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 1)) { // si hay alguien loggeado muestra eso
             $this->load->view('Admin/vAdmin_page');
         } else {
-            show_404();
+            redirect('');
         }
     }
 
@@ -26,21 +26,47 @@ class Admin_home extends CI_Controller
             $error = array(
                 'P1' => form_error('Pass1'),
                 'P2' => form_error('Pass2'),
+                'A' => form_error('ActualP'),
             );
             $this->output
                 ->set_status_header(400)
                 ->set_output(json_encode($error));
         } else { // cambiar la contra
-            $data = array(
-                'Contraseña' => $this->input->post('Pass1'),
-            );
-            $id = $this->session->userdata('Id_Usuario');
-            if (!$this->Admin_model->UpdateContraseña($id, $data)) { //no se actualizó
-                $this->session->set_flashdata('msge', '¡ERROR NO SE PUDO ACTUALIZAR LA CONTRASEÑA!');
-            } else {
-                $this->session->set_flashdata('msg', '¡SE ACTUALIZÓ CON ÉXITO LA CONTRASEÑA!');
+            //PassActual
+            $actual = $this->input->post('ActualP');
+
+            //verificar que el usuario loggeado tenga la misma contraseña enviada
+
+            if ($actual == $this->session->userdata('Contraseña')) { //si es igual entonces la cambia
+                $data = array(
+                    'Contraseña' => $this->input->post('Pass1'),
+                );
+                $id = $this->session->userdata('Id_Usuario');
+                if (!$this->Admin_model->UpdateContraseña($id, $data)) { //no se actualizó
+                    $this->session->set_flashdata('msge', '¡ERROR NO SE PUDO ACTUALIZAR LA CONTRASEÑA!');
+                } else {
+                    $datos= array(
+                        'Id_Usuario'=>$this->session->userdata('Id_Usuario'),
+                        'Nombre'=>$this->session->userdata('Nombre'),
+                        'Apellido'=>$this->session->userdata('Apellido'),
+                        'Contraseña'=>$data['Contraseña'],
+                        'Tipo'=> $this->session->userdata('Tipo'),
+                        'is_logged'=>TRUE
+                    );
+                   // var_dump(json_encode($data));
+                    $this->session->set_userdata($datos);
+                    $this->session->set_flashdata('msg', '¡SE ACTUALIZÓ CON ÉXITO LA CONTRASEÑA!');
+                }
+                $this->output->set_output(json_encode(array('url' => base_url('Administracion'))));
+                
+            } else { // mandar error
+                $error = array(
+                    'A' => "Ingresó una contraseña incorrecta",
+                );
+                $this->output
+                    ->set_status_header(401)
+                    ->set_output(json_encode($error));
             }
-            $this->output->set_output(json_encode(array('url' => base_url('Administracion'))));
         }
     }
     // PARA CREAR LOS CURSOS-----------------------

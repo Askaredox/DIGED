@@ -8,15 +8,15 @@
 <link href="<?= base_url('Admin_page/css/freelancer.min.css') ?>" rel="stylesheet">
 <link rel='stylesheet' href="<?= base_url('Admin_page/css/css/bootstrap.min.css') ?>">
 <script>
-  var base_url = '<?php echo base_url(); ?>';  
+    var base_url = '<?php echo base_url(); ?>';
 </script>
 <title>Formulario Tema</title>
 </head>
 
 <body id="page-top">
-    <input class="form-control" id="TCurso" name="TCurso" type="hidden" value=<?= $this->uri->segment(3)?> readonly>
-    <input class="form-control" id="TTema" name="TTema" type="hidden" value=<?= $this->uri->segment(4)?> readonly>
- <!-- para el codigo del docete nuevo-->
+    <input class="form-control" id="TCurso" name="TCurso" type="hidden" value=<?= $this->uri->segment(3) ?> readonly>
+    <input class="form-control" id="TTema" name="TTema" type="hidden" value=<?= $this->uri->segment(4) ?> readonly>
+    <!-- para el codigo del docete nuevo-->
 
 
     <!-- Navigation -->
@@ -28,9 +28,9 @@
             <a href="<?= base_url('Temas/Administrar/' . $this->uri->segment(3)) ?>" class="btn btn-primary btn-lg bg-secondary" role="button">
                 Atrás <i class="fas fa-arrow-left"></i>
             </a>
-            
+
     </nav>
-            <!-- SECCIÓN EDITAR COMPLETA-->
+    <!-- SECCIÓN EDITAR COMPLETA-->
     <section class="page-section" id="EDITAR">
         <div class="container pt-5">
             <header>
@@ -46,33 +46,64 @@
                 </div>
             </header>
             <div class="container">
+
+                <div id=notificacion>
+                    <!--MENSAJE DE BIENVENIDA TEMPORAL-->
+                    <?php if ($dat = $this->session->flashdata('msg')) : ?>
+                        <div class="container-sm">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong><?= $dat ?></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    <?php elseif ($dat = $this->session->flashdata('msge')) : ?>
+                        <div class="container-sm">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong><?= $dat ?></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
                 <div class="row">
                     <div class="col-sm-12 mx-auto">
 
                         <form id="UpdateForm" novalidate="novalidate">
                             <div class="form-group" id="GroupCod">
-                                <input type="text" class="form-control" name="Curso" id="Curso" placeholder="Codigo del Curso" value="<?=$this->uri->segment(3)?>" hidden>
-                                <input type="text" class="form-control" name="Tema" id="Tema" placeholder="Codigo del Tema" value="<?=$this->uri->segment(4)?>" hidden>
+                                <input type="text" class="form-control" name="Curso" id="Curso" placeholder="Codigo del Curso" value="<?= $this->uri->segment(3) ?>" hidden>
+                                <input type="text" class="form-control" name="Tema" id="Tema" placeholder="Codigo del Tema" value="<?= $this->uri->segment(4) ?>" hidden>
                             </div>
                             <div class="form-group" id="GroupNombre">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <div class="row align-items-end">
-                                        <div class="col-sm-2" >
-                                            <img  id="Img_V" style="border-style: outset;" height="auto" width="100">
+
+                                    <div class="container">
+                                        <div class="row d-flex justify-items-center">
+                                            <div class="align-self-center ol-lg-2 col-md-2 col-sm-12 ">
+                                                <img id="Img_V" class="img-thumbnail" alt="Eniun">
+                                            </div>
+                                            <div class="align-self-center col-lg-10 col-md-10 col-sm-auto">
+                                                <input class="form-control-plaintext border border-primary rounded" style="margin-left:30px" id="Nombre_T" name="Nombre_T" type="text" placeholder="Nombre Tema" value="<?= set_value('Nombre_T') ?>">
+                                            </div>
                                         </div>
-                                        <div class="col-sm-10">
-                                            <input class="form-control-plaintext border border-primary rounded" style="margin-left:30px" id="Nombre_T" name="Nombre_T" type="text" placeholder="Nombre Tema" value="<?= set_value('Nombre_T') ?>">
-                                        </div>
+
                                     </div>
-                                    
-                                    
+
+
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="archivo">
                                 <input type="file" class="form-control-file" id="image" name='image'>
                                 <small id="fileHelp" class="form-text text-muted">Cambia o Sube una nueva Imagen</small>
-                                <div class="text-danger"> </div>
-                                
+                                <small id="fileHelp" class="req form-text text-muted">&ensp;°&nbsp;El tipo de la imagen debe ser *.jpeg, *.jpg</small>
+                                <small id="fileHelp" class="req form-text text-muted">&ensp;°&nbsp;La altura de la imagen debe ser 400px o mayor</small>
+                                <small id="fileHelp" class="req form-text text-muted">&ensp;°&nbsp;La anchura de la imagen debe ser 400px o mayor</small>
+                                <small id="fileHelp" class="req form-text text-muted">&ensp;°&nbsp;No es obligatorio subir una imagen</small>
+
                             </div>
                             <div id="GroupNotificacionSubida"> </div>
                             <br>
@@ -84,9 +115,9 @@
                         </form>
                     </div>
                 </div>
-            </div>  
+            </div>
             <!-- Register Section Form -->
-            
+
 
         </div>
     </section>
@@ -96,7 +127,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="<?= base_url('Admin_page/css/js/bootstrap.min.js') ?>"></script>
-    <script>document.write("<script type='text/javascript' src='<?= base_url('assets/js/JEditTema.js') ?>?v=" + Date.now() + "'><\/script>");</script>
+    <script>
+        document.write("<script type='text/javascript' src='<?= base_url('assets/js/JEditTema.js') ?>?v=" + Date.now() + "'><\/script>");
+    </script>
 
 </body>
 

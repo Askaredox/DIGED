@@ -14,7 +14,7 @@ class cRegistroDocentes extends CI_Controller
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo')==1)) {
             $this->load->view('Admin/vRegistroDocentes'); //mandar el array a la vista
         } else {
-            show_404();
+            redirect('');
         }
     }
 

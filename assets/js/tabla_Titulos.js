@@ -8,7 +8,7 @@ $(document).ready(function () {
 $('#dataTable tr').on('click', function () {
     var datoU = $(this).find('td:nth-child(1)').html();
     // para actualizar o editar 
-    document.getElementById('Nombre').placeholder = datoU;
+   // document.getElementById('Nombre').placeholder = datoU;
     //para eliminar el titulo
     $('#TituloEliminar').val(datoU);
 });
@@ -25,7 +25,7 @@ $('#cancel').click(function () {
     window.location.replace(myNewURL);
 });
 
-$(".btn-edit").click(function (ev) {
+/*$(".btn-edit").click(function (ev) {
 
     $valor = $(this).attr('data-curso');
     $("#Curso").val($valor);// codigo del tema al que pertenece el titulo a editar
@@ -44,7 +44,7 @@ $(".btn-edit").click(function (ev) {
 
     $('#cancel').attr("data-curso", $(this).attr('data-curso'));
     $('#cancel').attr("data-tema", $(this).attr('data-tema'));
-});
+});*/
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------PARTE DE LA IMAGEN----------------------------------------------------------------------------------------------

@@ -15,7 +15,7 @@
 </script>
 
 <title>Formulario Titulo</title>
-  <!-- include libraries(jQuery, bootstrap) -->
+<!-- include libraries(jQuery, bootstrap) -->
 
 
 </head>
@@ -25,11 +25,11 @@
     <nav class="navbar navbar-expand-lg bg-primary text-uppercase fixed-top" id="mainNav">
         <div class="container">
             <div class="logo float-left">
-                <a href="<?= base_url('Titulo/Administrar/' . $this->uri->segment(3).'/'. $this->uri->segment(4))  ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
+                <a href="<?= base_url('Titulo/Administrar/' . $this->uri->segment(3) . '/' . $this->uri->segment(4))  ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
             </div>
 
             <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
-                <a href="<?= base_url('Titulo/Administrar/' . $this->uri->segment(3).'/'. $this->uri->segment(4)) ?>" style="color: white;"><i class="fas fa-arrow-left"></i></a>
+                <a href="<?= base_url('Titulo/Administrar/' . $this->uri->segment(3) . '/' . $this->uri->segment(4)) ?>" style="color: white;"><i class="fas fa-arrow-left"></i></a>
 
             </button>
     </nav>
@@ -54,6 +54,7 @@
 
             <!-- Register Section Form -->
             <div class="row">
+
                 <div class="col-lg-8 col-sm-12 mx-auto">
                     <div id=notificacion>
                         <!--MENSAJE DE BIENVENIDA TEMPORAL-->
@@ -76,13 +77,10 @@
                                 </div>
                             </div>
                         <?php endif; ?>
-                        <?php if (isset($data)) {
-                            //var_dump($data);
-                        } ?>
                     </div>
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <div class="container-sm">
-                        <form class=" col-md-12 col-sm-8" name="RegisterTitle" id="RegisterTitle">
+                    <div class="container-fluid">
+                        <form class=" col-md-12 col-sm-12" name="RegisterTitle" id="RegisterTitle">
                             <div class="form-group" id="GroupCod">
                                 <div class="row">
                                     <div class="col-5">
@@ -99,47 +97,27 @@
                                 <div class="invalid-feedback">
                                 </div>
                             </div>
-                            <div class="form-group  col-md-12 col-sm-8" id="GroupPos">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <input type="text" class="form-control" name="pos" id="pos" placeholder="Posicion del Titulo" readonly>
-                                        <div class="invalid-feedback">
-                                            Debe crear el area para redirigir al contenido del título
-                                        </div>
-                                    </div>
-                                    <div class="col-5">
-                                        <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Tipo enlace" readonly>
-                                        <div class="invalid-feedback">
-                                            Debe crear el area para redirigir al contenido del título
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="form-group" id="GroupImg">
                                 <!--iria la imagen para  hacer el mapeo-->
-                                <map name="mapeo" id="mapeo">
-                                    <?php if (isset($data)) : ?>
-                                        <?php foreach ($data as $titulo) : $title = $titulo["Nombre"] ?>
-                                            <?php
-                                            $X = $titulo["Coordenadas"];
-                                            $tipo = $titulo['tipoEnlace']
-                                            ?>
-                                            <?php if ($tipo === '1') : ?>
-                                                <!--es figura circular-->
-                                                <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="circle" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
-                                            <?php elseif ($tipo === '2') : ?>
-                                                <!--es figura rectangular-->
-                                                <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="rect" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
-                                            <?php else : ?>
-                                                <!--Es poligono-->
-                                                <area id="titulo" title=<?= $title ?> class="title" alt="" href="#" shape="poly" coords="<?= $X ?>" onclick="mostrarTitulo('<?php echo $title; ?>')">
-                                            <?php endif; ?>
-                                            <!--Es poligono-->
 
-                                        <?php endforeach ?>
-                                    <?php endif; ?>
-                                </map>
                                 <?php if (isset($img)) : ?>
+                                    <div class="form-group  col-md-12 col-sm-8" id="GroupPos">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="text" class="form-control" name="pos" id="pos" placeholder="Posicion del Titulo" readonly>
+                                                <div class="invalid-feedback">
+                                                    Debe crear el area para redirigir al contenido del título
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Tipo enlace" readonly>
+                                                <div class="invalid-feedback">
+                                                    Debe crear el area para redirigir al contenido del título
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="form-check">
                                             <input type="checkbox" name="circ" id="circ" onclick="Circular(this)" />
@@ -160,15 +138,6 @@
                                             </label>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="form-check">
-                                            <input type="checkbox" name="Poly" id="Poly" onclick="Libre(this)" />
-                                            <label class="form-check-label" for="Poly">
-                                                Enlace Libre
-                                            </label>
-                                        </div>
-                                    </div>
                                     <div class="collapse form-group" id="FormCircular">
                                         <div class="card card-body">
                                             <button type="button" class="close" id="cerrar">
@@ -177,24 +146,28 @@
                                             <form>
                                                 <div id="form2"></div>
                                             </form>
-
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <img src="<?= base_url($img) ?>" class="map grande" alt="" id="imagenTema" crossorigin="anonymous" usemap="#mapeo" width="600">
+                                                <img src="<?= base_url($img) ?>" class="img-fluid map  grande" alt="" id="imagenTema" crossorigin="anonymous" usemap="#mapeo" width="600">
                                             </div>
                                         </div>
                                     </div>
-
-
+                                    <map name="mapeo" id="mapeo">
+                                    </map>
                                 <?php endif; ?>
                             </div>
                             <div class="form-group">
-                                <h2 style="text-align:center;">CONTENIDO</h2>
-                                <textarea id="summernote" name="editordata" style="z-index:0; position:relative"></textarea>
-                                <input type="submit" class="btn btn-primary btn-xl" id="submit" name="submit" value="REGISTRAR" />
+                                <div class="row">
+                                    <div class="container">
+                                        <h2 style="text-align:center;">CONTENIDO</h2>
+                                        <textarea id="summernote" name="editordata" style="z-index:0; position:relative"></textarea>
+                                        <input type="submit" class="btn btn-primary btn-xl" id="submit" name="submit" value="REGISTRAR" />
+                                    </div>
+
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -204,17 +177,54 @@
 
         </div>
     </section>
-    
+    <?php if (isset($data)) : ?>
+        <?php foreach ($data as $titulo) : $title = $titulo["Nombre"] ?>
+            <?php
+            $X = $titulo["Coordenadas"];
+            $tipo = $titulo['tipoEnlace'];
+
+            ?>
+            <script type="text/javascript">
+                $alturaOrigin = "<?php echo $alto ?>"; //estos sacarlos de la base
+                $anchoOrigin = "<?php echo $ancho ?>"; //estos sacarlos de la base
+
+                $type = "<?php echo $tipo ?>";
+                $Coordenada = "<?php echo $X ?>";
+
+                if ($type == 1) {
+                    $dividida1 = $Coordenada.split(',')
+
+                    $x1 = Math.round(($dividida1[0] * document.getElementById('imagenTema').width) / $anchoOrigin)
+
+                    $y1 = Math.round(($dividida1[1] * document.getElementById('imagenTema').height) / $alturaOrigin)
+
+                    $radio = Math.round(($dividida1[2] * document.getElementById('imagenTema').width) / $anchoOrigin)
+
+                    $enlace = $x1 + "," + $y1 + "," + $radio
+                    document.getElementById('mapeo').innerHTML += "<area id=\"titulo\" class=\"title\" alt=\"\" href=\"#\" shape=\"circle\" coords=\"" + $enlace + "\" onclick=\"mostrarTitulo('<?php echo $title; ?>')\" data-maphilight=\'{\"alwaysOn\":true}\'>"
+                } else {
+                    //alert("rectangular" + $Coordenada);
+                    $dividida2 = $Coordenada.split(',')
+                    $x1 = Math.round(($dividida2[0] * document.getElementById('imagenTema').width) / $anchoOrigin)
+                    $y1 = Math.round(($dividida2[1] * document.getElementById('imagenTema').height) / $alturaOrigin)
+                    $x2 = Math.round(($dividida2[2] * document.getElementById('imagenTema').width) / $anchoOrigin)
+                    $y2 = Math.round(($dividida2[3] * document.getElementById('imagenTema').height) / $alturaOrigin)
+
+                    $enlace = $x1 + "," + $y1 + "," + $x2 + "," + $y2
+                    document.getElementById('mapeo').innerHTML += "<area id=\"titulo\"  class=\"title\" alt=\"\" href=\"#\" shape=\"rect\" coords=\"" + $enlace + "\" onclick=\"mostrarTitulo('<?php echo $title; ?>')\" data-maphilight=\'{\"alwaysOn\":true}\'>"
+                }
+            </script>
+        <?php endforeach ?>
+    <?php endif; ?>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-<!-- include summernote css/js -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- include summernote css/js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js" defer></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -227,10 +237,10 @@
                 alwaysOn: true
             });
             $('#summernote').summernote({
-                height: 300,                 // set editor height
-                minHeight: null,             // set minimum height of editor
-                maxHeight: null,             // set maximum height of editor
-                focus: true                  // set focus to editable area after initializing summe
+                height: 300, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: true // set focus to editable area after initializing summe
             });
             // uncomment this line for normal hover highlighting
             // $('.map').maphilight();

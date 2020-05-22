@@ -19,6 +19,14 @@ function getChangePassRules()
                 'matches' =>  'Las contraseñas no coinciden',
             ),
         ),
+        array(
+            'field' => 'ActualP',
+            'label' => 'ActualP',
+            'rules' => 'required|trim',
+            'errors' => array(
+                'required' => 'Ingrese su contraseña actual',
+            ),
+        ),
     );
 }
 

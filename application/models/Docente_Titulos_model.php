@@ -20,6 +20,7 @@ class Docente_Titulos_model extends CI_Model
 
     public function ExistsTitulo($data)
     {
+        //var_dump($data);
         $sql = $this->db->get_where('TITULO', $data);
         if ($sql->num_rows() > 0) {
             return TRUE;

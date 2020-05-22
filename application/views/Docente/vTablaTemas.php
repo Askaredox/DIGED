@@ -111,13 +111,7 @@
                                                 <a type="button " class="btn btn-primary btn-sm " id="EditTema" role="button" href="<?= base_url('Temas/EditTema/' . $tema['Curso'] . '/' . $tema['Cod_Tema']) ?>" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <!--
-                                                <a class="scrollto" href="#EDITAR" style="color: white;">
-                                                    <button type="button " class="btn btn-primary btn-sm" role="button" data-id="<? //$tema['Cod_Tema'] ?>" data-curso="<?// $tema['Curso'] ?>">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                </a>
-                                                -->
+                                                
                                                 <button type="button " id="BDelete" class="btn btn-danger btn-eliminar btn-sm " data-toggle="modal" data-id="<?= $tema['Cod_Tema'] ?>" data-curso="<?= $tema['Curso'] ?>">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>

@@ -8,7 +8,7 @@ $('#dataTable tr').on('click', function () {
     var datoU = $(this).find('th').html();
     var datoD = $(this).find('td:nth-child(2)').html();
     var datoT = $(this).find('td:nth-child(3)').html();
-    var datoC = $(this).find('td:nth-child(4)').html();
+    var datoC = $(this).find("input").val();
 
     $("#cod").val(datoU);
     document.getElementById('name').placeholder = datoD;
@@ -33,10 +33,24 @@ $(".btn-eliminar").click(function () {
     $("#ConfirmDelete").attr("data-id", $(this).attr('data-id'));
 });
 
+//para ver las contraseñas en las tablas
+$("tr td #VerContrasenia").click(function (ev) {
+    if($(this).parents('tr').find('input').attr('type')=='password'){
+        $(this).parents('tr').find('input').attr('type','text');
+        $(this).parents('tr').find('#VerContrasenia').find('i').attr('class','fa fa-eye-slash');
+        //<i class="fa fa-eye-slash" aria-hidden="true"></i>
+        //<i class="fas fa-eye"></i>
+    }else{
+        $(this).parents('tr').find('input').attr('type','password');
+        $(this).parents('tr').find('#VerContrasenia').find('i').attr('class','fas fa-eye');
+    }
+    
+});
 
 // BTN-PRIMARY SON TODOS LOS BOTONES DE "EDITAR" en la tabla
 $(".btn-primary").click(function () {
-    $('#collapseExample').collapse('show');
+    $('#EDITAR').modal();
+    //$('#collapseExample').collapse('show');
     $("#password").val("");
     $("#password2").val("");
     $("#lastname").val("");

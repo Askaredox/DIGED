@@ -41,15 +41,16 @@ Sistema de ayuda al estudiante para estudiar cursos en línea por medio de una a
 | ------------------- | -------------------------------------------------------- | ---------------- |
 | Barra de navegación | Cerrado automático                                       | ``[#####     ]`` |
 | Editar Usuario      | Colocar nombre                                           | ``[##        ]`` |
-| Editar Usuario      | Para cambiar contraseña pedir la antigua                 | ``[######    ]`` |
+|**Editar Usuario     | Para cambiar contraseña pedir la antigua**                 | ``[######    ]`` |
 | Base de Datos       | Para login solo debe mandar verdadero o falso            | ``[########  ]`` |
-| Administrar Cursos  | Dar acción al botón no al link                           | ``[########  ]`` |
-| Actualizar Curso    | Lugar aparte o pop-up, no usar códigos                   | ``[##        ]`` |
-| Crear Docente       | Checkbox tenerlo de lado derecho como un icono de un ojo | ``[#         ]`` |
-| Crear Docente       | Dar acción al botón no al link                           | ``[########  ]`` |
-| Administrar Docente | Colocar contraseña tapada y colocar botón para destapar  | ``[#####     ]`` |
-| Administrar Docente | Dar acción al botón no al link                           | ``[########  ]`` |
-| TODO                | Cuando no hay usuario loggeado regresar al login         | ``[#####     ]`` |
+|**Administrar Cursos | Dar acción al botón no al link**                           | ``[########  ]`` |
+|**Actualizar Curso    | Lugar aparte o pop-up,** no usar códigos                  | ``[##        ]`` |
+|**Crear Docente      | Checkbox tenerlo de lado derecho como un icono de un ojo** | ``[#         ]`` |
+|**Crear Docente      | Dar acción al botón no al link**                           | ``[########  ]`` |
+|**Administrar Docente| Colocar contraseña tapada y colocar botón para destapar**  | ``[#####     ]`` |
+|**Administrar Docente| Dar acción al botón no al link**                           | ``[########  ]`` |
+|**Actualizar Docente | Lugar aparte o pop-up**, no usar códigos                   | ``[##        ]`` |
+|**TODO               | Cuando no hay usuario loggeado regresar al login**         | ``[#####     ]`` |
 | **Lugar**           | **Correcciones**                                         | ``[          ]`` |
 
 ### Docente
@@ -57,12 +58,21 @@ Sistema de ayuda al estudiante para estudiar cursos en línea por medio de una a
 | Lugar                       | Correcciones                                               | Importancia      |
 | --------------------------- | ---------------------------------------------------------- | ---------------- |
 | Barra de navegación         | Cerrado automático                                         | ``[#####     ]`` |
+<<<<<<< HEAD
 | ~~Crear tema~~              | ~~Error fatal~~                                            | `[          ]`   |
 | ~~Editar tema~~             | ~~No se muestra imagen~~                                   | `[          ]`   |
 | ~~Editar tema~~             | ~~Colocar nombre viejo~~                                   | `[          ]`   |
 | Editar tema                 | Colocar alerta que se agrego tema nuevo y sacar            | `[#######   ]`   |
 | ~~Editar tema~~             | ~~No actualiza nada~~                                      | `[          ]`   |
 | Eliminar tema               | Colocar tema que se va a eliminar                          | `[#####     ]`   |
+=======
+|**Crear tema~~               | ~~Error fatal~~**                                           | `[          ]`   |
+|**Editar tema                | No se muestra imagen**                                      | `[########  ]`   |
+|**Editar tema                | Colocar nombre viejo**                                     | `[######    ]`   |
+|**Editar tema                | Colocar alerta que se agrego tema nuevo y sacar**            | `[#######   ]`   |
+|**Editar tema                | No actualiza nada**                                        | `[######### ]`   |
+|**Eliminar tema              | Colocar tema que se va a eliminar**                          | `[#####     ]`   |
+>>>>>>> dbc5bbb06d8ef00924da6f3c9933a2114304f1a9
 | Administrar titulo/ver tema | Error cuando se entra                                      | `[######### ]`   |
 | Crear titulo                | cuando se haya registrado sacar a administrar              | `[#####     ]`   |
 | ~~Crear titulo~~            | ~~Redireccionar bien el atrás~~                            | `[          ]`   |

@@ -21,14 +21,19 @@ class Docente_home extends CI_Controller
             $this->load->view('Docente/vDocente', array('data' => $res)); //mandar el array a la vista
 
         } else {
-            show_404();
+            redirect('');
         }
     }
-    public function getTema(){
-        $idTema=$this->input->post("idTema");
-        $idCurso=$this->input->post("idCurso");
-        $res = $this->Docente_Temas_model->getTema($idTema,$idCurso);
-        echo json_encode($res);
+    public function getTema()
+    {
+        $idTema = $this->input->post("idTema");
+        $idCurso = $this->input->post("idCurso");
+        if ($res = $this->Docente_Temas_model->getTema($idTema, $idCurso)) {
+            echo json_encode($res);
+        } else {
+            $this->session->set_flashdata('msge', '¡EL TEMA NO EXISTE!');
+            echo json_encode(array('url' => base_url('Temas/Administrar/' . $idCurso)));
+        }
     }
     public function changePassword()
     {
@@ -38,21 +43,45 @@ class Docente_home extends CI_Controller
             $error = array(
                 'P1' => form_error('Pass1'),
                 'P2' => form_error('Pass2'),
+                'A' => form_error('ActualP'),
             );
             $this->output
                 ->set_status_header(400)
                 ->set_output(json_encode($error));
         } else { // cambiar la contra
-            $data = array(
-                'Contraseña' => $this->input->post('Pass1'),
-            );
-            $id = $this->session->userdata('Id_Usuario');
-            if (!$this->Admin_model->UpdateContraseña($id, $data)) { //no se actualizó
-                $this->session->set_flashdata('msge', '¡ERROR NO SE PUDO ACTUALIZAR LA CONTRASEÑA!');
+            $actual = $this->input->post('ActualP');
+
+            //verificar que el usuario loggeado tenga la misma contraseña enviada
+
+            if ($actual == $this->session->userdata('Contraseña')) { //si es igual entonces la cambia
+                $data = array(
+                    'Contraseña' => $this->input->post('Pass1'),
+                );
+                $id = $this->session->userdata('Id_Usuario');
+                if (!$this->Admin_model->UpdateContraseña($id, $data)) { //no se actualizó
+                    $this->session->set_flashdata('msge', '¡ERROR NO SE PUDO ACTUALIZAR LA CONTRASEÑA!');
+                } else {
+                    $datos = array(
+                        'Id_Usuario' => $this->session->userdata('Id_Usuario'),
+                        'Nombre' => $this->session->userdata('Nombre'),
+                        'Apellido' => $this->session->userdata('Apellido'),
+                        'Contraseña' => $data['Contraseña'],
+                        'Tipo' => $this->session->userdata('Tipo'),
+                        'is_logged' => TRUE
+                    );
+                    // var_dump(json_encode($data));
+                    $this->session->set_userdata($datos);
+                    $this->session->set_flashdata('msg', '¡SE ACTUALIZÓ CON ÉXITO LA CONTRASEÑA!');
+                }
+                $this->output->set_output(json_encode(array('url' => base_url('HOME'))));
             } else {
-                $this->session->set_flashdata('msg', '¡SE ACTUALIZÓ CON ÉXITO LA CONTRASEÑA!');
+                $error = array(
+                    'A' => "Ingresó una contraseña incorrecta",
+                );
+                $this->output
+                    ->set_status_header(401)
+                    ->set_output(json_encode($error));
             }
-            $this->output->set_output(json_encode(array('url' => base_url('HOME'))));
         }
     }
 
@@ -62,20 +91,20 @@ class Docente_home extends CI_Controller
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
             $this->load->view('Docente/vTablaTemas'); //, array('id' => 0)); //mandar el array a la vista
         } else {
-            show_404();
+            redirect('');
         }
     }
 
-// TODO ESTO ES PARA LA VISTA DE CREAR TEMAS
+    // TODO ESTO ES PARA LA VISTA DE CREAR TEMAS
     public function CrearTema($idCurso)
     {
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
             $this->load->view('Docente/vCrearTema'); //, array('id' => 0)); //mandar el array a la vista
         } else {
-            show_404();
+            redirect('');
         }
     }
-    
+
 
     public function SubirImagen()
     {
@@ -111,24 +140,20 @@ class Docente_home extends CI_Controller
                             "allowed_types" => "jpeg|jpg|png",
                             "min_width" => 400,
                             "min_height" => 400,
-                            "file_name" => $Curso."_".$nombre_T
+                            "file_name" => $Curso . "_" . $nombre_T
                             //"max_width" => 800,
                             //"max_height" => 800
                         ];
                         $this->load->library('upload', $config);
                         if (!$this->upload->do_upload('image')) { // no se pudo subir la imagen
                             //  $this->session->set_flashdata('msge', $this->upload->display_errors());
-                            $error = $this->upload->display_errors();
-                            /*
+                            //$error = $this->upload->display_errors();
+
                             $error = array(
-                                'errorI' => '<ul>
-                                        <li>Verifique el tipo de la imagen (jpeg, jpg, png)</li>
-                                        <li>Verifique la altura mínima de la imagen debe ser 400</li>
-                                        <li>Verifique el ancho mínimo de la imagen  debe ser 400</li>
-                                       </ul>',
+                                'errorI' => 'text-danger',
                                 'Nombre_T' => ''
                             );
-                            */
+
                             $this->Docente_Temas_model->DeleteTema($data);
                             $this->output
                                 ->set_status_header(400)
@@ -136,6 +161,8 @@ class Docente_home extends CI_Controller
                         } else {
                             // echo json_encode($this->upload->data('file_name'));
                             $datos['Imagen'] =  'uploads/ImgTemas/' . $this->upload->data('file_name');
+                            $datos['Altura_img'] = getimagesize($datos['Imagen'])[1];
+                            $datos['Ancho_img'] = getimagesize($datos['Imagen'])[0];
 
                             if ($this->Docente_Temas_model->UpdateTema($data, $datos)) {
                                 $this->session->set_flashdata('msg', 'EL TEMA FUE CREADO CON ÉXITO');
@@ -146,7 +173,7 @@ class Docente_home extends CI_Controller
                             }
                             echo json_encode(array('url' => base_url('Temas/Crear/' . $Curso)));
                         }
-                    }else{
+                    } else {
                         $this->session->set_flashdata('msg', 'EL TEMA FUE CREADO CON ÉXITO');
                         echo json_encode(array('url' => base_url('Temas/Crear/' . $Curso)));
                     }
