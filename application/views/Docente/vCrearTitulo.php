@@ -63,9 +63,7 @@
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     <strong><?= $dat ?></strong>
 
-                                    <a href="#" class="btn btn-primary btn-sm rounded-pill active" role="button" aria-pressed="true">
-                                        Aceptar
-                                    </a>
+                                    
 
 
                                 </div>
