@@ -58,12 +58,21 @@ Sistema de ayuda al estudiante para estudiar cursos en línea por medio de una a
 | Lugar                       | Correcciones                                               | Importancia      |
 | --------------------------- | ---------------------------------------------------------- | ---------------- |
 | Barra de navegación         | Cerrado automático                                         | ``[#####     ]`` |
+<<<<<<< HEAD
+| ~~Crear tema~~              | ~~Error fatal~~                                            | `[          ]`   |
+| ~~Editar tema~~             | ~~No se muestra imagen~~                                   | `[          ]`   |
+| ~~Editar tema~~             | ~~Colocar nombre viejo~~                                   | `[          ]`   |
+| Editar tema                 | Colocar alerta que se agrego tema nuevo y sacar            | `[#######   ]`   |
+| ~~Editar tema~~             | ~~No actualiza nada~~                                      | `[          ]`   |
+| Eliminar tema               | Colocar tema que se va a eliminar                          | `[#####     ]`   |
+=======
 |**Crear tema~~               | ~~Error fatal~~**                                           | `[          ]`   |
 |**Editar tema                | No se muestra imagen**                                      | `[########  ]`   |
 |**Editar tema                | Colocar nombre viejo**                                     | `[######    ]`   |
 |**Editar tema                | Colocar alerta que se agrego tema nuevo y sacar**            | `[#######   ]`   |
 |**Editar tema                | No actualiza nada**                                        | `[######### ]`   |
 |**Eliminar tema              | Colocar tema que se va a eliminar**                          | `[#####     ]`   |
+>>>>>>> dbc5bbb06d8ef00924da6f3c9933a2114304f1a9
 | Administrar titulo/ver tema | Error cuando se entra                                      | `[######### ]`   |
 | Crear titulo                | cuando se haya registrado sacar a administrar              | `[#####     ]`   |
 | ~~Crear titulo~~            | ~~Redireccionar bien el atrás~~                            | `[          ]`   |

@@ -70,7 +70,7 @@ class Titulo extends CI_Controller
         $tema = $this->Docente_Temas_model->getTema($idTema, $idCurso);
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) { // si hay alguien loggeado muestra eso
 
-            $data = $this->Docente_Titulos_model->getTitulos(array('Tema' => $idTema));
+            $data = $this->Docente_Titulos_model->getTitulos(array('tema'=>$tema->Nombre_T));
             //var_dump($data);
             if (!$data) { //entpnces no hay titulos registrados aún
                 $this->session->set_flashdata('msge', 'ESTE TEMA AÚN NO TIENE TITULOS REGISTRADOS');
