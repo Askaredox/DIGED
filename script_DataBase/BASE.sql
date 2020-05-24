@@ -592,8 +592,8 @@ CREATE TABLE RESPUESTA_MULTIPLE(
    Pregunta INTEGER NOT NULL,
    Comprobacion INTEGER NOT NULL,
    CONSTRAINT RESPUESTAM_PK PRIMARY KEY(Comprobacion, Pregunta, Id_RMultiple),
-   CONSTRAINT PREGUNTAM_FK FOREIGN KEY (Pregunta, Comprobacion) REFERENCES PREGUNTA(Id_Pregunta, Comprobacion) ON DELETE CASCADE,
-   CONSTRAINT RESPUESTAM_UN UNIQUE(Respuesta, Pregunta)
+   CONSTRAINT PREGUNTAM_FK FOREIGN KEY (Pregunta, Comprobacion) REFERENCES PREGUNTA(Id_Pregunta,Comprobacion) ON DELETE CASCADE,
+   CONSTRAINT RESPUESTAM_UN UNIQUE(Respuesta,Comprobacion, Pregunta)
 );
 
 INSERT INTO
@@ -1413,7 +1413,7 @@ VALUES
 INSERT INTO
    DETALLE_SOLUCION(Pregunta, Comprobacion, Respuesta_E, Resuelta)
 VALUES
-   (1, 2,'Analizador Léxico', 4);
+   (1, 2, 'Analizador Léxico', 4);
 
 INSERT INTO
    DETALLE_SOLUCION(Pregunta, Comprobacion, Respuesta_E, Resuelta)

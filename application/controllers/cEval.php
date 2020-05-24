@@ -60,7 +60,7 @@ class CEval extends CI_Controller
 
                 switch ($pregunta['Tipo_Pregunta']) {
                     case 1: // vf
-                        $row = $this->Comprobacion_model->getRespuestaVF(array('Pregunta' => $pregunta['Id_Pregunta']));
+                        $row = $this->Comprobacion_model->getRespuestaVF(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Id_Comprobacion));
 
                         $respuesta = array(
                             array(
@@ -77,7 +77,7 @@ class CEval extends CI_Controller
                     case 3: // corta
                         $respuesta = array();
 
-                        $row = $this->Comprobacion_model->getRespuestaCORTA(array('Pregunta' => $pregunta['Id_Pregunta']));
+                        $row = $this->Comprobacion_model->getRespuestaCORTA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Id_Comprobacion));
 
                         foreach ($row as $res) {
                             $tmp = array(
@@ -91,7 +91,7 @@ class CEval extends CI_Controller
                     case 4: // multiple
                         $respuesta = array();
 
-                        $row = $this->Comprobacion_model->getRespuestaMULTIPLE(array('Pregunta' => $pregunta['Id_Pregunta']));
+                        $row = $this->Comprobacion_model->getRespuestaMULTIPLE(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Id_Comprobacion));
 
                         foreach ($row as $res) {
                             $tmp = array(
