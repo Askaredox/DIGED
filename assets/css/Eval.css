@@ -1,0 +1,12 @@
+.save{
+    position: absolute;
+    right: 40px;
+}
+@media screen and (max-width: 600px) {
+    .save{
+        margin-top: 10px;
+        position: relative;
+        float:right;
+        
+    }
+}

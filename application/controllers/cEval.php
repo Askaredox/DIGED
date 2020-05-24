@@ -35,7 +35,8 @@ class CEval extends CI_Controller
     {
         global $res;
         $resp = $res;
-        $this->load->view('vEval', array('preguntas' => $resp));
+        //$this->getPrueba(1);
+        $this->load->view('vEval', array('preguntas' => $this->getPrueba(1)));
     }
     public function addRes($opcion)
     {
@@ -44,11 +45,10 @@ class CEval extends CI_Controller
 
     public function getPrueba($idTitulo)
     {
-
         //primero obtener el id de la comprobacion y el nombre
 
         if (!$test = $this->Comprobacion_model->getComprobacion(array('Titulo' => $idTitulo))) {
-            //no existe una comprobacion
+            return array(array(),'descr' => '');
         } else { // si existe obtener preguntas
             $preguntas = array();
 
@@ -71,7 +71,6 @@ class CEval extends CI_Controller
                         );
                         break;
                     case 2: // larga
-
                         $respuesta = array();
 
                         break;
@@ -116,14 +115,14 @@ class CEval extends CI_Controller
                     'id' => $pregunta['Id_Pregunta'],
                     'Pregunta' => $pregunta['Pregunta'],
                     'tipo' => $pregunta['Tipo_Pregunta'],
-                    'respuestas' => $respuesta
+                    'answer' => $respuesta,
                 );
             }
 
 
-            var_dump($preguntas);
-            var_dump('<br><br>Descripcion prueba:' . $test->Descripcion);
-  
+            //var_dump('<br><br><br><br><br><br><br><br>'.json_encode($preguntas));
+            //var_dump('<br><br>Descripcion prueba:' . json_encode($test));
+            return array($preguntas,'test' => $test);
         }
     }
 }
