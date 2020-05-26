@@ -96,7 +96,7 @@ class CEval extends CI_Controller
         echo json_encode($test);
         $this->session->set_flashdata('msg', 'LA EVALUACION SE ACTUALIZÓ CORRECTAMENTE');
     }
-    public function editar($idTitulo){
+    public function editar($idCurso,$idTitulo){
         /*
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) {
             $this->load->view('vEval', array('preguntas' => $this->getPrueba($idTitulo)));
