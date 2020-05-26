@@ -92,6 +92,11 @@ class CEval extends CI_Controller
         }
     }
 
+    /*public function saveEval()
+    {
+        $test = $this->input->post('test');
+        var_dump($test);
+    }*/
     public function saveEval()
     {
         $test = $this->input->post('test');
@@ -99,12 +104,13 @@ class CEval extends CI_Controller
 
         $idTest = $test['id'];
         $idTitulo = $test['titulo'];
+        $descripcion = $test['descripcion'];
         $exito = true;
 
 
         if ($this->Comprobacion_model->deleteTest(array("Id_Comprobacion" => $idTest, "Titulo" => $idTitulo))) {
             //vamos a crearla de nuevo
-            if ($this->Comprobacion_model->createTest(array("Id_Comprobacion" => $idTest, "Titulo" => $idTitulo))) {
+            if ($this->Comprobacion_model->createTest(array("Id_Comprobacion" => $idTest, "Titulo" => $idTitulo, "Descripcion" => $descripcion))) {
                 //SI SE Pudo crear creamos las preguntas y respuestas
                 foreach ($test['preguntas'] as $valor) {
                     //crear preguntas primero
