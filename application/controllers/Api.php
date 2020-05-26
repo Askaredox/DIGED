@@ -115,7 +115,7 @@ class Api extends REST_Controller
         if ($test) {
             //$this->response($test, REST_Controller::HTTP_OK);
             $preguntas = array();
-            $preg = $this->Comprobacion_model->getPreguntas(array('Comprobacion' => $test->Id_Comprobacion));
+            $preg = $this->Comprobacion_model->getPreguntas(array('Comprobacion' => $test->Titulo));
 
             if ($preg) {
                 foreach ($preg as $pregunta) {
@@ -124,7 +124,7 @@ class Api extends REST_Controller
 
                     switch ($pregunta['Tipo_Pregunta']) {
                         case 1: // vf
-                            $row = $this->Comprobacion_model->getRespuestaVF(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Id_Comprobacion));
+                            $row = $this->Comprobacion_model->getRespuestaVF(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
 
                             $respuesta = array(
                                 array(
@@ -142,7 +142,7 @@ class Api extends REST_Controller
                         case 3: // corta
                             $respuesta = array();
 
-                            $row = $this->Comprobacion_model->getRespuestaCORTA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Id_Comprobacion));
+                            $row = $this->Comprobacion_model->getRespuestaCORTA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
 
                             foreach ($row as $res) {
                                 $tmp = array(
@@ -156,7 +156,7 @@ class Api extends REST_Controller
                         case 4: // multiple
                             $respuesta = array();
 
-                            $row = $this->Comprobacion_model->getRespuestaMULTIPLE(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Id_Comprobacion));
+                            $row = $this->Comprobacion_model->getRespuestaMULTIPLE(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
 
                             foreach ($row as $res) {
                                 $tmp = array(
@@ -185,7 +185,7 @@ class Api extends REST_Controller
                 }
 
                 $data = array(
-                    'ID'=> $test->Id_Comprobacion,
+                    'ID'=> $test->Titulo,
                     'DESCRIPCION'=> $test->Descripcion,
                     'PREGUNTAS'=> $preguntas
                 );
