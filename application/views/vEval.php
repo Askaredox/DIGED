@@ -27,13 +27,15 @@
 <body id="page-top">
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-primary text-uppercase fixed-top" id="mainNav">
-        <div class="container">
+    <div class="container">
             <div class="logo float-left">
-                <a href="<?= base_url('Temas/' . $this->uri->segment(3)) ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
+                <a href="<?= base_url('Titulo/Administrar/' . $this->uri->segment(3) . '/' . $this->uri->segment(4))  ?>" class="scrollto"><img src="<?= base_url('Admin_page/img/dedev (3).png') ?>" alt="Responsive image" class="img-fluid"></a>
             </div>
-            <a href="<?= base_url('Temas/Administrar/' . $this->uri->segment(3)) ?>" class="btn btn-primary btn-lg bg-secondary" role="button">
-                Atrás <i class="fas fa-arrow-left"></i>
-            </a>
+
+            <button type="button " class="btn btn-primary btn-lg bg-secondary" role="button">
+                <a href="<?= base_url('Titulo/Administrar/' . $this->uri->segment(3) . '/' . $this->uri->segment(4)) ?>" style="color: white;"><i class="fas fa-arrow-left"></i></a>
+
+            </button>
         </div>
     </nav>
 
@@ -55,7 +57,11 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <div>
-                    <p class="text-center"><?= $preguntas['test']->Descripcion?></p>
+                    <p class="text-center">Descripción de la comprobación</p>
+                    <textarea id="descr" class="w-100" placeholder="Pregunta algo"><?= $preguntas['test']->Descripcion?></textarea>
+                    <div class="divider-custom">
+                        <div class="divider-custom-line"></div>
+                    </div>
                     <input id="comprobacion" value=<?=$preguntas['test']->Id_Comprobacion ?> hidden>
                     <input id="titulo" value=<?=$preguntas['test']->Titulo ?> hidden>
                 </div>

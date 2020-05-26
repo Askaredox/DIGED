@@ -32,6 +32,7 @@
                 <a href="<?= base_url('Titulo/Administrar/' . $this->uri->segment(3) . '/' . $this->uri->segment(4)) ?>" style="color: white;"><i class="fas fa-arrow-left"></i></a>
 
             </button>
+        </div>
     </nav>
     <!-- <div class="container-fluid bg-primary py-5">-->
     <section class="page-section" id="registrar">

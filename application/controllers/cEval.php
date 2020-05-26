@@ -197,8 +197,8 @@ class CEval extends CI_Controller
             var_dump("no eliminado");
         }
     }
-    public function editar($idTitulo)
-    {
+
+    public function editar($idCurso,$idTitulo){
         /*
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) {
             $this->load->view('vEval', array('preguntas' => $this->getPrueba($idTitulo)));
