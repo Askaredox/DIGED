@@ -20,7 +20,7 @@ class CEval extends CI_Controller
         } else { // si existe obtener preguntas
             $preguntas = array();
 
-            $preg = $this->Comprobacion_model->getPreguntas(array('Comprobacion' => $test->Id_Comprobacion));
+            $preg = $this->Comprobacion_model->getPreguntas(array('Comprobacion' => $test->Titulo));
 
             foreach ($preg as $pregunta) {
                 //$respuestas = array();
@@ -28,7 +28,7 @@ class CEval extends CI_Controller
 
                 switch ($pregunta['Tipo_Pregunta']) {
                     case 1: // vf
-                        $row = $this->Comprobacion_model->getRespuestaVF(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Id_Comprobacion));
+                        $row = $this->Comprobacion_model->getRespuestaVF(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
 
                         $respuesta = array(
                             array(
@@ -45,7 +45,7 @@ class CEval extends CI_Controller
                     case 3: // corta
                         $respuesta = array();
 
-                        $row = $this->Comprobacion_model->getRespuestaCORTA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Id_Comprobacion));
+                        $row = $this->Comprobacion_model->getRespuestaCORTA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
 
                         foreach ($row as $res) {
                             $tmp = array(
@@ -59,7 +59,7 @@ class CEval extends CI_Controller
                     case 4: // multiple
                         $respuesta = array();
 
-                        $row = $this->Comprobacion_model->getRespuestaMULTIPLE(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Id_Comprobacion));
+                        $row = $this->Comprobacion_model->getRespuestaMULTIPLE(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
 
                         foreach ($row as $res) {
                             $tmp = array(
@@ -126,15 +126,15 @@ class CEval extends CI_Controller
         //global $Tema;
         //var_dump($test);
 
-        $idTest = $test['id'];
-        $idTitulo = $test['titulo'];
+       // $ = $test['id'];
+        $idTest = $test['titulo'];
         $descripcion = $test['descripcion'];
         $exito = true;
 
 
-        if ($this->Comprobacion_model->deleteTest(array("Id_Comprobacion" => $idTest, "Titulo" => $idTitulo))) {
+        if ($this->Comprobacion_model->deleteTest(array("Titulo" => $idTest))) {
             //vamos a crearla de nuevo
-            if ($this->Comprobacion_model->createTest(array("Id_Comprobacion" => $idTest, "Titulo" => $idTitulo, "Descripcion" => $descripcion))) {
+            if ($this->Comprobacion_model->createTest(array("Titulo" => $idTest, "Descripcion" => $descripcion))) {
                 //SI SE Pudo crear creamos las preguntas y respuestas
                 foreach ($test['preguntas'] as $valor) {
                     //crear preguntas primero
