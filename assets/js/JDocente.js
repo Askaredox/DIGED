@@ -61,7 +61,7 @@ $(document).ready(function (ev) {
 
 
     $("#submit").click(function (ev) {
-        console.log("entraste a craecion de titulo")
+        //console.log("entraste a craecion de titulo")
         ev.preventDefault();
         var self = this;
         $Nombre = $("#Nombre").val();
@@ -98,6 +98,7 @@ $(document).ready(function (ev) {
 
                         var json = JSON.parse(data);
                         window.location.replace(json.url);
+                        console.log(json.id);
                         // console.log("si se pudo");
                         // console.log(json);
                     },
@@ -255,12 +256,13 @@ $("#cerrar").click(function (ev) {
 $cont = 0;
 
 const imagenTema = document.getElementById('imagenTema');
-const imagenOriginal = new Image();
-imagenOriginal.onload = imagenCargada;
-imagenOriginal.src = imagenTema.src;
-$altoOriginal = 0;
-$anchoOriginal = 0;
-
+if(imagenTema){
+    const imagenOriginal = new Image();
+    imagenOriginal.onload = imagenCargada;
+    imagenOriginal.src = imagenTema.src;
+    $altoOriginal = 0;
+    $anchoOriginal = 0;
+}
 
 function imagenCargada() {
     $altoOriginal = imagenOriginal.height

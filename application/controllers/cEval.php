@@ -122,9 +122,6 @@ class CEval extends CI_Controller
     public function saveEval($Curso,$Tema)
     {
         $test = $this->input->post('test');
-       // global $Curso;
-        //global $Tema;
-        //var_dump($test);
 
         $idTest = $test['id'];
         $idTitulo = $test['titulo'];
@@ -134,8 +131,9 @@ class CEval extends CI_Controller
 
         if ($this->Comprobacion_model->deleteTest(array("Id_Comprobacion" => $idTest, "Titulo" => $idTitulo))) {
             //vamos a crearla de nuevo
-            if ($this->Comprobacion_model->createTest(array("Id_Comprobacion" => $idTest, "Titulo" => $idTitulo, "Descripcion" => $descripcion))) {
+            if ($this->Comprobacion_model->createTest(array("Titulo" => $idTitulo, "Descripcion" => $descripcion))) {
                 //SI SE Pudo crear creamos las preguntas y respuestas
+                
                 foreach ($test['preguntas'] as $valor) {
                     //crear preguntas primero
                     $datos1 = array(

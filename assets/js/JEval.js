@@ -450,6 +450,10 @@ function sendTest($Curso,$Tema){
             400: function (xhr) {
                 var json = JSON.parse(xhr.responseText);
                 console.log(json)
+            },
+            500:function (xhr){
+                var json = JSON.parse(xhr.responseText);
+                console.log(json)
             }
         }
     })
