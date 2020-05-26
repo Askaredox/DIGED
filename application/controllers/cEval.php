@@ -5,44 +5,9 @@ class CEval extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Comprobacion_model');
-        global $res;
-        $resp = array(
-            array(
-                'tipo' => 1,
-                'resp' => array(
-                    'R1'
-                )
-            ),
-            array('tipo' => 2),
-            array(
-                'tipo' => 3,
-                'resp' => array(
-                    'R1'
-                )
-            ),
-            array(
-                'tipo' => 1,
-                'resp' => array(
-                    'R1'
-                )
-            ),
-            array('tipo' => 2),
-            array('tipo' => 4)
-        );
-        $res = $resp;
     }
     public function index()
-    {
-        global $res;
-        $resp = $res;
-        //$this->getPrueba(1);
-        $this->load->view('vEval', array('preguntas' => $this->getPrueba(1)));
-    }
-    public function addRes($opcion)
-    {
-        $opcion["resp"][] = "";
-    }
-
+    {}
     public function getPrueba($idTitulo)
     {
         //primero obtener el id de la comprobacion y el nombre
@@ -124,5 +89,22 @@ class CEval extends CI_Controller
             //var_dump('<br><br>Descripcion prueba:' . json_encode($test));
             return array($preguntas,'test' => $test);
         }
+    }
+
+    public function saveEval(){
+        $test = $this->input->post('test');
+        echo json_encode($test);
+        $this->session->set_flashdata('msg', 'LA EVALUACION SE ACTUALIZÓ CORRECTAMENTE');
+    }
+    public function editar($idTitulo){
+        /*
+        if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) {
+            $this->load->view('vEval', array('preguntas' => $this->getPrueba($idTitulo)));
+        }
+        else {
+            redirect('');
+        }
+        */
+        $this->load->view('vEval', array('preguntas' => $this->getPrueba(1)));
     }
 }

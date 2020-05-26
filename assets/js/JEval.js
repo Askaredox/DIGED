@@ -218,7 +218,6 @@ function addP(tipo){
 }
 function delP(preg){
     let test = getTest(preg);
-    console.log(test);
     $('#preg').empty();
     
     for(let preg of test.preguntas){
@@ -432,5 +431,22 @@ function getTest(pregu){
 }
 function sendTest(){
     let test=getTest();
-    console.log(test)
+    console.log(JSON.stringify(test));
+
+    let $datos={test:test}
+    $.ajax({
+        url: base_url + 'cEval/saveEval',
+        type: 'POST',
+        data: $datos,
+        success: function (data) {
+            var json = JSON.parse(data);
+             console.log(json);
+        },
+        statusCode: {
+            400: function (xhr) {
+                var json = JSON.parse(xhr.responseText);
+                console.log(json)
+            }
+        }
+    })
 }

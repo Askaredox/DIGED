@@ -3,24 +3,26 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>DEDEV-DOCENTE</title>
+    <title>DEDEV-DOCENTE</title>
 
-  <!-- Custom fonts for this theme -->
-  <link href="<?= base_url('Admin_page/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+    <!-- Custom fonts for this theme -->
+    <link href="<?= base_url('Admin_page/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
-  <!-- Theme CSS -->
-  <link href="<?= base_url('Admin_page/css/freelancer.min.css') ?>" rel="stylesheet">
-  <link rel='stylesheet' href="<?= base_url('Admin_page/css/css/bootstrap.min.css') ?>">
-  <link rel='stylesheet' href="<?= base_url('assets/css/Eval.css') ?>">
-
+    <!-- Theme CSS -->
+    <link href="<?= base_url('Admin_page/css/freelancer.min.css') ?>" rel="stylesheet">
+    <link rel='stylesheet' href="<?= base_url('Admin_page/css/css/bootstrap.min.css') ?>">
+    <link rel='stylesheet' href="<?= base_url('assets/css/Eval.css') ?>">
+    <script>
+        var base_url = '<?php echo base_url(); ?>';
+    </script>
 </head>
 <body id="page-top">
 <!-- Navigation -->
