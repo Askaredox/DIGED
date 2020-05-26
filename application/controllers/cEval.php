@@ -1,10 +1,14 @@
 <?php
 class CEval extends CI_Controller
 {
+    private $Curso;
+    private $Tema;
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Comprobacion_model');
+        $this->Curso = 0;
+        $this->Tema = 0;
     }
     public function index()
     {
@@ -97,9 +101,31 @@ class CEval extends CI_Controller
         $test = $this->input->post('test');
         var_dump($test);
     }*/
+
+    public function editar($idCurso, $idTema)
+    {
+        /*
+        if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) {
+            $this->load->view('vEval', array('preguntas' => $this->getPrueba($idTitulo)));
+        }
+        else {
+            redirect('');
+        }
+        */
+        global $Curso;
+        $Curso = $idCurso;
+        global $Tema;
+        $Tema = $idTema;
+
+
+        $this->load->view('vEval', array('preguntas' => $this->getPrueba(1)));
+    }
+
     public function saveEval()
     {
         $test = $this->input->post('test');
+        global $Curso;
+        global $Tema;
         //var_dump($test);
 
         $idTest = $test['id'];
@@ -192,27 +218,22 @@ class CEval extends CI_Controller
                         }
                     } else {
                         $this->Comprobacion_model->deleteQuestion(array("Comprobacion" => $idTest));
-                        var_dump("ERROR POR PREGUNTA");
+                        $this->session->set_flashdata('msge', '¡ERROR! NO SE PUDO ACTUALIZAR LA COMPROBACION');
+                        echo json_encode(array("url" => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
                         break;
                     }
                 }
-            } else {
-                var_dump("ERROR");
-            }
-        } else { // si no se eliminó bien
-            var_dump("no eliminado");
-        }
-    }
 
-    public function editar($idCurso,$idTitulo){
-        /*
-        if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) {
-            $this->load->view('vEval', array('preguntas' => $this->getPrueba($idTitulo)));
+               // var_dump($Curso);
+                 $this->session->set_flashdata('msg', '¡SE GUARDARON EXITOSAMENTE LOS CAMBIOS DE LA COMPROBACION!');
+                echo json_encode(array("url"=>base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
+            } else {
+                $this->session->set_flashdata('msge', '¡ERROR! NO SE PUDO ACTUALIZAR LA COMPROBACION');
+                echo json_encode(array("url" => base_url('Titulo/Administrar/' .  $Curso . '/' .  $Tema)));
+            }
+        } else { // si no se eliminó bien 
+            $this->session->set_flashdata('msge', '¡ERROR! NO SE PUDO ACTUALIZAR LA COMPROBACION');
+            echo json_encode(array("url" => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
         }
-        else {
-            redirect('');
-        }
-        */
-        $this->load->view('vEval', array('preguntas' => $this->getPrueba(1)));
     }
 }
