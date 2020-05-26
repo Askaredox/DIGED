@@ -69,7 +69,7 @@
                         <div class="card mb-2">
                             <div class="card-header mx-100 bg-secondary text-white" >
                                 <?php echo ($key+1).') '; ?>Verdadero y Falso
-                                <button type="button" class="btn btn-outline-danger float-right">×</button>
+                                <button type="button" class="btn btn-outline-danger float-right" onclick=delP(<?=($key+1)?>)>×</button>
                             </div>
                             <input id="resp<?=($key+1)?>" value=1 hidden>
                             <div class="card-body">
@@ -99,7 +99,7 @@
                         <div class="card mb-2">
                             <div class="card-header mx-100 bg-info text-white" >
                                 <?php echo ($key+1).') '; ?>Respuesta Larga
-                                <button type="button" class="btn btn-outline-danger float-right">×</button>
+                                <button type="button" class="btn btn-outline-danger float-right" onclick=delP(<?=($key+1)?>)>×</button>
                             </div>
                             <input id="resp<?=($key+1)?>" value=1 hidden>
                             <div class="card-body">
@@ -113,7 +113,7 @@
                         <div class="card mb-2">
                             <div class="card-header mx-100 bg-success text-white" >
                                 <?php echo ($key+1).') '; ?>Respuesta Corta
-                                <button type="button" class="btn btn-outline-danger float-right">×</button>
+                                <button type="button" class="btn btn-outline-danger float-right" onclick=delP(<?=($key+1)?>)>×</button>
                             </div>
                             <div class="card-body">
                                 <div class="input-group mb-3">
@@ -140,7 +140,7 @@
                         <div class="card mb-2">
                             <div class="card-header mx-100 bg-primary text-white" >
                                 <?php echo ($key+1).') '; ?>Opcion Multiple
-                                <button type="button" class="btn btn-outline-danger float-right">×</button>
+                                <button type="button" class="btn btn-outline-danger float-right" onclick=delP(<?=($key+1)?>)>×</button>
                             </div>
                             <div class="card-body">
                                 <div class="input-group mb-3">
@@ -172,7 +172,7 @@
                         <div class="card mb-2">
                             <div class="card-header mx-100 bg-warning" >
                                 <?php echo ($key+1).') '; ?>Sopa de letras
-                                <button type="button" class="btn btn-outline-danger float-right">×</button>
+                                <button type="button" class="btn btn-outline-danger float-right" onclick=delP(<?=($key+1)?>)>×</button>
                             </div>
                             <input id="resp<?=($key+1)?>" value=0 hidden>
                             <div class="card-body">
@@ -186,7 +186,7 @@
                         <div class="card mb-2">
                             <div class="card-header mx-100 bg-danger text-white" >
                                 <?php echo ($key+1).') '; ?>Crucigrama
-                                <button type="button" class="btn btn-outline-danger float-right">×</button>
+                                <button type="button" class="btn btn-outline-danger float-right" onclick=delP(<?=($key+1)?>)>×</button>
                             </div>
                             <input id="resp<?=($key+1)?>" value=0 hidden>
                             <div class="card-body">
