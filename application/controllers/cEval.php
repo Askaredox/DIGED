@@ -7,13 +7,14 @@ class CEval extends CI_Controller
         $this->load->model('Comprobacion_model');
     }
     public function index()
-    {}
+    {
+    }
     public function getPrueba($idTitulo)
     {
         //primero obtener el id de la comprobacion y el nombre
 
         if (!$test = $this->Comprobacion_model->getComprobacion(array('Titulo' => $idTitulo))) {
-            return array(array(),'descr' => '');
+            return array(array(), 'descr' => '');
         } else { // si existe obtener preguntas
             $preguntas = array();
 
@@ -87,15 +88,116 @@ class CEval extends CI_Controller
 
             //var_dump('<br><br><br><br><br><br><br><br>'.json_encode($preguntas));
             //var_dump('<br><br>Descripcion prueba:' . json_encode($test));
-            return array($preguntas,'test' => $test);
+            return array($preguntas, 'test' => $test);
         }
     }
 
-    public function saveEval(){
+    public function saveEval()
+    {
         $test = $this->input->post('test');
-        echo json_encode($test);
-        $this->session->set_flashdata('msg', 'LA EVALUACION SE ACTUALIZÓ CORRECTAMENTE');
+        //var_dump($test);
+
+        $idTest = $test['id'];
+        $idTitulo = $test['titulo'];
+        $exito = true;
+
+
+        if ($this->Comprobacion_model->deleteTest(array("Id_Comprobacion" => $idTest, "Titulo" => $idTitulo))) {
+            //vamos a crearla de nuevo
+            if ($this->Comprobacion_model->createTest(array("Id_Comprobacion" => $idTest, "Titulo" => $idTitulo))) {
+                //SI SE Pudo crear creamos las preguntas y respuestas
+                foreach ($test['preguntas'] as $valor) {
+                    //crear preguntas primero
+                    $datos1 = array(
+                        "Id_Pregunta" => $valor['id'],
+                        "Tipo_Pregunta" => $valor['tipo'],
+                        "Pregunta" => $valor['pregunta'],
+                        "Comprobacion" => $idTest
+                    );
+
+
+                    if ($this->Comprobacion_model->createQuestion($datos1) && $exito) {
+                        //creamos sus respuestas conforme el tipo de pregunta
+                        switch ($datos1["Tipo_Pregunta"]) {
+                            case 1: //vf
+                                foreach ($valor["respuestas"] as $resp) {
+                                    $datos2 = array(
+                                        "Id_VF" => $resp["id"],
+                                        "Respuesta" => $resp["correcta"],
+                                        "Pregunta" => $datos1["Id_Pregunta"],
+                                        "Comprobacion" => $idTest
+                                    );
+                                }
+                                if (!$this->Comprobacion_model->createAnswerVF($datos2)) {
+                                    $this->Comprobacion_model->deleteAnswerVF(array("Comprobacion" => $idTest));
+                                    $this->Comprobacion_model->deleteAnswerShort(array("Comprobacion" => $idTest));
+                                    $this->Comprobacion_model->deleteAnswerMul(array("Comprobacion" => $idTest));
+                                    $exito = false;
+                                    break;
+                                }
+                                break;
+                            case 2: //larga
+                                # code...
+                                break;
+                            case 3: //cort
+                                foreach ($valor["respuestas"] as $resp) {
+                                    $datos2 = array(
+                                        "Id_RShort" => $resp["id"],
+                                        "Respuesta" => $resp["respuesta"],
+                                        "Pregunta" => $datos1["Id_Pregunta"],
+                                        "Comprobacion" => $idTest
+                                    );
+                                    if (!$this->Comprobacion_model->createAnswerShort($datos2)) {
+                                        $this->Comprobacion_model->deleteAnswerVF(array("Comprobacion" => $idTest));
+                                        $this->Comprobacion_model->deleteAnswerShort(array("Comprobacion" => $idTest));
+                                        $this->Comprobacion_model->deleteAnswerMul(array("Comprobacion" => $idTest));
+                                        $exito = false;
+                                        break;
+                                    }
+                                }
+                                break;
+                            case 4: //multiplr
+                                foreach ($valor["respuestas"] as $resp) {
+                                    $datos2 = array(
+                                        "Id_RMultiple" => $resp["id"],
+                                        "Respuesta" => $resp["respuesta"],
+                                        "Booleano" => $resp["correcta"],
+                                        "Pregunta" => $datos1["Id_Pregunta"],
+                                        "Comprobacion" => $idTest
+                                    );
+                                    if (!$this->Comprobacion_model->createAnswerMul($datos2)) {
+                                        $this->Comprobacion_model->deleteAnswerVF(array("Comprobacion" => $idTest));
+                                        $this->Comprobacion_model->deleteAnswerShort(array("Comprobacion" => $idTest));
+                                        $this->Comprobacion_model->deleteAnswerMul(array("Comprobacion" => $idTest));
+                                        $exito = false;
+                                        break;
+                                    }
+                                }
+                                break;
+                            case 5: //sopita
+                                # code...
+                                break;
+                            case 6: //crucigrama
+                                # code...
+                                break;
+                            default:
+                                # code...
+                                break;
+                        }
+                    } else {
+                        $this->Comprobacion_model->deleteQuestion(array("Comprobacion" => $idTest));
+                        var_dump("ERROR POR PREGUNTA");
+                        break;
+                    }
+                }
+            } else {
+                var_dump("ERROR");
+            }
+        } else { // si no se eliminó bien
+            var_dump("no eliminado");
+        }
     }
+
     public function editar($idCurso,$idTitulo){
         /*
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) {
