@@ -432,18 +432,18 @@ function getTest(pregu){
     }
     return test;
 }
-function sendTest(){
+function sendTest($Curso,$Tema){
     let test=getTest();
     console.log(JSON.stringify(test));
 
     let $datos={test:test}
     $.ajax({
-        url: base_url + 'cEval/saveEval',
+        url: base_url + 'cEval/saveEval/'+$Curso+'/'+$Tema,
         type: 'POST',
         data: $datos,
         success: function (data) {
             var json = JSON.parse(data);
-             //console.log(json);
+             console.log(json.url);
              window.location.replace(json.url);
         },
         statusCode: {
