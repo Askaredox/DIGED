@@ -29,6 +29,11 @@ Sistema de ayuda al estudiante para estudiar cursos en línea por medio de una a
   - Local: http://localhost/DEDEV/Api/titulo/#
   - Público: https://desarrollo.virtual.usac.edu.gt/DEDEV/Api/titulo/#
 
+- Obtener la Comprobacion con sus preguntas por id del titulo
+
+  - `#` -> id del título
+  - Local: http://localhost/DEDEV/Api/comprobacion/#
+  - Público: https://desarrollo.virtual.usac.edu.gt/DEDEV/Api/comprobacion/#
   
 
 
