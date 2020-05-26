@@ -47,7 +47,7 @@
 
                 <!-- Icon Divider -->
                 <div class="save">
-                    <button type="button" class="btn btn-success" style="border-radius: 20px !important;" onclick=sendTest()>Guardar<br>y<br>Salir</button>
+                    <button type="button" class="btn btn-success" style="border-radius: 20px !important;" onclick="sendTest( <?php echo $this->uri->segment(3)?>,<?php echo $this->uri->segment(4)?>)">Guardar<br>y<br>Salir</button>
                 </div>                
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>

@@ -1,14 +1,12 @@
 <?php
 class CEval extends CI_Controller
 {
-    private $Curso;
-    private $Tema;
+
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Comprobacion_model');
-        $this->Curso = 0;
-        $this->Tema = 0;
+
     }
     public function index()
     {
@@ -121,11 +119,11 @@ class CEval extends CI_Controller
         $this->load->view('vEval', array('preguntas' => $this->getPrueba(1)));
     }
 
-    public function saveEval()
+    public function saveEval($Curso,$Tema)
     {
         $test = $this->input->post('test');
-        global $Curso;
-        global $Tema;
+       // global $Curso;
+        //global $Tema;
         //var_dump($test);
 
         $idTest = $test['id'];
