@@ -6,7 +6,7 @@ class Titulo extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('Docente_Titulos_model', 'Docente_Temas_model'));
+        $this->load->model(array('Docente_Titulos_model', 'Docente_Temas_model', 'Comprobacion_model'));
         $this->load->helper(array('Docente/docente'));
     }
     public function index()
@@ -144,9 +144,10 @@ class Titulo extends CI_Controller
                     ->set_status_header(401)
                     ->set_output(json_encode(array('error' => '¡ERROR! EL TITULO YA EXISTE.')));
             } else { // no existe entonces se almacena
-                if ($this->Docente_Titulos_model->CreateTitulo($datos)) { //Si se puedo insertar
+                if ($insertado=$this->Docente_Titulos_model->CreateTitulo($datos)) { //Si se puedo insertar
+                    $this->Comprobacion_model->createTest(array("Titulo" => $insertado, "Descripcion" => "")); //para crear una comprobacion al crearse un titulo
                     $this->session->set_flashdata('msg', 'SE CREÓ CON ÉXITO EL TITULO');
-                    echo json_encode(array('url' => base_url('Titulo/Crear/' . $Curso . '/' . $Tema)));
+                    echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema), 'id'=>$insertado));
                 } else { // ocurrió un error 
                     $this->output
                         ->set_status_header(401)

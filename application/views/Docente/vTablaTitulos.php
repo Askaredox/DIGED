@@ -112,7 +112,7 @@
                                                 </button>
                                             </td>
                                             <td style=" white-space: nowrap; width: 1px;">
-                                                <a href="<?= base_url('cEval/editar/' . $this->uri->segment(3) . '/' . $titulo['Tema']) ?>" class="btn btn-primary btn-sm  active" role="button" aria-pressed="true">
+                                                <a href="<?= base_url('cEval/editar/' . $this->uri->segment(3) . '/' . $titulo['Tema']) . '/' . $titulo['Id_Titulo'] ?>" class="btn btn-primary btn-sm  active" role="button" aria-pressed="true">
                                                     <i class="fas fa-file-alt"></i> Editar
                                                 </a>
                                             </td>

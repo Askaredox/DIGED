@@ -62,7 +62,6 @@
                     <div class="divider-custom">
                         <div class="divider-custom-line"></div>
                     </div>
-                    <input id="comprobacion" value=<?=$preguntas['test']->Id_Comprobacion ?> hidden>
                     <input id="titulo" value=<?=$preguntas['test']->Titulo ?> hidden>
                 </div>
             </header>

@@ -30,8 +30,9 @@ class Docente_Titulos_model extends CI_Model
 
     public function CreateTitulo($data)
     {
-        $sql = $this->db->insert('TITULO', $data);
-        return $sql;
+        return ($this->db->insert('TITULO', $data))  ?   $this->db->insert_id()  :   false;
+        //$sql = $this->db->insert('TITULO', $data);
+        //return $sql;
     }
 
     public function UpdateTitulo($coincidir,$datos)

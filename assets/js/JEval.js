@@ -285,7 +285,7 @@ function delP(preg){
         <div class="input-group mb-3">
             <textarea id="PREGUNTA_${preg.id}" class="form-control" placeholder="Pregunta algo">${preg.pregunta}</textarea>
         </div>
-        <input id="resp${preg.id}" value=${ preg.respuestas.lenght } hidden>
+        <input id="resp${preg.id}" value=${ preg.respuestas.length } hidden>
         <div id="resps${preg.id}">`;
             for(let resp of preg.respuestas){
             nuevo+=`
@@ -318,20 +318,20 @@ function delP(preg){
         <div class="input-group mb-3">
             <textarea id="PREGUNTA_${preg.id}" class="form-control" placeholder="Pregunta algo">${preg.pregunta}</textarea>
         </div>
-        <input id="resp${preg.id}" value=${ preg.respuestas.lenght } hidden>
+        <input id="resp${preg.id}" value=${ preg.respuestas.length } hidden>
         <div id="resps${preg.id}">`;
             for(let resp of preg.respuestas){
-            nuevo +=`<div id="R_${preg.id}_${resp.id}">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="checkbox" id="OMC${preg.id}_${resp.id}" name="OM${preg.id}" ${ resp.correcta==1?"checked":""}>
+                nuevo +=`<div id="R_${preg.id}_${resp.id}">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="OMC${preg.id}_${resp.id}" name="OM${preg.id}" ${ resp.correcta==1?"checked":""}>
+                            </div>
                         </div>
+                        <input type="text" id="OM${preg.id}_${resp.id}" class="form-control" placeholder="Respuesta..." value='${resp.respuesta}'>
+                        <button type="button" class="btn btn-danger" onclick=delR(${preg.id},${resp.id})>×</button>
                     </div>
-                    <input type="text" id="OM${preg.id}_${resp.id}" class="form-control" placeholder="Respuesta..." value='${resp.respuesta}'>
-                    <button type="button" class="btn btn-danger" onclick=delR(${preg.id},${resp.id})>×</button>
-                </div>
-            </div>`
+                </div>`;
             }
             nuevo+=`
         </div>
@@ -387,7 +387,6 @@ function delP(preg){
 function getTest(pregu){
     let test;
     test={
-        id: $('#comprobacion').val(),
         titulo: $('#titulo').val(),
         descripcion: $('#descr').val(),
         preguntas: []
@@ -434,20 +433,24 @@ function getTest(pregu){
 }
 function sendTest($Curso,$Tema){
     let test=getTest();
-    console.log(JSON.stringify(test));
 
     let $datos={test:test}
+    //console.log($datos);
     $.ajax({
         url: base_url + 'cEval/saveEval/'+$Curso+'/'+$Tema,
         type: 'POST',
         data: $datos,
         success: function (data) {
             var json = JSON.parse(data);
-             console.log(json.url);
-             window.location.replace(json.url);
+            console.log(json.url);
+            window.location.replace(json.url);
         },
         statusCode: {
             400: function (xhr) {
+                var json = JSON.parse(xhr.responseText);
+                console.log(json)
+            },
+            500:function (xhr){
                 var json = JSON.parse(xhr.responseText);
                 console.log(json)
             }
