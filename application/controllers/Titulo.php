@@ -145,7 +145,7 @@ class Titulo extends CI_Controller
                     ->set_output(json_encode(array('error' => '¡ERROR! EL TITULO YA EXISTE.')));
             } else { // no existe entonces se almacena
                 if ($insertado=$this->Docente_Titulos_model->CreateTitulo($datos)) { //Si se puedo insertar
-                    //$this->Comprobacion_model->createTest(array("Titulo" => $insertado, "Descripcion" => "")); //para crear una comprobacion al crearse un titulo
+                    $this->Comprobacion_model->createTest(array("Titulo" => $insertado, "Descripcion" => "")); //para crear una comprobacion al crearse un titulo
                     $this->session->set_flashdata('msg', 'SE CREÓ CON ÉXITO EL TITULO');
                     echo json_encode(array('url' => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema), 'id'=>$insertado));
                 } else { // ocurrió un error 
