@@ -389,6 +389,7 @@ function getTest(pregu){
     test={
         id: $('#comprobacion').val(),
         titulo: $('#titulo').val(),
+        descripcion: $('#descr').val(),
         preguntas: []
     }
     for(let i = 1,id = 1; i <= cant; i++){
@@ -412,6 +413,8 @@ function getTest(pregu){
                     res.respuesta=$('#RC'+i+"_"+j).val()
                     break;
                 case 4: 
+                    if($('#OM'+i+"_"+j).val()==undefined)
+                        continue
                     res.respuesta=$('#OM'+i+"_"+j).val()
                     res.correcta=$('#OMC'+i+"_"+j).is(':checked')?1:0;
                     break;
