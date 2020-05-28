@@ -27,37 +27,10 @@
 </br>
 </br>
 </br>
-<form method="post">
-  <textarea id="summernote" name="editordata"></textarea>
-  <input id="save" type="submit" class="btn btn-success" value="Save" />
-</form>
 
-<script>
-    $(document).ready(function() {
-        $('#summernote').summernote({
-            height: 300,                 // set editor height
-            minHeight: null,             // set minimum height of editor
-            maxHeight: null,             // set maximum height of editor
-            focus: true                  // set focus to editable area after initializing summe
-        });
-    });
-    $(save).click(function(e){
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "cTest/Process",
-            data: {
-                d: $('#summernote').summernote('code')
-            },
-            success: function(response) {
-                var jsonData = JSON.parse(response);
-                alert(jsonData.success);
-            },
-            error: function(){
-                alert($('#summernote').summernote('code'));
-            }
-       });
-    })
-  </script>
+<table id=crossword></table>
+
+<script>document.write("<script type='text/javascript' src='<?= base_url('assets/js/JTest.js') ?>?v=" + Date.now() + "'><\/script>");</script>
+
 </body>
 </html>

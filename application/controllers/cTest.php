@@ -9,8 +9,4 @@ class CTest extends CI_Controller
     {
         $this->load->view('vTest');
     }
-    public function Process(){
-        $datos=$_POST["d"];
-        echo json_encode(array('success' => $datos));
-    }
 }
