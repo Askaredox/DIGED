@@ -6,12 +6,11 @@ class CEval extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Comprobacion_model');
-
     }
     public function index()
     {
     }
-    public function editar($idCurso, $idTema,$idTitulo)
+    public function editar($idCurso, $idTema, $idTitulo)
     {
         /*
         if ($this->session->userdata('is_logged') && ($this->session->userdata('Tipo') == 2)) {
@@ -26,7 +25,7 @@ class CEval extends CI_Controller
         global $Tema;
         $Tema = $idTema;
 
-        $this->load->view('vEval', array('preguntas' => $this->getPrueba($idTitulo),'titulo'=>$idTitulo));
+        $this->load->view('vEval', array('preguntas' => $this->getPrueba($idTitulo), 'titulo' => $idTitulo));
     }
     public function getPrueba($idTitulo)
     {
@@ -38,7 +37,7 @@ class CEval extends CI_Controller
             $preguntas = array();
 
             $preg = $this->Comprobacion_model->getPreguntas(array('Comprobacion' => $test->Titulo));
-            if($preg){
+            if ($preg) {
                 foreach ($preg as $pregunta) {
                     //$respuestas = array();
                     // averiguar sus respuestas 
@@ -63,7 +62,7 @@ class CEval extends CI_Controller
                             $respuesta = array();
 
                             $row = $this->Comprobacion_model->getRespuestaCORTA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
-                            if($row)
+                            if ($row)
                                 foreach ($row as $res) {
                                     $tmp = array(
                                         "id_res" => $res['Id_RShort'],
@@ -77,7 +76,7 @@ class CEval extends CI_Controller
                             $respuesta = array();
 
                             $row = $this->Comprobacion_model->getRespuestaMULTIPLE(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
-                            if($row)
+                            if ($row)
                                 foreach ($row as $res) {
                                     $tmp = array(
                                         "id_res" => $res['Id_RMultiple'],
@@ -89,6 +88,18 @@ class CEval extends CI_Controller
 
                             break;
                         case 5: // sopita
+                            $respuesta = array();
+
+                            $row = $this->Comprobacion_model->getRespuestaSOPA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
+
+                            foreach ($row as $res) {
+                                $tmp = array(
+                                    "id_res" => $res['Id_Palabra'],
+                                    "answer" => $res['Respuesta'],
+                                    "correcta" => "1"
+                                );
+                                $respuesta[] = $tmp;
+                            }
 
                             break;
                         case 6: // crucigrama
@@ -119,11 +130,11 @@ class CEval extends CI_Controller
 
 
 
-    public function saveEval($Curso,$Tema)
+    public function saveEval($Curso, $Tema)
     {
         $test = $this->input->post('test');
 
-       // $ = $test['id'];
+        // $ = $test['id'];
         $idTest = $test['titulo'];
         $descripcion = $test['descripcion'];
         $exito = true;
@@ -133,7 +144,7 @@ class CEval extends CI_Controller
             //vamos a crearla de nuevo
             if ($this->Comprobacion_model->createTest(array("Titulo" => $idTest, "Descripcion" => $descripcion))) {
                 //SI SE Pudo crear creamos las preguntas y respuestas
-                if(array_key_exists('preguntas', $test)){
+                if (array_key_exists('preguntas', $test)) {
                     foreach ($test['preguntas'] as $valor) {
                         //crear preguntas primero
                         $datos1 = array(
@@ -168,7 +179,7 @@ class CEval extends CI_Controller
                                     # code...
                                     break;
                                 case 3: //cort
-                                    if(array_key_exists('respuestas', $valor)){
+                                    if (array_key_exists('respuestas', $valor)) {
                                         foreach ($valor["respuestas"] as $resp) {
                                             $datos2 = array(
                                                 "Id_RShort" => $resp["id"],
@@ -187,7 +198,7 @@ class CEval extends CI_Controller
                                     }
                                     break;
                                 case 4: //multiplr
-                                    if(array_key_exists('respuestas', $valor)){
+                                    if (array_key_exists('respuestas', $valor)) {
                                         foreach ($valor["respuestas"] as $resp) {
                                             $datos2 = array(
                                                 "Id_RMultiple" => $resp["id"],
@@ -224,9 +235,9 @@ class CEval extends CI_Controller
                         }
                     }
                 }
-               // var_dump($Curso);
-                 $this->session->set_flashdata('msg', '¡SE GUARDARON EXITOSAMENTE LOS CAMBIOS DE LA COMPROBACION!');
-                echo json_encode(array("url"=>base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
+                // var_dump($Curso);
+                $this->session->set_flashdata('msg', '¡SE GUARDARON EXITOSAMENTE LOS CAMBIOS DE LA COMPROBACION!');
+                echo json_encode(array("url" => base_url('Titulo/Administrar/' . $Curso . '/' . $Tema)));
             } else {
                 $this->session->set_flashdata('msge', '¡ERROR! NO SE PUDO ACTUALIZAR LA COMPROBACION');
                 echo json_encode(array("url" => base_url('Titulo/Administrar/' .  $Curso . '/' .  $Tema)));

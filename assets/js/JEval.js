@@ -1,16 +1,16 @@
 let cant;
 $(document).ready(function (ev) {
-    cant=$('#preguntas').val();
+    cant = $('#preguntas').val();
 })
 
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
-function addR(key){
-    let cant=$('#resp'+key).val();
-    $('#resp'+key).val(++cant);
-    
-    $('#resps'+key).append(`
+function addR(key) {
+    let cant = $('#resp' + key).val();
+    $('#resp' + key).val(++cant);
+
+    $('#resps' + key).append(`
 <div id="R_${key}_${cant}">
     <div class="input-group">
         <div class="input-group-prepend">
@@ -23,43 +23,54 @@ function addR(key){
     </div>
 </div>
 `);
-    
+
 }
 /**
  * eliminacion de la respuesta
  * @param {number} preg clave de la pregunta
  * @param {number} res clave de la respuesta
  */
-function delR(preg,res){
-    $('#R_'+preg+"_"+res).remove();
+function delR(preg, res) {
+    $('#R_' + preg + "_" + res).remove();
 }
 /**
  * Para añadir una nueva respuesta corta a la pregunta de respuesta corta
  * @param {number} key clave de la pregunta
+ * @param {number} tipo tipo de la pregunta
  */
-function addRes(key){
-    let cant=$('#resp'+key).val();
-    $('#resp'+key).val(++cant);
-    
-    $('#resps'+key).append(`
-<div id="R_${key}_${cant}">
-    <div class="input-group">
-        <input id="RC${key}_${cant}" type="text" class="form-control" placeholder="Respuesta...">
-        <button type="button" class="btn btn-danger" onclick=delR(${key},${cant})>×</button>
+function addRes(key, tipo) {
+    let cant = $('#resp' + key).val();
+    $codigo = "";
+
+    $('#resp' + key).val(++cant);
+
+
+
+    $codigo = `<div id="R_${key}_${cant}">
+    <div class="input-group">`;
+    if (tipo == 3) {
+        $codigo = $codigo + `<input id="RC${key}_${cant}" type="text" class="form-control" placeholder="Respuesta...">`;
+    } else if (tipo == 5) {
+        $codigo = $codigo + `<input id="RS${key}_${cant}" type="text" class="form-control" placeholder="Respuesta...">`;
+    } else {
+        $codigo = $codigo + `<input id="RCR${key}_${cant}" type="text" class="form-control" placeholder="Respuesta...">`;
+    }
+
+    $codigo = $codigo + `<button type="button" class="btn btn-danger" onclick=delR(${key},${cant})>×</button>
     </div>
-</div>
-`);
+</div>`
+    $('#resps' + key).append($codigo);
 }
 /**
  * Añadir una nueva pregunta
  * @param {*} tipo Tipo de pregunta que se va a añadir
  */
-function addP(tipo){
+function addP(tipo) {
     let nuevo;
-    let p=++cant;
-    switch(tipo){
+    let p = ++cant;
+    switch (tipo) {
         case 0: //OPCION MULTIPLE
-            nuevo=`
+            nuevo = `
 <input id="preg_T${p}" value=4 hidden>
 <div class="card mb-2">
     <div class="card-header mx-100 bg-primary text-white" >
@@ -127,7 +138,7 @@ function addP(tipo){
 `
             break;
         case 1: //VERDADERO Y FALSO
-            nuevo=`
+            nuevo = `
 <input id="preg_T${p}" value=1 hidden>
 <div class="card mb-2">
     <div class="card-header mx-100 bg-secondary text-white" >
@@ -160,7 +171,7 @@ function addP(tipo){
 `
             break;
         case 2: //RESPUESTA CORTA
-            nuevo=`
+            nuevo = `
 <input id="preg_T${p}" value=3 hidden>
 <div class="card mb-2">
     <div class="card-header mx-100 bg-success text-white" >
@@ -182,7 +193,7 @@ function addP(tipo){
             </div>
             
         </div>
-        <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(${p})>
+        <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(${p},3)>
             <i class="fas fa-plus"></i> Añadir respuesta
         </button>
     </div>
@@ -190,7 +201,7 @@ function addP(tipo){
 `
             break;
         case 3: //RESPUESTA LARGA
-            nuevo=`
+            nuevo = `
 <input id="preg_T${p}" value=2 hidden>
 <div class="card mb-2">
     <div class="card-header mx-100 bg-info text-white" >
@@ -206,25 +217,82 @@ function addP(tipo){
 </div>
 `
             break;
-        case 4:
+        case 4:// respuesta cruci
+            nuevo = `
+            <input id="preg_T${p}" value=6 hidden>
+            <div class="card mb-2">
+                <div class="card-header mx-100 bg-dark text-white" >
+                    ${p}) Respuesta Crucigrama
+                    <button type="button" class="btn btn-outline-danger float-right" onclick=delP(${p})>×</button>
+                    <button type="button" class="btn btn-success float-right" onclick="">Vista Previa</button>
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <textarea id="PREGUNTA_${p}" class="form-control" placeholder="Pregunta algo"></textarea>
+                    </div>
+                    <input id="resp${p}" value=1 hidden>
+                    <div id="resps${p}">
+                    
+                        <div id="R_${p}_1">
+                            <div class="input-group">
+                                <input id="RCR${p}_1" type="text" class="form-control" placeholder="Respuesta...">
+                                <button type="button" class="btn btn-danger" onclick=delR(${p},1)>×</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(${p},6)>
+                        <i class="fas fa-plus"></i> Añadir respuesta
+                    </button>
+                </div>
+            </div>
+            `
 
             break;
-        case 5:
-    
+        case 5:// respuesta sopita
+            nuevo = `
+<input id="preg_T${p}" value=5 hidden>
+<div class="card mb-2">
+    <div class="card-header mx-100 bg-warning text-white" >
+        ${p}) Respuesta Sopa
+        <button type="button" class="btn btn-outline-danger float-right" onclick=delP(${p})>×</button>
+        <button type="button" class="btn btn-success float-right" onclick="">Vista Previa</button>
+    </div>
+    <div class="card-body">
+        <div class="input-group mb-3">
+            <textarea id="PREGUNTA_${p}" class="form-control" placeholder="Pregunta algo"></textarea>
+        </div>
+        <input id="resp${p}" value=1 hidden>
+        <div id="resps${p}">
+        
+            <div id="R_${p}_1">
+                <div class="input-group">
+                    <input id="RS${p}_1" type="text" class="form-control" placeholder="Respuesta...">
+                    <button type="button" class="btn btn-danger" onclick=delR(${p},1)>×</button>
+                </div>
+            </div>
+            
+        </div>
+        <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(${p},5)>
+            <i class="fas fa-plus"></i> Añadir respuesta
+        </button>
+    </div>
+</div>
+`
             break;
     }
     $('#preg').append(nuevo);
-    
+
 }
-function delP(preg){
+function delP(preg) {
     let test = getTest(preg);
     $('#preg').empty();
-    
-    for(let preg of test.preguntas){
-        let nuevo="";
-        switch(preg.tipo){
-        case 1: //VERDADERO Y FALSO
-            nuevo+=`
+
+    for (let preg of test.preguntas) {
+        let nuevo = "";
+        switch (preg.tipo) {
+            case 1: //VERDADERO Y FALSO
+                nuevo += `
 <input id="preg_T${preg.id}" value=${preg.tipo} hidden>
 <div class="card mb-2">
     <div class="card-header mx-100 bg-secondary text-white" >
@@ -239,7 +307,7 @@ function delP(preg){
         <div class="input-group">
             <div class="input-group-prepend">
                 <div class="input-group-text">
-                    <input type="radio" id="res${preg.id}" name="res${preg.id}" ${ preg.respuestas[0].correcta==1?"checked":""}/>
+                    <input type="radio" id="res${preg.id}" name="res${preg.id}" ${preg.respuestas[0].correcta == 1 ? "checked" : ""}/>
                 </div>
             </div>
             <span class="input-group-text" id="basic-addon1">VERDADERO</span>
@@ -247,7 +315,7 @@ function delP(preg){
         <div class="input-group">
             <div class="input-group-prepend">
                 <div class="input-group-text">
-                    <input type="radio" name="res${preg.id}" ${ preg.respuestas[0].correcta==0?"checked":""}/>
+                    <input type="radio" name="res${preg.id}" ${preg.respuestas[0].correcta == 0 ? "checked" : ""}/>
                 </div>
             </div>
             <span class="input-group-text" id="basic-addon1">FALSO</span>
@@ -255,9 +323,9 @@ function delP(preg){
     </div>
 </div>            
 `
-            break;
-        case 2: //RESPUESTA LARGA
-            nuevo+=`
+                break;
+            case 2: //RESPUESTA LARGA
+                nuevo += `
 <input id="preg_T${preg.id}" value=${preg.tipo} hidden>
 <div class="card mb-2">
     <div class="card-header mx-100 bg-info text-white" >
@@ -272,9 +340,9 @@ function delP(preg){
     </div>
 </div>
 `
-            break;
-        case 3: //RESPUESTA CORTA
-            nuevo+=`
+                break;
+            case 3: //RESPUESTA CORTA
+                nuevo += `
 <input id="preg_T${preg.id}" value=${preg.tipo} hidden>
 <div class="card mb-2">
     <div class="card-header mx-100 bg-success text-white" >
@@ -285,10 +353,10 @@ function delP(preg){
         <div class="input-group mb-3">
             <textarea id="PREGUNTA_${preg.id}" class="form-control" placeholder="Pregunta algo">${preg.pregunta}</textarea>
         </div>
-        <input id="resp${preg.id}" value=${ preg.respuestas.length } hidden>
+        <input id="resp${preg.id}" value=${preg.respuestas.length} hidden>
         <div id="resps${preg.id}">`;
-            for(let resp of preg.respuestas){
-            nuevo+=`
+                for (let resp of preg.respuestas) {
+                    nuevo += `
             <div id="R_${preg.id}_${resp.id}">
                 <div class="input-group">
                     <input id="RC${preg.id}_${resp.id}" type="text" class="form-control" placeholder="Respuesta..." value='${resp.respuesta}'>
@@ -296,8 +364,8 @@ function delP(preg){
                 </div>
             </div>
             `;
-            }
-            nuevo+=`
+                }
+                nuevo += `
         </div>
         <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(${preg.id})>
             <i class="fas fa-plus"></i> Añadir respuesta
@@ -305,9 +373,9 @@ function delP(preg){
     </div>
 </div>            
 `;
-            break;
-        case 4: //OPCION MULTIPLE 
-            nuevo+=`
+                break;
+            case 4: //OPCION MULTIPLE 
+                nuevo += `
 <input id="preg_T${preg.id}" value=${preg.tipo} hidden>
 <div class="card mb-2">
     <div class="card-header mx-100 bg-primary text-white" >
@@ -318,22 +386,22 @@ function delP(preg){
         <div class="input-group mb-3">
             <textarea id="PREGUNTA_${preg.id}" class="form-control" placeholder="Pregunta algo">${preg.pregunta}</textarea>
         </div>
-        <input id="resp${preg.id}" value=${ preg.respuestas.length } hidden>
+        <input id="resp${preg.id}" value=${preg.respuestas.length} hidden>
         <div id="resps${preg.id}">`;
-            for(let resp of preg.respuestas){
-                nuevo +=`<div id="R_${preg.id}_${resp.id}">
+                for (let resp of preg.respuestas) {
+                    nuevo += `<div id="R_${preg.id}_${resp.id}">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" id="OMC${preg.id}_${resp.id}" name="OM${preg.id}" ${ resp.correcta==1?"checked":""}>
+                                <input type="checkbox" id="OMC${preg.id}_${resp.id}" name="OM${preg.id}" ${resp.correcta == 1 ? "checked" : ""}>
                             </div>
                         </div>
                         <input type="text" id="OM${preg.id}_${resp.id}" class="form-control" placeholder="Respuesta..." value='${resp.respuesta}'>
                         <button type="button" class="btn btn-danger" onclick=delR(${preg.id},${resp.id})>×</button>
                     </div>
                 </div>`;
-            }
-            nuevo+=`
+                }
+                nuevo += `
         </div>
         <button type="button" class="btn btn-outline-primary w-100" onclick=addR(${preg.id})>
             <i class="fas fa-plus"></i> Añadir respuesta
@@ -341,9 +409,9 @@ function delP(preg){
     </div>
 </div>            
 `;
-            break;
-        case 5: //SOPA DE LETRAS
-            nuevo+=`
+                break;
+            case 5: //SOPA DE LETRAS
+                nuevo += `
 <input id="preg_T${preg.id}" value=${preg.tipo} hidden>
 <div class="card mb-2">
     <div class="card-header mx-100 bg-warning" >
@@ -358,9 +426,9 @@ function delP(preg){
     </div>
 </div>
 `
-            break;
-        case 6: //CRUCIGRAMA
-            nuevo+=`
+                break;
+            case 6: //CRUCIGRAMA
+                nuevo += `
 <input id="preg_T${preg.id}" value=${preg.tipo} hidden>
 <div class="card mb-2">
     <div class="card-header mx-100 bg-danger text-white" >
@@ -375,7 +443,7 @@ function delP(preg){
     </div>
 </div>
 `
-            break;
+                break;
         }
         $('#preg').append(nuevo)
     }
@@ -384,59 +452,61 @@ function delP(preg){
 /**
  * Mandar datos a la base de datos
  */
-function getTest(pregu){
+function getTest(pregu) {
     let test;
-    test={
+    test = {
         titulo: $('#titulo').val(),
         descripcion: $('#descr').val(),
         preguntas: []
     }
-    for(let i = 1,id = 1; i <= cant; i++){
-        if(pregu && pregu == i)
+    for (let i = 1, id = 1; i <= cant; i++) {
+        if (pregu && pregu == i)
             continue;
-        let preg={
-            id:id++,
-            tipo:parseInt($('#preg_T'+i).val()),
-            pregunta:$('#PREGUNTA_'+i).val(),
+        let preg = {
+            id: id++,
+            tipo: parseInt($('#preg_T' + i).val()),
+            pregunta: $('#PREGUNTA_' + i).val(),
             respuestas: []
         }
-        for(let j = 1,rid=1; j <= parseInt($('#resp'+i).val());j++){
-            let res={}
-            switch(preg.tipo){
-                case 1: 
-                    res.correcta=$('#res'+i).is(':checked')?1:0;
+        for (let j = 1, rid = 1; j <= parseInt($('#resp' + i).val()); j++) {
+            let res = {}
+            switch (preg.tipo) {
+                case 1:
+                    res.correcta = $('#res' + i).is(':checked') ? 1 : 0;
                     break;
-                case 2: 
+                case 2:
                     break;
-                case 3: 
-                    res.respuesta=$('#RC'+i+"_"+j).val()
+                case 3:
+                    res.respuesta = $('#RC' + i + "_" + j).val()
                     break;
-                case 4: 
-                    if($('#OM'+i+"_"+j).val()==undefined)
+                case 4:
+                    if ($('#OM' + i + "_" + j).val() == undefined)
                         continue
-                    res.respuesta=$('#OM'+i+"_"+j).val()
-                    res.correcta=$('#OMC'+i+"_"+j).is(':checked')?1:0;
+                    res.respuesta = $('#OM' + i + "_" + j).val()
+                    res.correcta = $('#OMC' + i + "_" + j).is(':checked') ? 1 : 0;
                     break;
-                case 5: 
+                case 5:
+                    res.respuesta = $('#RS' + i + "_" + j).val()
                     break;
-                case 6: 
+                case 6:
+                    res.respuesta = $('#RCR' + i + "_" + j).val()
                     break;
             }
-            if(res.respuesta==undefined && res.correcta==undefined)
+            if (res.respuesta == undefined && res.correcta == undefined)
                 continue;
-            res.id=rid++;
+            res.id = rid++;
             preg.respuestas.push(res)
         }
         test.preguntas.push(preg);
     }
     return test;
 }
-function sendTest($Curso,$Tema){
-    let test=getTest();
+function sendTest($Curso, $Tema) {
+    let test = getTest();
 
-    let $datos={test:test}
-    //console.log($datos);
-    $.ajax({
+    let $datos = { test: test }
+    console.log($datos);
+    /*$.ajax({
         url: base_url + 'cEval/saveEval/'+$Curso+'/'+$Tema,
         type: 'POST',
         data: $datos,
@@ -455,5 +525,5 @@ function sendTest($Curso,$Tema){
                 console.log(json)
             }
         }
-    })
+    })*/
 }
