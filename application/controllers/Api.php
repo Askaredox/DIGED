@@ -169,6 +169,18 @@ class Api extends REST_Controller
 
                             break;
                         case 5: // sopita
+                            $respuesta = array();
+
+                            $row = $this->Comprobacion_model->getRespuestaSOPA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
+
+                            foreach ($row as $res) {
+                                $tmp = array(
+                                    "id_res" => $res['Id_Palabra'],
+                                    "answer" => $res['Respuesta'],
+                                    "correcta" => "1"
+                                );
+                                $respuesta[] = $tmp;
+                            }
 
                             break;
                         case 6: // crucigrama
@@ -185,9 +197,9 @@ class Api extends REST_Controller
                 }
 
                 $data = array(
-                    'ID'=> $test->Titulo,
-                    'DESCRIPCION'=> $test->Descripcion,
-                    'PREGUNTAS'=> $preguntas
+                    'ID' => $test->Titulo,
+                    'DESCRIPCION' => $test->Descripcion,
+                    'PREGUNTAS' => $preguntas
                 );
                 $this->response($data, REST_Controller::HTTP_OK);
             } else {
