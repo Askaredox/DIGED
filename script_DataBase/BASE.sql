@@ -309,6 +309,15 @@ INSERT INTO
    TITULO(Nombre, Contenido, Tema)
 VALUES
    (
+      'CAPAS DEL MODELO OSI',
+      '<p><strong>MODELO OSI</strong><br /> Se denomina medir una magnitud, al resultado de compararlas con otras de su misma<br />especie, que se toma por unidad. Las magnitudes que se miden en Topografia son lineales,<br />superficiales, angulares y volumetricas. En nuestro pais, se utiliza el Sistema Metrico Decimal. <br /><span style="text-decoration: underline;">Unidad de superficie:</span>es de uso frecuente en Topografia, muestra el valor de las superficies&nbsp;<br />en unidades de medida agraria, siendo sus equivalencias:<br />1 Centiarea = 1Ca = 1 m2<br />1 Area = 1 A = 100 m2<br />1 Hectarea = 1 Ha = 10,000 m2<br /><span style="text-decoration: underline;">Unidades Angulares:</span> Se sabe por geometria, que la medida de un angulo es el arco<br />trazado desde el vertice, como centro, subtendido por los lados, y por medir se tomara<br />como unidad de angulo el trazado en el centro de la circunferencia que subtienda el arco de un <br />grado. El angulo unidad se considera igualmente dividido en 60 (minutos) y cada minuto en 60<br />(segundos).</p><p><a title="UNIDADES EN TOPOGRAFIA" href="https://www.youtube.com/watch?v=qTJx82cxtcc">https://www.youtube.com/watch?v=qTJx82cxtcc</a></p>',
+      18
+   );
+
+INSERT INTO
+   TITULO(Nombre, Contenido, Tema)
+VALUES
+   (
       'ANALISIS LEXICO',
       '<p>En algunos lenguajes de programacion es necesario establecer patrones para caracteres especiales (como el espacio en blanco) que la gramatica pueda reconocer sin que constituya un&nbsp;<em>token</em>&nbsp;en si.</p><h2><span id="An.C3.A1lisis"></span><span id="An&aacute;lisis" class="mw-headline">Analisis</span></h2><p>Esta etapa esta basada usualmente en una, maquina de estado finito. Esta maquina contiene la informacion de las posibles secuencias de caracteres que puede conformar cualquier&nbsp;<em>token</em>&nbsp;que sea parte del lenguaje (las instancias individuales de estas secuencias de caracteres son denominados lexemas). Por ejemplo, un&nbsp;<em>token</em>&nbsp;de naturaleza&nbsp;<em>entero</em>&nbsp;puede contener cualquier secuencia de caracteres numericos.</p><h2><span id="V.C3.A9ase_tambi.C3.A9n"></span><span id="V&eacute;ase_tambi&eacute;n" class="mw-headline">Vease tambien</span></h2><ul><li><a title="Analizador sint&aacute;ctico" href="https://es.wikipedia.org/wiki/Analizador_sint%C3%A1ctico">Analizador sintactico</a></li><li><a title="Ling&uuml;&iacute;stica computacional" href="https://es.wikipedia.org/wiki/Ling%C3%BC%C3%ADstica_computacional">Linguistica computacional</a></li><li><a title="Lex (inform&aacute;tica)" href="https://es.wikipedia.org/wiki/Lex_(inform%C3%A1tica)">Lex</a></li><li><a class="new" title="Flex (inform&aacute;ica) (a&uacute;n no redactado)" href="https://es.wikipedia.org/w/index.php?title=Flex_(inform%C3%A1ica)&amp;action=edit&amp;redlink=1">Flex</a></li></ul>',
       11
@@ -321,7 +330,7 @@ FROM
    TITULO;
 
 CREATE TABLE COMPROBACION(
-  -- Id_Comprobacion INTEGER NOT NULL,
+   -- Id_Comprobacion INTEGER NOT NULL,
    Descripcion VARCHAR(255) NULL,
    Titulo INTEGER NOT NULL,
    CONSTRAINT COMPROBACION_PK PRIMARY KEY(Titulo),
@@ -338,6 +347,11 @@ INSERT INTO
    COMPROBACION(Descripcion, Titulo)
 VALUES
    ('PRUEBA SOBRE ANALISIS LEXICO', 2);
+
+INSERT INTO
+   COMPROBACION(Descripcion, Titulo)
+VALUES
+   ('PRUEBA SOBRE CAPAS DEL MODELO OSI', 3);
 
 SELECT
    *
@@ -391,7 +405,7 @@ CREATE TABLE PREGUNTA(
    Pregunta VARCHAR(255) NOT NULL,
    Comprobacion INTEGER NOT NULL,
    Tipo_Pregunta INTEGER NOT NULL,
-   CONSTRAINT PREGUNTA_PK PRIMARY KEY(Id_Pregunta,Comprobacion),
+   CONSTRAINT PREGUNTA_PK PRIMARY KEY(Id_Pregunta, Comprobacion),
    CONSTRAINT COMPROBACION_FK FOREIGN KEY (Comprobacion) REFERENCES COMPROBACION(Titulo) ON DELETE CASCADE,
    CONSTRAINT TIPO_PR_FK FOREIGN KEY (Tipo_Pregunta) REFERENCES TIPO_PREGUNTA(Id_Tipo) ON DELETE CASCADE
 );
@@ -537,20 +551,35 @@ VALUES
       5
    );
 
+INSERT INTO
+   PREGUNTA(
+      Id_Pregunta,
+      Pregunta,
+      Comprobacion,
+      Tipo_Pregunta
+   )
+VALUES
+   (
+      1,
+      'Cuales son las capas del modelo OSI',
+      3,
+      5
+   );
+
 SELECT
    *
 FROM
    PREGUNTA;
 
 CREATE TABLE RESPUESTA_MULTIPLE(
-   Id_RMultiple		INTEGER NOT NULL,
-   Booleano 		BOOLEAN NOT NULL,
+   Id_RMultiple INTEGER NOT NULL,
+   Booleano BOOLEAN NOT NULL,
    Respuesta VARCHAR(255) NOT NULL,
    Pregunta INTEGER NOT NULL,
    Comprobacion INTEGER NOT NULL,
    CONSTRAINT RESPUESTAM_PK PRIMARY KEY(Comprobacion, Pregunta, Id_RMultiple),
-   CONSTRAINT PREGUNTAM_FK FOREIGN KEY (Pregunta, Comprobacion) REFERENCES PREGUNTA(Id_Pregunta,Comprobacion) ON DELETE CASCADE,
-   CONSTRAINT RESPUESTAM_UN UNIQUE(Respuesta,Comprobacion, Pregunta)
+   CONSTRAINT PREGUNTAM_FK FOREIGN KEY (Pregunta, Comprobacion) REFERENCES PREGUNTA(Id_Pregunta, Comprobacion) ON DELETE CASCADE,
+   CONSTRAINT RESPUESTAM_UN UNIQUE(Respuesta, Comprobacion, Pregunta)
 );
 
 INSERT INTO
@@ -874,6 +903,11 @@ INSERT INTO
 VALUES
    (10, 10, 5, 2);
 
+INSERT INTO
+   RESPUESTA_SOPA(Altura, Ancho, Pregunta, Comprobacion)
+VALUES
+   (10, 10, 1, 3);
+
 SELECT
    *
 FROM
@@ -906,7 +940,7 @@ INSERT INTO
 VALUES
    (
       1,
-      'Angulares',
+      'Superficiales',
       9,
       6,
       1,
@@ -929,6 +963,52 @@ INSERT INTO
 VALUES
    (
       2,
+      'Dimensionales',
+      9,
+      6,
+      1,
+      6,
+      3,
+      1
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      3,
+      'Angulares',
+      9,
+      6,
+      1,
+      6,
+      3,
+      1
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      4,
       'Lineales',
       1,
       2,
@@ -997,6 +1077,75 @@ INSERT INTO
    )
 VALUES
    (
+      3,
+      'AnalisisLexico',
+      1,
+      9,
+      9,
+      9,
+      3,
+      2
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      4,
+      'AnalisisSintactico',
+      1,
+      9,
+      9,
+      9,
+      3,
+      2
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      5,
+      'AnalisisSemantico',
+      1,
+      9,
+      9,
+      9,
+      3,
+      2
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
       1,
       'Assembler',
       4,
@@ -1029,6 +1178,190 @@ VALUES
       5,
       2
    );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      3,
+      'Maquina',
+      7,
+      10,
+      7,
+      8,
+      5,
+      2
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      4,
+      'Cobol',
+      7,
+      10,
+      7,
+      8,
+      5,
+      2
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      5,
+      'Basic',
+      7,
+      10,
+      7,
+      8,
+      5,
+      2
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      1,
+      'Aplicacion',
+      7,
+      10,
+      7,
+      8,
+      1,
+      3
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      2,
+      'Transporte',
+      7,
+      10,
+      7,
+      8,
+      1,
+      3
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      3,
+      'Fisica',
+      7,
+      10,
+      7,
+      8,
+      1,
+      3
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      4,
+      'Red',
+      7,
+      10,
+      7,
+      8,
+      1,
+      3
+   );
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      PosXi,
+      PosYi,
+      PosXf,
+      PosYf,
+      Pregunta,
+      Comprobacion
+   )
+VALUES
+   (
+      5,
+      'EnlaceDatos',
+      7,
+      10,
+      7,
+      8,
+      1,
+      3
+   );
+
 
 SELECT
    *

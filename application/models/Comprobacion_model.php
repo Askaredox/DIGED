@@ -44,7 +44,7 @@ class Comprobacion_model extends CI_Model
 
     public function getRespuestaSOPA($data) //ID  pregunta
     {
-        $query = $this->db->get_where('RESPUESTA_SOPA', $data);
+        $query = $this->db->get_where('PALABRA', $data);
         if ($query->num_rows() > 0) {
             return $query->result_array();
         }
