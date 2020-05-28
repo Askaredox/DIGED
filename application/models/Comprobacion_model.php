@@ -60,15 +60,6 @@ class Comprobacion_model extends CI_Model
         return FALSE;
     }
 
-    public function getRespuestaCRUCIGRAMA($data) //ID  pregunta
-    {
-        $query = $this->db->get_where('RESPUESTA_CRUCIGRAMA', $data);
-        if ($query->num_rows() > 0) {
-            return $query->result_array();
-        }
-        return FALSE;
-    }
-
     //----------------------------------------------------------------------
     public function existsTest($data) // id titulo
     {

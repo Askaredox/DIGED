@@ -103,7 +103,18 @@ class CEval extends CI_Controller
 
                             break;
                         case 6: // crucigrama
+                            $respuesta = array();
 
+                            $row = $this->Comprobacion_model->getRespuestaSOPA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
+
+                            foreach ($row as $res) {
+                                $tmp = array(
+                                    "id_res" => $res['Id_Palabra'],
+                                    "answer" => $res['Respuesta'],
+                                    "descripcion" => $res['Descripcion']
+                                );
+                                $respuesta[] = $tmp;
+                            }
                             break;
                     }
 
