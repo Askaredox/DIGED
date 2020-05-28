@@ -566,6 +566,66 @@ VALUES
       5
    );
 
+INSERT INTO
+   PREGUNTA(
+      Id_Pregunta,
+      Pregunta,
+      Comprobacion,
+      Tipo_Pregunta
+   )
+VALUES
+   (
+      2,
+      'Cuales son topologías de Red',
+      3,
+      6
+   );
+
+INSERT INTO
+   PREGUNTA(
+      Id_Pregunta,
+      Pregunta,
+      Comprobacion,
+      Tipo_Pregunta
+   )
+VALUES
+   (
+      3,
+      'Cuales son los elementos de una red',
+      3,
+      6
+   );
+
+INSERT INTO
+   PREGUNTA(
+      Id_Pregunta,
+      Pregunta,
+      Comprobacion,
+      Tipo_Pregunta
+   )
+VALUES
+   (
+      4,
+      'Cuales son Capas del modelo TCP/IP',
+      3,
+      6
+   );
+
+INSERT INTO
+   PREGUNTA(
+      Id_Pregunta,
+      Pregunta,
+      Comprobacion,
+      Tipo_Pregunta
+   )
+VALUES
+   (
+      5,
+      'Tipos de Cables de red',
+      3,
+      6
+   );
+
 SELECT
    *
 FROM
@@ -878,62 +938,76 @@ SELECT
 FROM
    RESPUESTA_CORTA;
 
-CREATE TABLE RESPUESTA_SOPA(
+CREATE TABLE RESPUESTA_INTERACTIVA(
    -- Id_RSopa INTEGER NOT NULL AUTO_INCREMENT,
-   Altura INTEGER NOT NULL,
-   Ancho INTEGER NOT NULL,
+   Arreglo blob NULL,
    Pregunta INTEGER NOT NULL,
    Comprobacion INTEGER NOT NULL,
    CONSTRAINT RESPUESTASOPA_PK PRIMARY KEY(Pregunta, Comprobacion),
    CONSTRAINT PREGUNTASOPA_FK FOREIGN KEY (Pregunta, Comprobacion) REFERENCES PREGUNTA(Id_Pregunta, Comprobacion) ON DELETE CASCADE
 );
 
+-- ESTOS SONN DE SOPAS DE LETRA
 INSERT INTO
-   RESPUESTA_SOPA(Altura, Ancho, Pregunta, Comprobacion)
+   RESPUESTA_INTERACTIVA(Pregunta, Comprobacion)
 VALUES
-   (10, 10, 3, 1);
+   (3, 1);
 
 INSERT INTO
-   RESPUESTA_SOPA(Altura, Ancho, Pregunta, Comprobacion)
+   RESPUESTA_INTERACTIVA(Pregunta, Comprobacion)
 VALUES
-   (10, 10, 3, 2);
+   (3, 2);
 
 INSERT INTO
-   RESPUESTA_SOPA(Altura, Ancho, Pregunta, Comprobacion)
+   RESPUESTA_INTERACTIVA(Pregunta, Comprobacion)
 VALUES
-   (10, 10, 5, 2);
+   (5, 2);
 
 INSERT INTO
-   RESPUESTA_SOPA(Altura, Ancho, Pregunta, Comprobacion)
+   RESPUESTA_INTERACTIVA(Pregunta, Comprobacion)
 VALUES
-   (10, 10, 1, 3);
+   (1, 3);
+
+-- ESTOS SON DE CRUCIGRAMA
+INSERT INTO
+   RESPUESTA_INTERACTIVA(Pregunta, Comprobacion)
+VALUES
+   (2, 3);
+
+INSERT INTO
+   RESPUESTA_INTERACTIVA(Pregunta, Comprobacion)
+VALUES
+   (3, 3);
+
+INSERT INTO
+   RESPUESTA_INTERACTIVA(Pregunta, Comprobacion)
+VALUES
+   (4, 3);
+
+INSERT INTO
+   RESPUESTA_INTERACTIVA(Pregunta, Comprobacion)
+VALUES
+   (5, 3);
 
 SELECT
    *
 FROM
-   RESPUESTA_SOPA;
+   RESPUESTA_INTERACTIVA;
 
 CREATE TABLE PALABRA(
    Id_Palabra INTEGER NOT NULL,
    Respuesta VARCHAR(255) NOT NULL,
-   PosXi INTEGER NOT NULL,
-   PosYi INTEGER NOT NULL,
-   PosXf INTEGER NOT NULL,
-   PosYf INTEGER NOT NULL,
+   Descripcion VARCHAR(255) NULL,
    Pregunta INTEGER NOT NULL,
    Comprobacion INTEGER NOT NULL,
    CONSTRAINT PALABRA_PK PRIMARY KEY(Comprobacion, Pregunta, Id_Palabra),
-   CONSTRAINT RESPUESTA_SOPA_FK FOREIGN KEY (Pregunta, Comprobacion) REFERENCES RESPUESTA_SOPA(Pregunta, Comprobacion) ON DELETE CASCADE -- CONSTRAINT PALABRA_UN UNIQUE(Respuesta, Respuesta_Sopa)
+   CONSTRAINT RESPUESTA_INTERACTIVA_FK FOREIGN KEY (Pregunta, Comprobacion) REFERENCES RESPUESTA_INTERACTIVA(Pregunta, Comprobacion) ON DELETE CASCADE -- CONSTRAINT PALABRA_UN UNIQUE(Respuesta, Respuesta_Sopa)
 );
 
 INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
@@ -941,10 +1015,6 @@ VALUES
    (
       1,
       'Superficiales',
-      9,
-      6,
-      1,
-      6,
       3,
       1
    );
@@ -953,10 +1023,6 @@ INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
@@ -964,10 +1030,6 @@ VALUES
    (
       2,
       'Dimensionales',
-      9,
-      6,
-      1,
-      6,
       3,
       1
    );
@@ -976,10 +1038,6 @@ INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
@@ -987,10 +1045,6 @@ VALUES
    (
       3,
       'Angulares',
-      9,
-      6,
-      1,
-      6,
       3,
       1
    );
@@ -999,79 +1053,36 @@ INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
 VALUES
-   (
-      4,
-      'Lineales',
-      1,
-      2,
-      9,
-      2,
-      3,
-      1
-   );
+   (4, 'Lineales', 3, 1);
 
 INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
 VALUES
-   (
-      1,
-      'Sintesis',
-      2,
-      4,
-      9,
-      4,
-      3,
-      2
-   );
+   (1, 'Sintesis', 3, 2);
 
 INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
 VALUES
-   (
-      2,
-      'Analisis',
-      1,
-      9,
-      9,
-      9,
-      3,
-      2
-   );
+   (2, 'Analisis', 3, 2);
 
 INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
@@ -1079,10 +1090,6 @@ VALUES
    (
       3,
       'AnalisisLexico',
-      1,
-      9,
-      9,
-      9,
       3,
       2
    );
@@ -1091,10 +1098,6 @@ INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
@@ -1102,10 +1105,6 @@ VALUES
    (
       4,
       'AnalisisSintactico',
-      1,
-      9,
-      9,
-      9,
       3,
       2
    );
@@ -1114,10 +1113,6 @@ INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
@@ -1125,10 +1120,6 @@ VALUES
    (
       5,
       'AnalisisSemantico',
-      1,
-      9,
-      9,
-      9,
       3,
       2
    );
@@ -1137,10 +1128,6 @@ INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
@@ -1148,10 +1135,6 @@ VALUES
    (
       1,
       'Assembler',
-      4,
-      1,
-      4,
-      9,
       5,
       2
    );
@@ -1160,102 +1143,46 @@ INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
 VALUES
-   (
-      2,
-      'C++',
-      7,
-      10,
-      7,
-      8,
-      5,
-      2
-   );
+   (2, 'C++', 5, 2);
 
 INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
 VALUES
-   (
-      3,
-      'Maquina',
-      7,
-      10,
-      7,
-      8,
-      5,
-      2
-   );
+   (3, 'Maquina', 5, 2);
 
 INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
 VALUES
-   (
-      4,
-      'Cobol',
-      7,
-      10,
-      7,
-      8,
-      5,
-      2
-   );
+   (4, 'Cobol', 5, 2);
 
 INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
 VALUES
-   (
-      5,
-      'Basic',
-      7,
-      10,
-      7,
-      8,
-      5,
-      2
-   );
+   (5, 'Basic', 5, 2);
 
 INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
@@ -1263,10 +1190,6 @@ VALUES
    (
       1,
       'Aplicacion',
-      7,
-      10,
-      7,
-      8,
       1,
       3
    );
@@ -1275,10 +1198,6 @@ INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
@@ -1286,10 +1205,6 @@ VALUES
    (
       2,
       'Transporte',
-      7,
-      10,
-      7,
-      8,
       1,
       3
    );
@@ -1298,55 +1213,26 @@ INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
 VALUES
-   (
-      3,
-      'Fisica',
-      7,
-      10,
-      7,
-      8,
-      1,
-      3
-   );
+   (3, 'Fisica', 1, 3);
 
 INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
 VALUES
-   (
-      4,
-      'Red',
-      7,
-      10,
-      7,
-      8,
-      1,
-      3
-   );
+   (4, 'Red', 1, 3);
+
 INSERT INTO
    PALABRA(
       Id_Palabra,
       Respuesta,
-      PosXi,
-      PosYi,
-      PosXf,
-      PosYf,
       Pregunta,
       Comprobacion
    )
@@ -1354,13 +1240,216 @@ VALUES
    (
       5,
       'EnlaceDatos',
-      7,
-      10,
-      7,
-      8,
       1,
       3
    );
+
+-- CRUCIGRAMAS--------------------
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      1,
+      'Estrella',
+      2,
+      3,
+      'Cada computador posee una conexión directa con el servidor, que se halla en el medio de todas.'
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      2,
+      'Bus',
+      2,
+      3,
+      'También llamadas lineales, tienen un servidor a la cabeza de una línea sucesiva de clientes'
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      3,
+      'Anillo',
+      2,
+      3,
+      'También llamadas circulares, conectan a los clientes y al servidor en un circuito circular'
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      1,
+      'Hardware',
+      3,
+      3,
+      ' Dispositivos y máquinas que permiten el establecimiento de la comunicación'
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      2,
+      'Software',
+      3,
+      3,
+      'Programas requeridos para administrar el hardware de comunicaciones'
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      3,
+      'Servidores',
+      3,
+      3,
+      'procesan el flujo de datos de la red'
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      4,
+      'Clientes',
+      3,
+      3,
+      'Usuarios de la Red'
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      1,
+      'Aplicacion',
+      4,
+      3,
+      'incorpora aplicaciones de red estándar (Telnet, SMTP, FTP, etc.).'
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      2,
+      'Internet',
+      4,
+      3,
+      'es responsable de proporcionar el paquete de datos (datagrama).'
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      3,
+      'Transporte',
+      4,
+      3,
+      'brinda los datos de enrutamiento, junto con los mecanismos que permiten conocer el estado de la transmisión. Comprende a los protocolos TCP y UDP.'
+   );
+
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      1,
+      'Coaxial',
+      5,
+      3,
+      'consta de un núcleo de hilo de cobre rodeado por un aislante, un apantallamiento de metal trenzado y una cubierta externa.'
+   );
+
+INSERT INTO
+   PALABRA(
+      Id_Palabra,
+      Respuesta,
+      Pregunta,
+      Comprobacion,
+      Descripcion
+   )
+VALUES
+   (
+      2,
+      'Fibra',
+      5,
+      3,
+      'Este las señales que se transportan son señales digitales de datos en forma de pulsos modulados de luz. Es apropiado para transmitir datos a velocidades muy altas y con grandes capacidades.'
+   );
+
 
 
 SELECT
