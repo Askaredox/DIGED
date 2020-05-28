@@ -21,6 +21,9 @@
     <link rel='stylesheet' href="<?= base_url('Admin_page/css/css/bootstrap.min.css') ?>">
     <link rel='stylesheet' href="<?= base_url('assets/css/Eval.css') ?>">
     <script>
+        document.write("<link rel='stylesheet' href='<?= base_url('assets/css/Eval.css') ?>?v=" + Date.now() + "'>");
+    </script>
+    <script>
         var base_url = '<?php echo base_url(); ?>';
     </script>
 </head>
@@ -192,7 +195,7 @@
                                             <?php echo ($key + 1) . ') '; ?>Respuesta Sopa
 
                                             <button type="button" class="btn btn-outline-danger float-right" onclick=delP(<?= ($key + 1) ?>)>×</button>
-                                            <button type="button" class="btn btn-success float-right" onclick="">Vista Previa</button>
+                                            <button type="button" class="btn btn-success float-right" onclick=VPS(<?= ($key + 1) ?>)>Vista Previa</button>
                                         </div>
                                         <div class="card-body">
                                             <div class="input-group mb-3">
@@ -203,7 +206,7 @@
                                                 <?php foreach ($pre["answer"] as $llave => $val) : ?>
                                                     <div id="R_<?= ($key + 1) ?>_<?= ($llave + 1) ?>">
                                                         <div class="input-group">
-                                                            <input id="RS<?= ($key + 1) ?>_<?= ($llave + 1) ?>" type="text" class="form-control" placeholder="Respuesta..." value='<?= $val["answer"] ?>'>
+                                                            <input id="RS<?= ($key + 1) ?>_<?= ($llave + 1) ?>" type="text" maxlength = "14" class="form-control" placeholder="Respuesta..." value='<?= $val["answer"] ?>'>
                                                             <button type="button" class="btn btn-danger" onclick=delR(<?= ($key + 1) ?>,<?= ($llave + 1) ?>)>×</button>
                                                         </div>
                                                     </div>
@@ -212,6 +215,7 @@
                                             <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(<?= ($key + 1) ?>,<?= $pre['tipo'] ?>)>
                                                 <i class="fas fa-plus"></i> Añadir respuesta
                                             </button>
+                                            <table id='VPS<?= ($key + 1) ?>' class="sopa"></table>
                                         </div>
                                     </div>
                                 <?php break;
@@ -281,7 +285,7 @@
                                 </button>
                             </div>
                             <div class="col ">
-                                <button type="button" class="btn btn-danger w-100" data-toggle="tooltip" data-placement="bottom" title="Crucigrama" onclick=addP(4)>
+                                <button type="button" class="btn btn-dark w-100" data-toggle="tooltip" data-placement="bottom" title="Crucigrama" onclick=addP(4)>
                                     <i class="fas fa-plus"></i></br>
                                     Crucigrama
                                 </button>

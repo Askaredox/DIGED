@@ -42,7 +42,7 @@ class Crossword{
                                     if(!this.isCan(x,y+despues)) break puede;
                                 }
                                 for(let antes=i;antes>=0;antes--){
-                                    if()
+                                    
                                 }
                                 for(let despues=i;despues<word.length;despues++){
                                     if(!this.isCan()) break puede;

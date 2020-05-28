@@ -247,7 +247,6 @@ function addP(tipo) {
                 </div>
             </div>
             `
-
             break;
         case 5:// respuesta sopita
             nuevo = `
@@ -256,7 +255,7 @@ function addP(tipo) {
     <div class="card-header mx-100 bg-warning text-white" >
         ${p}) Respuesta Sopa
         <button type="button" class="btn btn-outline-danger float-right" onclick=delP(${p})>×</button>
-        <button type="button" class="btn btn-success float-right" onclick="">Vista Previa</button>
+        <button type="button" class="btn btn-success float-right" onclick=VPS(${p})>Vista Previa</button>
     </div>
     <div class="card-body">
         <div class="input-group mb-3">
@@ -267,7 +266,7 @@ function addP(tipo) {
         
             <div id="R_${p}_1">
                 <div class="input-group">
-                    <input id="RS${p}_1" type="text" class="form-control" placeholder="Respuesta...">
+                    <input id="RS${p}_1" type="text" maxlength = "14" class="form-control" placeholder="Respuesta...">
                     <button type="button" class="btn btn-danger" onclick=delR(${p},1)>×</button>
                 </div>
             </div>
@@ -276,6 +275,9 @@ function addP(tipo) {
         <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(${p},5)>
             <i class="fas fa-plus"></i> Añadir respuesta
         </button>
+        <div>
+            <table id='VPS${p}' class="sopa"></table>
+        </div>
     </div>
 </div>
 `
@@ -389,7 +391,8 @@ function delP(preg) {
         <input id="resp${preg.id}" value=${preg.respuestas.length} hidden>
         <div id="resps${preg.id}">`;
                 for (let resp of preg.respuestas) {
-                    nuevo += `<div id="R_${preg.id}_${resp.id}">
+                    nuevo += `
+                <div id="R_${preg.id}_${resp.id}">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -414,35 +417,70 @@ function delP(preg) {
                 nuevo += `
 <input id="preg_T${preg.id}" value=${preg.tipo} hidden>
 <div class="card mb-2">
-    <div class="card-header mx-100 bg-warning" >
-        ${preg.id}) Sopa de letras
+    <div class="card-header mx-100 bg-warning text-white" >
+        ${preg.id}) Respuesta Sopa
         <button type="button" class="btn btn-outline-danger float-right" onclick=delP(${preg.id})>×</button>
+        <button type="button" class="btn btn-success float-right" onclick=VPS(${preg.id})>Vista Previa</button>
     </div>
-    <input id="resp${preg.id}" value=0 hidden>
     <div class="card-body">
         <div class="input-group mb-3">
             <textarea id="PREGUNTA_${preg.id}" class="form-control" placeholder="Pregunta algo">${preg.pregunta}</textarea>
         </div>
+        <input id="resp${preg.id}" value=${preg.respuestas.length} hidden>
+        <div id="resps${preg.id}">`;
+                for (let resp of preg.respuestas) {
+                    nuevo += `
+                <div id="R_${preg.id}_${resp.id}">
+                    <div class="input-group">
+                        <input type="text" id="RS${preg.id}_${resp.id}" maxlength = "14" class="form-control" placeholder="Respuesta..." value='${resp.respuesta}'>
+                        <button type="button" class="btn btn-danger" onclick=delR(${preg.id},${resp.id})>×</button>
+                    </div>
+                </div>`;
+                }
+                nuevo += `
+        </div>
+        <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(${preg.id})>
+            <i class="fas fa-plus"></i> Añadir respuesta
+        </button>
+        <div>
+            <table id='VPS${preg.id}' class="sopa"></table>
+        </div>
     </div>
-</div>
-`
+</div>            
+`;
                 break;
             case 6: //CRUCIGRAMA
                 nuevo += `
-<input id="preg_T${preg.id}" value=${preg.tipo} hidden>
-<div class="card mb-2">
-    <div class="card-header mx-100 bg-danger text-white" >
-        ${preg.id}) Crucigrama
-        <button type="button" class="btn btn-outline-danger float-right" onclick=delP(${preg.id})>×</button>
-    </div>
-    <input id="resp${preg.id}" value=0 hidden>
-    <div class="card-body">
-        <div class="input-group mb-3">
-            <textarea id="PREGUNTA_${preg.id}" class="form-control" placeholder="Pregunta algo">${preg.pregunta}</textarea>
-        </div>
-    </div>
-</div>
-`
+            <input id="preg_T${preg.id}" value=${preg.tipo} hidden>
+            <div class="card mb-2">
+                <div class="card-header mx-100 bg-dark text-white" >
+                    ${preg.id}) Crucigrama
+                    <button type="button" class="btn btn-outline-danger float-right" onclick=delP(${preg.id})>×</button>
+                    <button type="button" class="btn btn-success float-right" onclick="">Vista Previa</button>
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <textarea id="PREGUNTA_${preg.id}" class="form-control" placeholder="Pregunta algo">${preg.pregunta}</textarea>
+                    </div>
+                    <input id="resp${preg.id}" value=${preg.respuestas.length} hidden>
+                    <div id="resps${preg.id}">`;
+                for (let resp of preg.respuestas) {
+                    nuevo += `
+                <div id="R_${preg.id}_${resp.id}">
+                    <div class="input-group">
+                        <input type="text" id="RCR${preg.id}_${resp.id}" class="form-control" placeholder="Respuesta..." value='${resp.respuesta}'>
+                        <button type="button" class="btn btn-danger" onclick=delR(${preg.id},${resp.id})>×</button>
+                    </div>
+                </div>`;
+                }
+                nuevo += `
+                    </div>
+                    <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(${preg.id})>
+                        <i class="fas fa-plus"></i> Añadir respuesta
+                    </button>
+                </div>
+            </div>            
+            `;
                 break;
         }
         $('#preg').append(nuevo)
@@ -526,4 +564,154 @@ function sendTest($Curso, $Tema) {
             }
         }
     })*/
+}
+function VPS(preg){
+    let lista=[];
+    for (let j = 1, rid = 1; j <= parseInt($('#resp' + preg).val()); j++) {
+        if($('#RS' + preg + "_" + j).val!=undefined)
+            lista.push($('#RS' + preg + "_" + j).val().toUpperCase());
+    }
+    //console.log(lista)
+    let board=poner(lista);
+    //console.table(board);
+    $('#VPS'+preg).empty();
+    //console.log($("#VPS"+preg))
+    for(let row of board){
+        $('#VPS'+preg).append('<tr>');
+        for(let col of row){
+            if(col!="")
+                $('#VPS'+preg).append('<td class="cellB">'+col+'</td>');
+            else{
+                let letra=String.fromCharCode(Math.floor(Math.random()*(26))+65)
+                $('#VPS'+preg).append('<td class="cell">'+letra+'</td>');
+            }
+        }
+        $('#VPS'+preg).append('</tr>');
+    }
+}
+
+
+function poner(words) {
+    let board;    //tablero para colocar las palabras
+    let cant;     //cantidad de espacios por lado 
+    words = words.sort((a, b) => b.length - a.length);    //las ordeno de mayor a menor las palabras
+    cant = 15;    //el tamaño del board sera 15x15
+    board = [];
+    board.length = cant;
+    for (let i = 0; i < cant; i++) {    //llenado de espacios vacios el board
+        board[i] = [];
+        for (let j = 0; j < cant; j++) {
+            board[i][j] = "";
+        }
+    }
+    let donde = Math.floor(Math.random() * cant);    //para colocar la primera palabra se coloca en un borde 
+    let vh = Math.floor(Math.random() * 2);            //con un random de donde colocarlo y en qué dirección
+    for (let i = 0; i < words[0].length; i++) {        //colocar la palabra
+        let letra = words[0].charAt(i);
+        if (vh == 0) {
+            board[i][donde] = letra;
+        }
+        else {
+            board[donde][i] = letra;
+        }
+    }
+    pal: for (let i = 1; i < words.length; i++) {    //iterador de cada palabra
+        let palabra = words[i];                        //la palabra
+        let intentos=0;
+        next: do {
+            let x = Math.floor(Math.random() * cant);    //colocar en una posicion random
+            let y = Math.floor(Math.random() * cant);
+            let dir = Math.floor(Math.random() * 4);     //colocar en una dirección random horizontal o vertical
+            let putX = 0, putY = 0, putDir = 0;        //variables de donde se va a colocar
+            let puesto = false;                //si fue puesta la palabra para que no busque más donde ponerla
+            if (dir == 0) {                //verifica en que posicion salio
+                for (let j = 0; j < palabra.length; j++) {
+                    if (y + j < cant) {    //si la palabra se salta a afuera del tablero saltar a siguiente espacio
+                        if (board[x][y + j] != "" && board[x][y + j] != palabra.charAt(j))//verifica si es un espacio vacio y si no verifica si es la misma letra
+                            break;    //de no cumplir salta al siguiente espacio
+                    }
+                    else
+                        break;
+                    if (j == palabra.length - 1) {//si el lugar es adecuado se toma su posicion y su dirección
+                        puesto = true;
+                        putX = x;
+                        putY = y;
+                        putDir = 0;
+                    }
+                }
+            }
+            else if(dir==1){
+                for (let j = 0; j < palabra.length; j++) {     //lo mismo que el paso anterior pero prueba con las direcciones inversas si primero probo vertical y luego horizontal
+                    if (x + j < cant) {                        //ahora va a probar horizontal y luego vertical
+                        if (board[x + j][y] != "" && board[x + j][y] != palabra.charAt(j))
+                            break;
+                    }
+                    else
+                        break;
+                    if (j == palabra.length - 1) {
+                        puesto = true;
+                        putX = x;
+                        putY = y;
+                        putDir = 1;
+                    }
+                }
+            }
+            else if(dir==2){
+                for (let j = 0; j < palabra.length; j++) {//lo mismo que el anterior pero si no logro hacerlo en una dirección se toma la otra
+                    if (x + j < cant && y + j < cant) {
+                        if (board[x + j][y+j] != "" && board[x + j][y+j] != palabra.charAt(j))
+                            continue next;
+                    }
+                    else
+                        continue next;
+                        
+                    if (j == palabra.length - 1) {
+                        puesto = true;
+                        putX = x;
+                        putY = y;
+                        putDir = 2;
+                    }
+                    
+                }
+            }
+            else if(dir==3){
+                for (let j = 0; j < palabra.length; j++) {//lo mismo que el anterior pero si no logro hacerlo en una dirección se toma la otra
+                    if (x - j > 0 && y + j < cant) {
+                        if (board[x - j][y+j] != "" && board[x - j][y+j] != palabra.charAt(j))
+                            continue next;
+                    }
+                    else
+                        continue next;
+                        
+                    if (j == palabra.length - 1) {
+                        puesto = true;
+                        putX = x;
+                        putY = y;
+                        putDir = 3;
+                    }
+                    
+                }
+            }
+            
+            if(puesto){
+                for (let j = 0; j < palabra.length; j++) {        //si la palabra es candidata a colocarse entonces se toma la dirección
+                    if (putDir == 0) {    //horizontal
+                        board[putX][putY + j] = palabra.charAt(j); //colocar letra por letra horizontalmente
+                    }
+                    else if(putDir==1){                //vertical
+                        board[putX + j][putY] = palabra.charAt(j); //colocar verticalmente
+                    }
+                    else if(putDir==2){                //diagonal abajo
+                        board[putX + j][putY+j] = palabra.charAt(j); //colocar diagonalmente
+                    }
+                    else if(putDir==3){                //diagonal arriba
+                        board[putX - j][putY+j] = palabra.charAt(j); //colocar diagonalmente
+                    }
+                }
+                continue pal;//continuar con la siguiente palabra
+            }
+            intentos++;
+        } while (intentos < cant * cant);//para que el ciclo no se vuelva infinito se probara con la misma cantidad que el area del tablero
+    }
+    return board;//cuando haya terminado se retornara el tablero
 }
