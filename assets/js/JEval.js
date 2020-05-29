@@ -53,7 +53,8 @@ function addRes(key, tipo) {
     } else if (tipo == 5) {
         $codigo = $codigo + `<input id="RS${key}_${cant}" type="text" class="form-control" placeholder="Respuesta...">`;
     } else {
-        $codigo = $codigo + `<input id="RCR${key}_${cant}" type="text" class="form-control" placeholder="Respuesta...">`;
+        $codigo = $codigo + `<input id="RCR${key}_${cant}" type="text" class="form-control" placeholder="Respuesta...">
+        <textarea id="RCRD${key}_${cant}" class="form-control" placeholder="Pregunta algo"></textarea>`;
     }
 
     $codigo = $codigo + `<button type="button" class="btn btn-danger" onclick=delR(${key},${cant})>×</button>
