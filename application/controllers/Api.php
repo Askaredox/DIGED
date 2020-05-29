@@ -176,8 +176,7 @@ class Api extends REST_Controller
                             foreach ($row as $res) {
                                 $tmp = array(
                                     "id_res" => $res['Id_Palabra'],
-                                    "answer" => $res['Respuesta'],
-                                    "correcta" => "1"
+                                    "answer" => $res['Respuesta']
                                 );
                                 $respuesta[] = $tmp;
                             }
@@ -185,28 +184,68 @@ class Api extends REST_Controller
                             break;
                         case 6: // crucigrama
 
+
+                            $respuesta = array();
+
+                            $row = $this->Comprobacion_model->getRespuestaSOPA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
+
+                            foreach ($row as $res) {
+                                $tmp = array(
+                                    "id_res" => $res['Id_Palabra'],
+                                    "answer" => $res['Respuesta'],
+                                    "descripcion" => $res['Descripcion']
+                                );
+                                $respuesta[] = $tmp;
+                            }
                             break;
                     }
 
-                    $preguntas[] = array(
-                        'id' => $pregunta['Id_Pregunta'],
-                        'Pregunta' => $pregunta['Pregunta'],
-                        'tipo' => $pregunta['Tipo_Pregunta'],
-                        'respuestas' => $respuesta
-                    );
+                    if($pregunta['Tipo_Pregunta']==5 || $pregunta['Tipo_Pregunta']==6){
+
+                        //
+                        $row1 = $this->Comprobacion_model->getRespuestaRespuestaInteractiva(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
+                        
+                        
+                        //var_dump($row1['Arreglo']);
+                        $preguntas[] = array(
+                            'id' => $pregunta['Id_Pregunta'],
+                            'Pregunta' => $pregunta['Pregunta'],
+                            'tipo' => $pregunta['Tipo_Pregunta'],
+                            'matriz' => explode(",",$row1->Arreglo),
+                            'answer' => $respuesta,
+                            // explode(",",$row1['Arreglo'])
+                        );
+
+                    }else{
+                        $preguntas[] = array(
+                            'id' => $pregunta['Id_Pregunta'],
+                            'Pregunta' => $pregunta['Pregunta'],
+                            'tipo' => $pregunta['Tipo_Pregunta'],
+                            'answer' => $respuesta,
+                        );
+                    }
+                    
                 }
 
+                
                 $data = array(
                     'ID' => $test->Titulo,
                     'DESCRIPCION' => $test->Descripcion,
                     'PREGUNTAS' => $preguntas
                 );
+
+
+
                 $this->response($data, REST_Controller::HTTP_OK);
             } else {
                 $this->response(NULL, REST_Controller::HTTP_NOT_FOUND);
             }
         } else {
             $this->response(NULL, REST_Controller::HTTP_NOT_FOUND);
+          // $array = array("foo", "bar", "hello", "world");
+           //$string =  implode ( "," , $array );
+
+           //$this->response(explode(",",$string), REST_Controller::HTTP_OK);
         }
     }
 

@@ -51,6 +51,15 @@ class Comprobacion_model extends CI_Model
         return FALSE;
     }
 
+    public function getRespuestaRespuestaInteractiva($data) //ID  pregunta y comprobbacion
+    {
+        $query = $this->db->get_where('RESPUESTA_INTERACTIVA', $data);
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        }
+        return FALSE;
+    }
+
     public function getRespuestaVF($data) //ID  pregunta
     {
         $query = $this->db->get_where('RESPUESTA_VF', $data);
@@ -59,7 +68,6 @@ class Comprobacion_model extends CI_Model
         }
         return FALSE;
     }
-
     //----------------------------------------------------------------------
     public function existsTest($data) // id titulo
     {
