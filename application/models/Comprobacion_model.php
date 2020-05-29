@@ -140,4 +140,31 @@ class Comprobacion_model extends CI_Model
         $sql = $this->db->delete('RESPUESTA_MULTIPLE', $data);
         return $sql;
     }
+
+    //************************************************** */
+    public function createAnswerInt($data)
+    {
+        $sql = $this->db->insert('RESPUESTA_INTERACTIVA', $data);
+        return $sql;
+    }
+    public function deleteAnswerInt($data)
+    {
+        $sql = $this->db->delete('RESPUESTA_INTERACTIVA', $data);
+        return $sql;
+    }
+
+
+    //** */
+
+    public function createPalabra($data)
+    {
+        $sql = $this->db->insert('PALABRA', $data);
+        return $sql;
+    }
+    public function deletePalabra($data)
+    {
+        $sql = $this->db->delete('PALABRA', $data);
+        return $sql;
+    }
+
 }
