@@ -568,8 +568,8 @@ function sendTest($Curso, $Tema) {
     let test = getTest();
 
     let $datos = { test: test }
-    console.log($datos);
-    /*$.ajax({
+   console.log($datos);
+    $.ajax({
         url: base_url + 'cEval/saveEval/'+$Curso+'/'+$Tema,
         type: 'POST',
         data: $datos,
@@ -588,7 +588,7 @@ function sendTest($Curso, $Tema) {
                 console.log(json)
             }
         }
-    })*/
+    })
 }
 function VPS(preg){
     let lista=[];
@@ -675,7 +675,7 @@ function normalize(preg,t){
     }
     else{
         pregunta.id=preg.id;
-        pregunta.tipo=5;
+        pregunta.tipo=6;
         pregunta.pregunta=preg.pregunta;
         pregunta.respuestas=[];
         pregunta.matriz=preg.matriz.board;

@@ -313,7 +313,6 @@
     <script>
         document.write("<script type='text/javascript' src='<?= base_url('assets/js/JEval.js') ?>?v=" + Date.now() + "'><\/script>");
     </script>
-    <!--<script src="<?= base_url('assets/js/Sopa.js') ?>"></script>-->
 
 </body>
 <html>
