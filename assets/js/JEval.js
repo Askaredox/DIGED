@@ -437,7 +437,7 @@ function delP(preg) {
                     nuevo += `
                 <div id="R_${preg.id}_${resp.id}">
                     <div class="input-group">
-                        <input type="text" id="RS${preg.id}_${resp.id}" maxlength = "14" class="form-control" placeholder="Respuesta..." value='${resp.respuesta}'>
+                        <input type="text" id="RS${preg.id}_${resp.id}" maxlength = "14" class="form-control" placeholder="Respuesta..." value='${resp.palabra}'>
                         <button type="button" class="btn btn-danger" onclick=delR(${preg.id},${resp.id})>×</button>
                     </div>
                 </div>`;
@@ -473,7 +473,7 @@ function delP(preg) {
                     nuevo += `
                 <div id="R_${preg.id}_${resp.id}">
                     <div class="input-group">
-                        <input type="text" id="RCR${preg.id}_${resp.id}" class="form-control" placeholder="Respuesta..." value='${resp.respuesta}'>
+                        <input type="text" id="RCR${preg.id}_${resp.id}" class="form-control" placeholder="Respuesta..." value='${resp.palabra}'>
                         <textarea id="RCRD${preg.id}_${resp.id}" class="form-control" placeholder="Pregunta algo">${resp.descripcion}</textarea>
                         <button type="button" class="btn btn-danger" onclick=delR(${preg.id},${resp.id})>×</button>
                     </div>
@@ -568,7 +568,7 @@ function sendTest($Curso, $Tema) {
     let test = getTest();
 
     let $datos = { test: test }
-   console.log($datos);
+    //console.log($datos);
     $.ajax({
         url: base_url + 'cEval/saveEval/'+$Curso+'/'+$Tema,
         type: 'POST',
