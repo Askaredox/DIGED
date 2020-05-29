@@ -593,7 +593,7 @@ function sendTest($Curso, $Tema) {
 function VPS(preg){
     let lista=[];
     for (let j = 1; j <= parseInt($('#resp' + preg).val()); j++) {
-        if($('#RS' + preg + "_" + j).val!=undefined)
+        if($('#RS' + preg + "_" + j).val()!=undefined)
             lista.push($('#RS' + preg + "_" + j).val().toUpperCase());
     }
     //console.log(lista)
@@ -617,7 +617,7 @@ function VPS(preg){
 function VPC(preg){
     let lista=[];
     for (let j = 1; j <= parseInt($('#resp' + preg).val()); j++) {
-        if($('#RCR' + preg + "_" + j).val!=undefined)
+        if($('#RCR' + preg + "_" + j).val()!=undefined)
             lista.push($('#RCR' + preg + "_" + j).val().toUpperCase());
     }
     //console.log(lista)
