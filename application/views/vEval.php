@@ -227,7 +227,7 @@
                                             <?php echo ($key + 1) . ') '; ?>Respuesta Crucigrama
 
                                             <button type="button" class="btn btn-outline-danger float-right" onclick=delP(<?= ($key + 1) ?>)>×</button>
-                                            <button type="button" class="btn btn-success float-right" onclick="">Vista Previa</button>
+                                            <button type="button" class="btn btn-success float-right" onclick=VPC(<?= ($key + 1) ?>)>Vista Previa</button>
                                         </div>
                                         <div class="card-body">
                                             <div class="input-group mb-3">
@@ -239,6 +239,7 @@
                                                     <div id="R_<?= ($key + 1) ?>_<?= ($llave + 1) ?>">
                                                         <div class="input-group">
                                                             <input id="RCR<?= ($key + 1) ?>_<?= ($llave + 1) ?>" type="text" class="form-control" placeholder="Respuesta..." value='<?= $val["answer"] ?>'>
+                                                            <textarea id="RCRD<?= ($key + 1) ?>_<?= ($llave + 1) ?>" class="form-control" placeholder="Pregunta algo"><?= $val["descripcion"] ?></textarea>
                                                             <button type="button" class="btn btn-danger" onclick=delR(<?= ($key + 1) ?>,<?= ($llave + 1) ?>)>×</button>
                                                         </div>
                                                     </div>
@@ -247,6 +248,7 @@
                                             <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(<?= ($key + 1) ?>,<?= $pre['tipo'] ?>)>
                                                 <i class="fas fa-plus"></i> Añadir respuesta
                                             </button>
+                                            <table id='VPC<?= ($key + 1) ?>' class="sopa"></table>
                                         </div>
                                     </div>
                             <?php break;
@@ -311,7 +313,6 @@
     <script>
         document.write("<script type='text/javascript' src='<?= base_url('assets/js/JEval.js') ?>?v=" + Date.now() + "'><\/script>");
     </script>
-    <script src="<?= base_url('assets/js/Sopa.js') ?>"></script>
 
 </body>
 <html>
