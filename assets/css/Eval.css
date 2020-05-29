@@ -10,8 +10,10 @@
 .cell{
     text-align: center;
     border: 1px solid black;
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 20px !important;
+    padding: 0;
+    font-family: monospace;
 }
 .cellB{
     text-align: center;
@@ -19,6 +21,23 @@
     background-color: gray;
     width:20px;
     height: 20px;
+    font-family: monospace;
+}
+.cellC{
+    text-align: center;
+    background-color: white;
+    width: 20px !important;
+    height: 20px !important;
+    padding: 0;
+    font-family: monospace;
+}
+.cellCB{
+    text-align: center;
+    border: 1px solid black;
+    color:gray;
+    width:20px;
+    height: 20px;
+    font-family: monospace;
 }
 @media screen and (max-width: 600px) {
     .save{

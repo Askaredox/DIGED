@@ -68,7 +68,6 @@ class Comprobacion_model extends CI_Model
         }
         return FALSE;
     }
-
     //----------------------------------------------------------------------
     public function existsTest($data) // id titulo
     {

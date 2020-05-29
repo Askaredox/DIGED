@@ -224,7 +224,7 @@ function addP(tipo) {
                 <div class="card-header mx-100 bg-dark text-white" >
                     ${p}) Respuesta Crucigrama
                     <button type="button" class="btn btn-outline-danger float-right" onclick=delP(${p})>×</button>
-                    <button type="button" class="btn btn-success float-right" onclick="">Vista Previa</button>
+                    <button type="button" class="btn btn-success float-right" onclick=VPC(${p})>Vista Previa</button>
                 </div>
                 <div class="card-body">
                     <div class="input-group mb-3">
@@ -236,6 +236,7 @@ function addP(tipo) {
                         <div id="R_${p}_1">
                             <div class="input-group">
                                 <input id="RCR${p}_1" type="text" class="form-control" placeholder="Respuesta...">
+                                <textarea id="RCRD${p}_1" class="form-control" placeholder="Pregunta algo"></textarea>
                                 <button type="button" class="btn btn-danger" onclick=delR(${p},1)>×</button>
                             </div>
                         </div>
@@ -244,6 +245,9 @@ function addP(tipo) {
                     <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(${p},6)>
                         <i class="fas fa-plus"></i> Añadir respuesta
                     </button>
+                    <div>
+                        <table id='VPC${p}' class="sopa"></table>
+                    </div>
                 </div>
             </div>
             `
@@ -456,7 +460,7 @@ function delP(preg) {
                 <div class="card-header mx-100 bg-dark text-white" >
                     ${preg.id}) Crucigrama
                     <button type="button" class="btn btn-outline-danger float-right" onclick=delP(${preg.id})>×</button>
-                    <button type="button" class="btn btn-success float-right" onclick="">Vista Previa</button>
+                    <button type="button" class="btn btn-success float-right" onclick=VPC(${preg.id})>Vista Previa</button>
                 </div>
                 <div class="card-body">
                     <div class="input-group mb-3">
@@ -469,6 +473,7 @@ function delP(preg) {
                 <div id="R_${preg.id}_${resp.id}">
                     <div class="input-group">
                         <input type="text" id="RCR${preg.id}_${resp.id}" class="form-control" placeholder="Respuesta..." value='${resp.respuesta}'>
+                        <textarea id="RCRD${preg.id}_${resp.id}" class="form-control" placeholder="Pregunta algo">${resp.descripcion}</textarea>
                         <button type="button" class="btn btn-danger" onclick=delR(${preg.id},${resp.id})>×</button>
                     </div>
                 </div>`;
@@ -478,6 +483,9 @@ function delP(preg) {
                     <button type="button" class="btn btn-outline-primary w-100" onclick=addRes(${preg.id})>
                         <i class="fas fa-plus"></i> Añadir respuesta
                     </button>
+                    <div>
+                        <table id='VPC${preg.id}' class="sopa"></table>
+                    </div>
                 </div>
             </div>            
             `;
@@ -506,6 +514,8 @@ function getTest(pregu) {
             pregunta: $('#PREGUNTA_' + i).val(),
             respuestas: []
         }
+        let matriz=[];
+        let matrizD=[];
         for (let j = 1, rid = 1; j <= parseInt($('#resp' + i).val()); j++) {
             let res = {}
             switch (preg.tipo) {
@@ -515,25 +525,39 @@ function getTest(pregu) {
                 case 2:
                     break;
                 case 3:
-                    res.respuesta = $('#RC' + i + "_" + j).val()
+                    res.respuesta = $('#RC' + i + "_" + j).val();
                     break;
                 case 4:
-                    if ($('#OM' + i + "_" + j).val() == undefined)
-                        continue
+                    if ($('#OM' + i + "_" + j).val() == undefined) continue;
                     res.respuesta = $('#OM' + i + "_" + j).val()
                     res.correcta = $('#OMC' + i + "_" + j).is(':checked') ? 1 : 0;
                     break;
                 case 5:
-                    res.respuesta = $('#RS' + i + "_" + j).val()
+                    if($('#RS' + i + "_" + j).val() == undefined)continue;
+                    res.respuesta = $('#RS' + i + "_" + j).val().toUpperCase();
+                    matriz.push(res.respuesta);
                     break;
                 case 6:
-                    res.respuesta = $('#RCR' + i + "_" + j).val()
+                    if($('#RCR' + i + "_" + j).val() == undefined)continue;
+                    res.respuesta = $('#RCR' + i + "_" + j).val().toUpperCase();
+                    res.descripcion = $('#RCRD' + i + "_" + j).val();
+                    matrizD.push({answer:res.respuesta,descr:res.descripcion});
                     break;
             }
             if (res.respuesta == undefined && res.correcta == undefined)
                 continue;
             res.id = rid++;
             preg.respuestas.push(res)
+        }
+        if(preg.tipo==5){
+            preg.matriz=getSoup(matriz);
+            matriz.length=0;
+            preg=normalize(preg,true);
+        }
+        else if(preg.tipo==6){
+            preg.matriz=getCrusi(matrizD);
+            matrizD.length=0;
+            preg=normalize(preg,false);
         }
         test.preguntas.push(preg);
     }
@@ -567,12 +591,12 @@ function sendTest($Curso, $Tema) {
 }
 function VPS(preg){
     let lista=[];
-    for (let j = 1, rid = 1; j <= parseInt($('#resp' + preg).val()); j++) {
+    for (let j = 1; j <= parseInt($('#resp' + preg).val()); j++) {
         if($('#RS' + preg + "_" + j).val!=undefined)
             lista.push($('#RS' + preg + "_" + j).val().toUpperCase());
     }
     //console.log(lista)
-    let board=poner(lista);
+    let board=poner(lista).board;
     //console.table(board);
     $('#VPS'+preg).empty();
     //console.log($("#VPS"+preg))
@@ -589,13 +613,93 @@ function VPS(preg){
         $('#VPS'+preg).append('</tr>');
     }
 }
-
+function VPC(preg){
+    let lista=[];
+    for (let j = 1; j <= parseInt($('#resp' + preg).val()); j++) {
+        if($('#RCR' + preg + "_" + j).val!=undefined)
+            lista.push($('#RCR' + preg + "_" + j).val().toUpperCase());
+    }
+    //console.log(lista)
+    let board=poner(lista).board;
+    //console.table(board);
+    $('#VPC'+preg).empty();
+    //console.log($("#VPS"+preg))
+    for(let row of board){
+        $('#VPC'+preg).append('<tr>');
+        for(let col of row){
+            if(col!="")
+                $('#VPC'+preg).append('<td class="cellCB">'+col+'</td>');
+            else{
+                $('#VPC'+preg).append('<td class="cellC"> </td>');
+            }
+        }
+        $('#VPC'+preg).append('</tr>');
+    }
+}
+function getSoup(words){
+    let pals=poner(words)
+    let board=pals.board;
+    for(let row=0;row<board.length;row++)
+        for(let col=0;col<board[row].length;col++)
+            if(board[row][col]=="")
+                board[row][col]=String.fromCharCode(Math.floor(Math.random()*(26))+65); 
+    return {board,descrs:pals.descripciones};
+}
+function getCrusi(mat){
+    let words=mat.map((val)=>val.answer)
+    let board=poner(words);
+    for(let desc of board.descripciones){
+        desc.descripcion=mat.find(value=>value.answer==desc.palabra).descr;
+    }
+    return board;
+}
+function normalize(preg,t){
+    let pregunta={}
+    if(t){
+        pregunta.id=preg.id;
+        pregunta.tipo=5;
+        pregunta.pregunta=preg.pregunta;
+        pregunta.respuestas=[];
+        pregunta.matriz=preg.matriz.board;
+        for(let descr of preg.matriz.descrs){
+            pregunta.respuestas.push({
+                palabra:descr.palabra,
+                X0:descr.X0,
+                Y0:descr.Y0,
+                X1:descr.X1,
+                Y1:descr.Y1,
+                id:preg.respuestas.find(val=>val.respuesta==descr.palabra).id,
+            });
+        }
+    }
+    else{
+        pregunta.id=preg.id;
+        pregunta.tipo=5;
+        pregunta.pregunta=preg.pregunta;
+        pregunta.respuestas=[];
+        pregunta.matriz=preg.matriz.board;
+        for(let descr of preg.matriz.descripciones){
+            pregunta.respuestas.push({
+                palabra:descr.palabra,
+                X0:descr.X0,
+                Y0:descr.Y0,
+                X1:descr.X1,
+                Y1:descr.Y1,
+                id:preg.respuestas.find(val=>val.respuesta==descr.palabra).id,
+                descripcion:preg.respuestas.find(val=>val.respuesta==descr.palabra).descripcion,
+            });
+        }
+        //console.log(pregunta);
+    }
+    return pregunta;
+}
 
 function poner(words) {
+    let descripciones=[]
     let board;    //tablero para colocar las palabras
     let cant;     //cantidad de espacios por lado 
     words = words.sort((a, b) => b.length - a.length);    //las ordeno de mayor a menor las palabras
-    cant = 15;    //el tamaño del board sera 15x15
+    cant = words[0].length<=13?15:words[0].length+2;    //el tamaño del board sera 15x15
     board = [];
     board.length = cant;
     for (let i = 0; i < cant; i++) {    //llenado de espacios vacios el board
@@ -615,6 +719,12 @@ function poner(words) {
             board[donde][i] = letra;
         }
     }
+    if (vh == 0) 
+        descripciones.push({palabra:words[0],X0:0,Y0:donde,X1:words[0].length-1,Y1:donde})
+    else 
+        descripciones.push({palabra:words[0],X0:donde,Y0:0,X1:donde,Y1:words[0].length-1})
+
+    
     pal: for (let i = 1; i < words.length; i++) {    //iterador de cada palabra
         let palabra = words[i];                        //la palabra
         let intentos=0;
@@ -708,10 +818,30 @@ function poner(words) {
                         board[putX - j][putY+j] = palabra.charAt(j); //colocar diagonalmente
                     }
                 }
+                if(descr){
+                    let xFin,yFin;
+                    if (putDir == 0) {    //horizontal
+                        xFin=putX;
+                        yFin=putY+palabra.length-1;
+                    }
+                    else if(putDir==1){                //vertical
+                        xFin=putX+palabra.length-1;
+                        yFin=putY;
+                    }
+                    else if(putDir==2){                //diagonal abajo
+                        xFin=putX+palabra.length-1;
+                        yFin=putY+palabra.length-1;
+                    }
+                    else if(putDir==3){                //diagonal arriba
+                        xFin=putX-palabra.length+1;
+                        yFin=putY+palabra.length-1;
+                    }
+                    descripciones.push({palabra,X0:putY,Y0:putX,X1:yFin,Y1:xFin})
+                }
                 continue pal;//continuar con la siguiente palabra
             }
             intentos++;
         } while (intentos < cant * cant);//para que el ciclo no se vuelva infinito se probara con la misma cantidad que el area del tablero
     }
-    return board;//cuando haya terminado se retornara el tablero
+    return {board,descripciones}
 }
