@@ -176,7 +176,11 @@ class Api extends REST_Controller
                             foreach ($row as $res) {
                                 $tmp = array(
                                     "id_res" => $res['Id_Palabra'],
-                                    "answer" => $res['Respuesta']
+                                    "answer" => $res['Respuesta'],
+                                    "X0"=> $res['X0'],
+                                    "Y0"=> $res['Y0'],
+                                    "X1"=> $res['X1'],
+                                    "Y1"=> $res['Y1']
                                 );
                                 $respuesta[] = $tmp;
                             }
@@ -193,6 +197,10 @@ class Api extends REST_Controller
                                 $tmp = array(
                                     "id_res" => $res['Id_Palabra'],
                                     "answer" => $res['Respuesta'],
+                                    "X0"=> $res['X0'],
+                                    "Y0"=> $res['Y0'],
+                                    "X1"=> $res['X1'],
+                                    "Y1"=> $res['Y1'],
                                     "descripcion" => $res['Descripcion']
                                 );
                                 $respuesta[] = $tmp;
@@ -212,7 +220,7 @@ class Api extends REST_Controller
                             'Pregunta' => $pregunta['Pregunta'],
                             'tipo' => $pregunta['Tipo_Pregunta'],
                             'matriz' => explode(",",$row1->Arreglo),
-                            'answer' => $respuesta,
+                            'respuestas' => $respuesta,
                             // explode(",",$row1['Arreglo'])
                         );
 
@@ -221,7 +229,7 @@ class Api extends REST_Controller
                             'id' => $pregunta['Id_Pregunta'],
                             'Pregunta' => $pregunta['Pregunta'],
                             'tipo' => $pregunta['Tipo_Pregunta'],
-                            'answer' => $respuesta,
+                            'respuestas' => $respuesta,
                         );
                     }
                     
