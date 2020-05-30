@@ -76,7 +76,7 @@
                                 $respuesta = array();
 
                                 $row = $this->Comprobacion_model->getRespuestaMULTIPLE(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
-                                if ($row)
+                                
                                     foreach ($row as $res) {
                                         $tmp = array(
                                             "id_res" => $res['Id_RMultiple'],
@@ -91,31 +91,31 @@
                                 $respuesta = array();
 
                                 $row = $this->Comprobacion_model->getRespuestaSOPA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
-
-                                foreach ($row as $res) {
-                                    $tmp = array(
-                                        "id_res" => $res['Id_Palabra'],
-                                        "answer" => $res['Respuesta'],
-                                        "correcta" => "1"
-                                    );
-                                    $respuesta[] = $tmp;
-                                }
+                                if ($row)
+                                    foreach ($row as $res) {
+                                        $tmp = array(
+                                            "id_res" => $res['Id_Palabra'],
+                                            "answer" => $res['Respuesta'],
+                                            "correcta" => "1"
+                                        );
+                                        $respuesta[] = $tmp;
+                                    }
 
                                 break;
                             case 6: // crucigrama
                                 $respuesta = array();
 
                                 $row = $this->Comprobacion_model->getRespuestaSOPA(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
-
-                                foreach ($row as $res) {
-                                    $tmp = array(
-                                        "id_res" => $res['Id_Palabra'],
-                                        "answer" => $res['Respuesta'],
-                                        "descripcion" => $res['Descripcion']
-                                    );
-                                    $respuesta[] = $tmp;
-                                }
-                                break;
+                                if ($row)
+                                    foreach ($row as $res) {
+                                        $tmp = array(
+                                            "id_res" => $res['Id_Palabra'],
+                                            "answer" => $res['Respuesta'],
+                                            "descripcion" => $res['Descripcion']
+                                        );
+                                        $respuesta[] = $tmp;
+                                    }
+                                    break;
                         }
 
                         $preguntas[] = array(
