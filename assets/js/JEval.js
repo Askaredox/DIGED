@@ -551,11 +551,17 @@ function getTest(pregu) {
             preg.respuestas.push(res)
         }
         if(preg.tipo==5){
+            if(!pregu && matriz.length==0){
+                return {error:1,preg:i}
+            }
             preg.matriz=getSoup(matriz);
             matriz.length=0;
             preg=normalize(preg,true);
         }
         else if(preg.tipo==6){
+            if(!pregu && matrizD.length==0){
+                return {error:1,preg:i}
+            }
             preg.matriz=getCrusi(matrizD);
             matrizD.length=0;
             preg=normalize(preg,false);
@@ -566,7 +572,15 @@ function getTest(pregu) {
 }
 function sendTest($Curso, $Tema) {
     let test = getTest();
-
+    if(test.error){
+        alert("Crucigrama o Sopa de letras sin palabras! Coloca alguna")
+        //console.log($("#PREGUNTA_"+test.preg).offset().top)
+        $('html, body').animate({
+            scrollTop: $("#PREGUNTA_"+test.preg).offset().top-300
+        }, 1000);
+        return;
+    }
+        
     let $datos = { test: test }
     //console.log($datos);
     $.ajax({
@@ -700,6 +714,7 @@ function poner(words) {
     let board;    //tablero para colocar las palabras
     let cant;     //cantidad de espacios por lado 
     words = words.sort((a, b) => b.length - a.length);    //las ordeno de mayor a menor las palabras
+    if(words.length==0)return{board:[[]],descripciones}
     cant = words[0].length<=13?15:words[0].length+2;    //el tamaño del board sera 15x15
     board = [];
     board.length = cant;
