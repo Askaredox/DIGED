@@ -20,9 +20,11 @@
     <link href="<?= base_url('Admin_page/css/freelancer.min.css') ?>" rel="stylesheet">
     <link rel='stylesheet' href="<?= base_url('Admin_page/css/css/bootstrap.min.css') ?>">
     <link rel='stylesheet' href="<?= base_url('assets/css/Eval.css') ?>">
+    <link rel="stylesheet" href="<?=base_url('assets/libs/sweetAlert2/package/dist/sweetalert2.min.css')?>">
     <script>
         document.write("<link rel='stylesheet' href='<?= base_url('assets/css/Eval.css') ?>?v=" + Date.now() + "'>");
     </script>
+    
     <script>
         var base_url = '<?php echo base_url(); ?>';
     </script>
@@ -310,6 +312,7 @@
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="<?= base_url('Admin_page/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+    <script  src="<?= base_url('assets/libs/sweetAlert2/package/dist/sweetalert2.min.js') ?>"></script>
     <script>
         document.write("<script type='text/javascript' src='<?= base_url('assets/js/JEval.js') ?>?v=" + Date.now() + "'><\/script>");
     </script>

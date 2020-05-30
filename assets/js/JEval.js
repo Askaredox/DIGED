@@ -573,11 +573,17 @@ function getTest(pregu) {
 function sendTest($Curso, $Tema) {
     let test = getTest();
     if(test.error){
-        alert("Crucigrama o Sopa de letras sin palabras! Coloca alguna")
+        Swal.fire({
+            icon: 'error',
+            title: 'Crucigrama o Sopa de letras sin palabras! Coloca alguna',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        //alert("Crucigrama o Sopa de letras sin palabras! Coloca alguna")
         //console.log($("#PREGUNTA_"+test.preg).offset().top)
         $('html, body').animate({
             scrollTop: $("#PREGUNTA_"+test.preg).offset().top-300
-        }, 1000);
+        }, 2000);
         return;
     }
         
