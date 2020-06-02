@@ -226,7 +226,7 @@ class Api extends REST_Controller
                         );
                     } else if ($pregunta['Tipo_Pregunta'] == 5) {
                         $row1 = $this->Comprobacion_model->getRespuestaRespuestaInteractiva(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
-
+                         
 
                         //var_dump($row1['Arreglo']);
                         $preguntas[] = array(
