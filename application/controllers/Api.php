@@ -177,10 +177,10 @@ class Api extends REST_Controller
                                 $tmp = array(
                                     "id_res" => $res['Id_Palabra'],
                                     "answer" => $res['Respuesta'],
-                                    "X0"=> $res['X0'],
-                                    "Y0"=> $res['Y0'],
-                                    "X1"=> $res['X1'],
-                                    "Y1"=> $res['Y1']
+                                    "X0" => $res['X0'],
+                                    "Y0" => $res['Y0'],
+                                    "X1" => $res['X1'],
+                                    "Y1" => $res['Y1']
                                 );
                                 $respuesta[] = $tmp;
                             }
@@ -197,10 +197,10 @@ class Api extends REST_Controller
                                 $tmp = array(
                                     "id_res" => $res['Id_Palabra'],
                                     "answer" => $res['Respuesta'],
-                                    "X0"=> $res['X0'],
-                                    "Y0"=> $res['Y0'],
-                                    "X1"=> $res['X1'],
-                                    "Y1"=> $res['Y1'],
+                                    "X0" => $res['X0'],
+                                    "Y0" => $res['Y0'],
+                                    "X1" => $res['X1'],
+                                    "Y1" => $res['Y1'],
                                     "descripcion" => $res['Descripcion']
                                 );
                                 $respuesta[] = $tmp;
@@ -208,23 +208,37 @@ class Api extends REST_Controller
                             break;
                     }
 
-                    if($pregunta['Tipo_Pregunta']==5 || $pregunta['Tipo_Pregunta']==6){
+                    if ($pregunta['Tipo_Pregunta'] == 6) {
 
                         //
                         $row1 = $this->Comprobacion_model->getRespuestaRespuestaInteractiva(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
-                        
-                        
+
+
                         //var_dump($row1['Arreglo']);
                         $preguntas[] = array(
                             'id' => $pregunta['Id_Pregunta'],
                             'Pregunta' => $pregunta['Pregunta'],
                             'tipo' => $pregunta['Tipo_Pregunta'],
-                            'matriz' => explode(",",$row1->Arreglo),
+                            'matriz' => explode(",", $row1->Arreglo),
                             'respuestas' => $respuesta,
+                            'total' => count(explode(",", $row1->Arreglo))
                             // explode(",",$row1['Arreglo'])
                         );
+                    } else if ($pregunta['Tipo_Pregunta'] == 5) {
+                        $row1 = $this->Comprobacion_model->getRespuestaRespuestaInteractiva(array('Pregunta' => $pregunta['Id_Pregunta'], 'Comprobacion' => $test->Titulo));
+                         
 
-                    }else{
+                        //var_dump($row1['Arreglo']);
+                        $preguntas[] = array(
+                            'id' => $pregunta['Id_Pregunta'],
+                            'Pregunta' => $pregunta['Pregunta'],
+                            'tipo' => $pregunta['Tipo_Pregunta'],
+                            'matriz' => str_split($row1->Arreglo),
+                            'respuestas' => $respuesta,
+                            'total' => count(str_split($row1->Arreglo))
+                            // explode(",",$row1['Arreglo'])
+                        );
+                    } else {
                         $preguntas[] = array(
                             'id' => $pregunta['Id_Pregunta'],
                             'Pregunta' => $pregunta['Pregunta'],
@@ -232,10 +246,9 @@ class Api extends REST_Controller
                             'respuestas' => $respuesta,
                         );
                     }
-                    
                 }
 
-                
+
                 $data = array(
                     'ID' => $test->Titulo,
                     'DESCRIPCION' => $test->Descripcion,
@@ -250,10 +263,10 @@ class Api extends REST_Controller
             }
         } else {
             $this->response(NULL, REST_Controller::HTTP_NOT_FOUND);
-          // $array = array("foo", "bar", "hello", "world");
-           //$string =  implode ( "," , $array );
+            // $array = array("foo", "bar", "hello", "world");
+            //$string =  implode ( "," , $array );
 
-           //$this->response(explode(",",$string), REST_Controller::HTTP_OK);
+            //$this->response(explode(",",$string), REST_Controller::HTTP_OK);
         }
     }
 
