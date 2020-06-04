@@ -572,6 +572,7 @@ function getTest(pregu) {
 }
 function sendTest($Curso, $Tema) {
     let test = getTest();
+    
     if(test.error){
         Swal.fire({
             icon: 'error',
@@ -588,6 +589,7 @@ function sendTest($Curso, $Tema) {
     }
         
     let $datos = { test: test }
+    console.log(test);
     //console.log($datos);
     $.ajax({
         url: base_url + 'cEval/saveEval/'+$Curso+'/'+$Tema,
@@ -596,7 +598,7 @@ function sendTest($Curso, $Tema) {
         success: function (data) {
             var json = JSON.parse(data);
             console.log(json.url);
-            window.location.replace(json.url);
+            //window.location.replace(json.url);
         },
         statusCode: {
             400: function (xhr) {
@@ -741,7 +743,7 @@ function poner(words) {
             board[donde][i] = letra;
         }
     }
-    if (vh == 0) 
+    if (vh == 1) 
         descripciones.push({palabra:words[0],X0:0,Y0:donde,X1:words[0].length-1,Y1:donde})
     else 
         descripciones.push({palabra:words[0],X0:donde,Y0:0,X1:donde,Y1:words[0].length-1})
